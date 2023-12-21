@@ -6,12 +6,12 @@ const siteMetadata = {
   description: 'A website of Francis Aguilar containing his blogs, projects, and profile.',
   language: 'en-us',
   theme: 'system', // system, dark or light
-  siteUrl: 'https://francisaguilar.ph',
+  siteUrl: 'https://francisaguilar.co',
   siteRepo: 'https://github.com/francisaguilar21/fara-website',
-  siteLogo: '/static/images/logo.png',
+  siteLogo: '/static/images/logo-black.png',
   socialBanner: '/static/images/twitter-card.png',
   // mastodon: 'https://mastodon.social/@mastodonuser',
-  email: 'hi@francisaguilar.ph',
+  email: 'hi@francisaguilar.co',
   github: 'https://github.com/francisaguilar21',
   twitter: 'https://twitter.com/faraguilar21',
   // facebook: 'https://facebook.com',
@@ -37,11 +37,11 @@ const siteMetadata = {
     //   googleAnalyticsId: '', // e.g. G-XXXXXXX
     // },
   },
-  // newsletter: {
-  //   // supports mailchimp, buttondown, convertkit, klaviyo, revue, emailoctopus
-  //   // Please add your .env file and modify it according to your selection
-  //   provider: 'buttondown',
-  // },
+  newsletter: {
+    // supports mailchimp, buttondown, convertkit, klaviyo, revue, emailoctopus
+    // Please add your .env file and modify it according to your selection
+    provider: 'convertkit',
+  },
   comments: {
     // If you want to use an analytics provider you have to add it to the
     // content security policy in the `next.config.js` file.
