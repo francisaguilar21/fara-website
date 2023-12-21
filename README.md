@@ -23,7 +23,9 @@ yarn
 
 ## Development
 
-First, run the development server:
+First, make sure you're using `NVM` and use `Node 20.10.0`.
+
+After, you can then run the development server:
 
 ```bash
 yarn dev
