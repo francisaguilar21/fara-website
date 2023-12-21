@@ -9,17 +9,29 @@ This is my website that was heavily inspired by [Timothy's Tailwind NextJS Start
 - [ ] Comments by [Discus](https://disqus.com/)
 - [ ] Newsletter by ConvertKit or MailChimp
 
+# Standards
+
+## Committing
+
+1. The pull request title should have a corresponding emoji before the start of the title.
+> - ✨ New Feature or Enhancement
+> - 📝 New Blog
+> - 📚 Doc changes
+> - 🐛 Bug Fix
+> - 🎨 UI Change
+2. PR description should enumerate or outline the code changes.
+3. Make sure that the vercel bot has deployed it in `preview` environment and is working properly.
+
+
 ## Quick Start Guide
 
-1. Clone the repo
-2. Personalize `siteMetadata.js` (site related information)
-3. Modify the content security policy in `next.config.js` if you want to use
-   other analytics provider or a commenting solution other than giscus.
-4. Personalize `authors/default.md` (main author)
-5. Modify `projectsData.ts`
-6. Modify `headerNavLinks.ts` to customize navigation links
-7. Add blog posts
-8. Deploy on Vercel
+1. Personalize `siteMetadata.js` (site related information)
+2. Modify the content security policy in `next.config.js` if you want to use other analytics provider or a commenting solution other than giscus.
+3. Personalize `authors/default.md` (main author)
+4. Modify `projectsData.ts`
+5. Modify `headerNavLinks.ts` to customize navigation links
+6. Add blog posts
+7. Deploy on Vercel
 
 ## Installation
 
