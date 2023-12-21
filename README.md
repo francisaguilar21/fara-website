@@ -3,6 +3,12 @@
 
 This is my website that was heavily inspired by [Timothy's Tailwind NextJS Starter Blog](https://github.com/timlrx/tailwind-nextjs-starter-blog). Everything is buit with [Next.js](https://nextjs.org/) and [Tailwind CSS](https://tailwindcss.com/) with [React Server Component](https://nextjs.org/docs/getting-started/react-essentials#server-components) and uses [Contentlayer](https://www.contentlayer.dev/) to manage markdown content.
 
+# Features
+
+- [ ] Analytics by [PostHog](https://posthog.com/)
+- [ ] Comments by [Discus](https://disqus.com/)
+- [ ] Newsletter by ConvertKit or MailChimp
+
 ## Quick Start Guide
 
 1. Clone the repo
@@ -107,11 +113,6 @@ layout: PostLayout
 canonicalUrl: https://tailwind-nextjs-starter-blog.vercel.app/blog/introducing-tailwind-nextjs-starter-blog
 ---
 ```
-
-## Deploy
-
-**Vercel**  
-The easiest way to deploy the template is to deploy on [Vercel](https://vercel.com). Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
 ## Frequently Asked Questions
 
