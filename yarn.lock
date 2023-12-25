@@ -5689,6 +5689,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fflate@npm:^0.4.1":
+  version: 0.4.8
+  resolution: "fflate@npm:0.4.8"
+  checksum: 29d8cbe44d5e7f53e7f5a160ac7f9cc025480c7b3bfd85c5f898cbe20dfa2dad4732daa534982664bf30b35896a90af44ea33ede5d94c5ffd1b8b0c0a0a56ca2
+  languageName: node
+  linkType: hard
+
 "file-entry-cache@npm:^6.0.1":
   version: 6.0.1
   resolution: "file-entry-cache@npm:6.0.1"
@@ -9302,6 +9309,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"posthog-js@npm:^1.96.1":
+  version: 1.96.1
+  resolution: "posthog-js@npm:1.96.1"
+  dependencies:
+    fflate: ^0.4.1
+  checksum: 74d84aadb88fa566a741829e6035543b383933da1f50c54a4fe17bc1459f9d0eef78c0769e9187bc6ec776a32e3829ed5c2e4408e62cfb3e4b159033a75310a0
+  languageName: node
+  linkType: hard
+
 "prelude-ls@npm:^1.2.1":
   version: 1.2.1
   resolution: "prelude-ls@npm:1.2.1"
@@ -10967,6 +10983,7 @@ __metadata:
     next-themes: ^0.2.1
     pliny: 0.1.6
     postcss: ^8.4.24
+    posthog-js: ^1.96.1
     prettier: ^3.0.0
     prettier-plugin-tailwindcss: ^0.4.1
     react: 18.2.0
