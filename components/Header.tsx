@@ -13,7 +13,7 @@ const Header = () => {
           <div className="flex items-center justify-between">
             {typeof siteMetadata.headerTitle === 'string' ? (
               <div className="hidden h-6 text-3xl font-semibold sm:block">
-                <p>F A</p>
+                <a>F A</a>
               </div>
             ) : (
               siteMetadata.headerTitle
