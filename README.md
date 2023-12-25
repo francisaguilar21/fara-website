@@ -5,7 +5,7 @@ This is my website that was heavily inspired by [Timothy's Tailwind NextJS Start
 
 # Features
 
-- [ ] Analytics by [PostHog](https://posthog.com/)
+- [X] Analytics by [PostHog](https://posthog.com/)
 - [ ] Comments by [Discus](https://disqus.com/)
 - [ ] Newsletter by ConvertKit or MailChimp
 
