@@ -4,7 +4,7 @@ date: '2024-01-08'
 tags: ['technology', 'web', 'analytics']
 images: ['/static/images/2401/2401-08-banner.webp']
 draft: false
-summary: 'Reasons why I chose an open source analytics tool over a trillion dollar company&#39; battle-tested software.'
+summary: "Reasons why I chose an open source analytics tool over a trillion dollar company's battle-tested software."
 ---
 
 ![Post Banner](/static/images/2401/2401-08-banner.webp)
@@ -77,7 +77,7 @@ This used to be impossible or extremely difficult with Google Analytics and its 
 I was only able to do this with Segment which had a middleware that handled the server side logs before communicating it with GA.
 The simplicity of just plugging in a simple line of code in the front and back end of your application and immediately start receiving events & data is just amazing.
 
-## Session Replay
+### Session Replay
 
 When I was building the early version of our startup's product, I found how extremely difficult it was to debug and understand the issues encountered by our customers.
 Users were experiencing bugs that we couldn't replicate and it was almost impossible for us to understand what was happening. 
@@ -90,7 +90,7 @@ You can review the video as much as you want so you can make better assumptions 
 
 A sample example can be found [here](https://posthog.com/docs/session-replay/installation) made by the PostHog team.
 
-## A/B Testing & Feature flags
+### A/B Testing & Feature flags
 
 GA does not come with A/B testing and feature flags out of the box. It will need extra integrations with third-party services to do this. PostHog on the other hand offers this from the get-go.
 You can easily test out certain situations and features with simple flags and keys without having to change any parts of your code once you've deployed it. Here's an example below.
@@ -120,7 +120,7 @@ if (posthog.getFeatureFlag('flag-key')  == 'variant-key') { // replace 'variant-
 
 ```
 
-# Reason 2: Affordable Pricing
+## Reason 2: Affordable Pricing
 
 As a startup founder, I have always been very stringent especially when it comes to our company's infrastructure. 
 My co-founder and I even made sure to maximize credits given to us by accelerators and grants. 
@@ -134,7 +134,7 @@ This is because you won't be charged unless you exceed the free tier limits. Bel
 You can find more about their latest pricing on their [site](https://posthog.com/pricing). 
 Another thing I appreciate about their approach is that they implemented billing limits which prevents their users & customers from overpaying especially when a misconfiguration or DDOS attack occurs.
 
-# Reason 3: The DX (Developer Experience) & Founder Centric Approach
+## Reason 3: The DX (Developer Experience) & Founder Centric Approach
 
 PostHog's founders, with a background in software engineering, designed everything with developers in mind. 
 From an intuitive admin site to comprehensive documentation, they aim to simplify the analytics journey for engineers. 
