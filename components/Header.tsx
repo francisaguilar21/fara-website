@@ -14,7 +14,7 @@ const Header = () => {
           href="/"
           aria-label={siteMetadata.headerTitle}
         >
-          F A
+          F/A
         </Link>
       </div>
       <div className="flex items-center space-x-4 pt-3 leading-5 sm:space-x-6">

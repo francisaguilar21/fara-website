@@ -8,8 +8,8 @@ const siteMetadata = {
   theme: 'system', // system, dark or light
   siteUrl: 'https://francisaguilar.co',
   siteRepo: 'https://github.com/francisaguilar21/fara-website',
-  siteLogo: '/static/images/logo-black.png',
-  socialBanner: '/static/images/twitter-card.png',
+  siteLogo: '/static/images/logo-white-on-black.png',
+  socialBanner: '/static/images/fa-social-banner.png',
   // mastodon: 'https://mastodon.social/@mastodonuser',
   email: 'hi@francisaguilar.co',
   github: 'https://github.com/francisaguilar21',
