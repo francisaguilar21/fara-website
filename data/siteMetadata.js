@@ -1,17 +1,17 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: 'Francis Aguilar',
+  title: "Francis Aguilar's Website",
   author: 'Francis Aguilar',
   headerTitle: 'Francis Aguilar',
-  description: 'A website of Francis Aguilar containing his blogs, projects, and profile.',
+  description: "Francis Aguilar's website containing his blogs, projects, and profile.",
   language: 'en-us',
-  theme: 'system', // system, dark or light
+  theme: 'dark', // system, dark or light
   siteUrl: 'https://francisaguilar.co',
   siteRepo: 'https://github.com/francisaguilar21/fara-website',
   siteLogo: '/static/images/logo-white-on-black.png',
   socialBanner: '/static/images/fa-social-banner.png',
   // mastodon: 'https://mastodon.social/@mastodonuser',
-  email: 'hi@francisaguilar.co',
+  // email: 'iam@francisaguilar.co',
   github: 'https://github.com/francisaguilar21',
   twitter: 'https://twitter.com/faraguilar21',
   // facebook: 'https://facebook.com',
