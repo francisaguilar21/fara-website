@@ -3090,13 +3090,13 @@ __metadata:
   linkType: hard
 
 "@tailwindcss/forms@npm:^0.5.7":
-  version: 0.5.7
-  resolution: "@tailwindcss/forms@npm:0.5.7"
+  version: 0.5.10
+  resolution: "@tailwindcss/forms@npm:0.5.10"
   dependencies:
     mini-svg-data-uri: "npm:^1.2.3"
   peerDependencies:
-    tailwindcss: ">=3.0.0 || >= 3.0.0-alpha.1"
-  checksum: 10/74aea1776f5ce03d21e069f47680e3b472d8237dd5b9330e440e3c4f3a4c3d73f2fa27680998cdbd48176538273c5bc47efbd1c7eb9f71cff29504ab2158ceca
+    tailwindcss: ">=3.0.0 || >= 3.0.0-alpha.1 || >= 4.0.0-alpha.20 || >= 4.0.0-beta.1"
+  checksum: 10/d67ea58d8e92a262455bafd1b88772f5d9dbdc034f70d37b31af3617d1505231ff485c1209467715d139f392cd2feb43e3cdb4656816594e97c1304054e121d6
   languageName: node
   linkType: hard
 
