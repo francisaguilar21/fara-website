@@ -10071,9 +10071,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rehype-preset-minify@npm:7.0.0":
-  version: 7.0.0
-  resolution: "rehype-preset-minify@npm:7.0.0"
+"rehype-preset-minify@npm:7.0.1":
+  version: 7.0.1
+  resolution: "rehype-preset-minify@npm:7.0.1"
   dependencies:
     rehype-minify-attribute-whitespace: "npm:^4.0.0"
     rehype-minify-css-style: "npm:^4.0.0"
@@ -10099,7 +10099,7 @@ __metadata:
     rehype-sort-attribute-values: "npm:^5.0.0"
     rehype-sort-attributes: "npm:^5.0.0"
     unified: "npm:^11.0.0"
-  checksum: 10/d58c8ff99de10e0a3f9b9382fe0fa2ed73612b81ce6930661c93cd8aa4b7dcd3a072d963fdf1afdcda87c3827eb2c656cec5c356f79c13acb9d44169a6a6e129
+  checksum: 10/45faff916f2403c0eec71f495813d30fae3312d485c9df6bbb7f9a25bc93d4a8842a44fbf82e9f1950fa2d3bd30cc5235a3ae6a030a077365b49c13a35814c75
   languageName: node
   linkType: hard
 
@@ -11150,7 +11150,7 @@ __metadata:
     rehype-autolink-headings: "npm:^7.1.0"
     rehype-citation: "npm:^2.0.0"
     rehype-katex: "npm:^7.0.0"
-    rehype-preset-minify: "npm:7.0.0"
+    rehype-preset-minify: "npm:7.0.1"
     rehype-prism-plus: "npm:^2.0.0"
     rehype-slug: "npm:^6.0.0"
     remark: "npm:^15.0.0"
