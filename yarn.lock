@@ -9785,21 +9785,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier-plugin-tailwindcss@npm:^0.5.11":
-  version: 0.5.14
-  resolution: "prettier-plugin-tailwindcss@npm:0.5.14"
+"prettier-plugin-tailwindcss@npm:^0.6.0":
+  version: 0.6.11
+  resolution: "prettier-plugin-tailwindcss@npm:0.6.11"
   peerDependencies:
     "@ianvs/prettier-plugin-sort-imports": "*"
     "@prettier/plugin-pug": "*"
     "@shopify/prettier-plugin-liquid": "*"
     "@trivago/prettier-plugin-sort-imports": "*"
-    "@zackad/prettier-plugin-twig-melody": "*"
+    "@zackad/prettier-plugin-twig": "*"
     prettier: ^3.0
     prettier-plugin-astro: "*"
     prettier-plugin-css-order: "*"
     prettier-plugin-import-sort: "*"
     prettier-plugin-jsdoc: "*"
     prettier-plugin-marko: "*"
+    prettier-plugin-multiline-arrays: "*"
     prettier-plugin-organize-attributes: "*"
     prettier-plugin-organize-imports: "*"
     prettier-plugin-sort-imports: "*"
@@ -9814,7 +9815,7 @@ __metadata:
       optional: true
     "@trivago/prettier-plugin-sort-imports":
       optional: true
-    "@zackad/prettier-plugin-twig-melody":
+    "@zackad/prettier-plugin-twig":
       optional: true
     prettier-plugin-astro:
       optional: true
@@ -9826,6 +9827,8 @@ __metadata:
       optional: true
     prettier-plugin-marko:
       optional: true
+    prettier-plugin-multiline-arrays:
+      optional: true
     prettier-plugin-organize-attributes:
       optional: true
     prettier-plugin-organize-imports:
@@ -9836,7 +9839,7 @@ __metadata:
       optional: true
     prettier-plugin-svelte:
       optional: true
-  checksum: 205a774e53cdd9f8e61640ae3b778402758fad3d215fc57dd31172f12cf2b145095f5f973a431d495a6551b638bbb7e54c9f3a49848f0a0f755f5ad975b7c321
+  checksum: b626a09248e94d39b0ac26fe26323503faaf11aeae9a741b8a93ed65ee27ac12eadc00fa8f7113a0c54f88df59aa0136e4efb830d47ab204808a21b16e7d9b84
   languageName: node
   linkType: hard
 
@@ -11497,7 +11500,7 @@ __metadata:
     postcss: ^8.4.24
     posthog-js: ^1.137.0
     prettier: ^3.0.0
-    prettier-plugin-tailwindcss: ^0.5.11
+    prettier-plugin-tailwindcss: ^0.6.0
     react: 18.3.1
     react-dom: 18.3.1
     reading-time: 1.5.0
