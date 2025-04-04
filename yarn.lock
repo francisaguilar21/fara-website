@@ -9730,7 +9730,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:8.4.31, postcss@npm:^8.4.24":
+"postcss@npm:8.4.31":
   version: 8.4.31
   resolution: "postcss@npm:8.4.31"
   dependencies:
@@ -9741,7 +9741,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.4.47":
+"postcss@npm:^8.4.24, postcss@npm:^8.4.47":
   version: 8.5.3
   resolution: "postcss@npm:8.5.3"
   dependencies:
