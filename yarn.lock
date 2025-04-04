@@ -1635,15 +1635,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@citation-js/core@npm:^0.7.1":
-  version: 0.7.11
-  resolution: "@citation-js/core@npm:0.7.11"
+"@citation-js/core@npm:^0.7.14":
+  version: 0.7.18
+  resolution: "@citation-js/core@npm:0.7.18"
   dependencies:
-    "@citation-js/date": "npm:^0.5.0"
-    "@citation-js/name": "npm:^0.4.2"
-    fetch-ponyfill: "npm:^7.1.0"
-    sync-fetch: "npm:^0.4.1"
-  checksum: 12355998b8e7352610c6e637a959ae7e305581b6a48d19a353cf17a441eb669193753deb9f969387fa957c3e2a446da3aca01163f99b6744926ca17ed813c9b9
+    "@citation-js/date": ^0.5.0
+    "@citation-js/name": ^0.4.2
+    fetch-ponyfill: ^7.1.0
+    sync-fetch: ^0.4.1
+  checksum: 94a4c42612eb425e16b08ac3720fe3e798263830960ccb81be99a557c9c5b9d1b6515cfdf4303287a3533d658845f457bf4cbae7f558983477b729cf052f0699
   languageName: node
   linkType: hard
 
@@ -1661,40 +1661,40 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@citation-js/plugin-bibjson@npm:^0.7.2":
-  version: 0.7.11
-  resolution: "@citation-js/plugin-bibjson@npm:0.7.11"
+"@citation-js/plugin-bibjson@npm:^0.7.14":
+  version: 0.7.18
+  resolution: "@citation-js/plugin-bibjson@npm:0.7.18"
   dependencies:
-    "@citation-js/date": "npm:^0.5.0"
-    "@citation-js/name": "npm:^0.4.2"
+    "@citation-js/date": ^0.5.0
+    "@citation-js/name": ^0.4.2
   peerDependencies:
     "@citation-js/core": ^0.7.0
-  checksum: b51148f29c47d1f86a91ce3f7e1d253ab40223edee7d8d57696af64aed2351bd8618edd227344003f87f80baa26b2c0c7b3599465a3d6969e4eebf73879be58f
+  checksum: 94de821f0290272963831ffaf98b57cca1313e423eefd72e4b4f24080b41bbb52d9308d9ad033cbbb97820f467bc45347ff12b028659c2b5e90c414c32e7c6dc
   languageName: node
   linkType: hard
 
-"@citation-js/plugin-bibtex@npm:^0.7.2":
-  version: 0.7.12
-  resolution: "@citation-js/plugin-bibtex@npm:0.7.12"
+"@citation-js/plugin-bibtex@npm:^0.7.14":
+  version: 0.7.18
+  resolution: "@citation-js/plugin-bibtex@npm:0.7.18"
   dependencies:
-    "@citation-js/date": "npm:^0.5.0"
-    "@citation-js/name": "npm:^0.4.2"
-    moo: "npm:^0.5.1"
+    "@citation-js/date": ^0.5.0
+    "@citation-js/name": ^0.4.2
+    moo: ^0.5.1
   peerDependencies:
     "@citation-js/core": ^0.7.0
-  checksum: a933673bbc7de1ce5fdfa091dfaf939b1740a8dcfeca64db9d042d50da5cb7c7cdb4e17a1cfe5104a248c59e902a796192ecafb4873840745cee8f99f3879eb3
+  checksum: f0dc77ef3f6ca1cc37ef7a07bcc914fc6c136a8687e55063cf44d7ce82ad3f06dd5b53aa4b73e28d2800fa1d509ee87d045695a3a6814f5d18477d63ba4efb5b
   languageName: node
   linkType: hard
 
-"@citation-js/plugin-csl@npm:^0.7.2":
-  version: 0.7.11
-  resolution: "@citation-js/plugin-csl@npm:0.7.11"
+"@citation-js/plugin-csl@npm:^0.7.14":
+  version: 0.7.18
+  resolution: "@citation-js/plugin-csl@npm:0.7.18"
   dependencies:
-    "@citation-js/date": "npm:^0.5.0"
-    citeproc: "npm:^2.4.6"
+    "@citation-js/date": ^0.5.0
+    citeproc: ^2.4.6
   peerDependencies:
     "@citation-js/core": ^0.7.0
-  checksum: fd353b86764849d2ae39d32a71cc8f4a3a120235d6218f865b06e3c41e8afb59e1d074d41ad2110432040d59c2d67f1dcac44d276ec51b414c7e32d4d9d4802d
+  checksum: eec193b5bb066ceef9b4b8843a6b197e14f4df4ce0bc06b894d24fd7936ab7370b23a7af1d9414db5b9752af941636aa026526a8517da3855cf45a5a04479d3a
   languageName: node
   linkType: hard
 
@@ -10174,24 +10174,24 @@ __metadata:
   linkType: hard
 
 "rehype-citation@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "rehype-citation@npm:2.0.0"
+  version: 2.3.1
+  resolution: "rehype-citation@npm:2.3.1"
   dependencies:
-    "@citation-js/core": "npm:^0.7.1"
-    "@citation-js/date": "npm:^0.5.1"
-    "@citation-js/name": "npm:^0.4.2"
-    "@citation-js/plugin-bibjson": "npm:^0.7.2"
-    "@citation-js/plugin-bibtex": "npm:^0.7.2"
-    "@citation-js/plugin-csl": "npm:^0.7.2"
-    citeproc: "npm:^2.4.63"
-    cross-fetch: "npm:^4.0.0"
-    hast-util-from-dom: "npm:^5.0.0"
-    hast-util-from-parse5: "npm:^8.0.1"
-    js-yaml: "npm:^4.1.0"
-    parse5: "npm:^7.1.2"
-    unified: "npm:^11.0.0"
-    unist-util-visit: "npm:^5.0.0"
-  checksum: 2de393dc0480e8047fe0d7713e5acc45fd9defe687888e0111259fef31786b428d82372807d3b5c021a3065af1415f9e8a9760f3ee8375d55880d09ae8e2d1f6
+    "@citation-js/core": ^0.7.14
+    "@citation-js/date": ^0.5.1
+    "@citation-js/name": ^0.4.2
+    "@citation-js/plugin-bibjson": ^0.7.14
+    "@citation-js/plugin-bibtex": ^0.7.14
+    "@citation-js/plugin-csl": ^0.7.14
+    citeproc: ^2.4.63
+    cross-fetch: ^4.0.0
+    hast-util-from-dom: ^5.0.0
+    hast-util-from-parse5: ^8.0.1
+    js-yaml: ^4.1.0
+    parse5: ^7.1.2
+    unified: ^11.0.0
+    unist-util-visit: ^5.0.0
+  checksum: 9867669bc0e594710ba4ff22421d92cf92ca4fb116d9f0075b6e74ec4a09b542f5910c03b6d7448ce973196501c829639c221d0c6ed840f7f2cc63b61e596fdc
   languageName: node
   linkType: hard
 
