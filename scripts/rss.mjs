@@ -4,8 +4,10 @@ import path from 'path'
 import { sortPosts } from 'pliny/utils/contentlayer.js'
 import { escape } from 'pliny/utils/htmlEscaper.js'
 import { allBlogs } from '../.contentlayer/generated/index.mjs'
-import tagData from '../app/tag-data.json' assert { type: 'json' }
+import tagData from '../app/tag-data.json' with { type: 'json' }
 import siteMetadata from '../data/siteMetadata.js'
+
+const outputFolder = process.env.EXPORT ? 'out' : 'public'
 
 const generateRssItem = (config, post) => `
   <item>
@@ -40,14 +42,14 @@ async function generateRSS(config, allBlogs, page = 'feed.xml') {
   // RSS for blog post
   if (publishPosts.length > 0) {
     const rss = generateRss(config, sortPosts(publishPosts))
-    writeFileSync(`./public/${page}`, rss)
+    writeFileSync(`./${outputFolder}/${page}`, rss)
   }
 
   if (publishPosts.length > 0) {
     for (const tag of Object.keys(tagData)) {
       const filteredPosts = allBlogs.filter((post) => post.tags.map((t) => slug(t)).includes(tag))
       const rss = generateRss(config, filteredPosts, `tags/${tag}/${page}`)
-      const rssPath = path.join('public', 'tags', tag)
+      const rssPath = path.join(outputFolder, 'tags', tag)
       mkdirSync(rssPath, { recursive: true })
       writeFileSync(path.join(rssPath, page), rss)
     }
