@@ -1,11 +1,10 @@
-
 # FARA Website
 
 This is my website that was heavily inspired by [Timothy's Tailwind NextJS Starter Blog](https://github.com/timlrx/tailwind-nextjs-starter-blog). Everything is buit with [Next.js](https://nextjs.org/) and [Tailwind CSS](https://tailwindcss.com/) with [React Server Component](https://nextjs.org/docs/getting-started/react-essentials#server-components) and uses [Contentlayer](https://www.contentlayer.dev/) to manage markdown content.
 
 # Features
 
-- [X] Analytics by [PostHog](https://posthog.com/)
+- [x] Analytics by [PostHog](https://posthog.com/)
 - [ ] Comments by [Discus](https://disqus.com/)
 - [ ] Newsletter by ConvertKit or MailChimp
 
@@ -14,14 +13,13 @@ This is my website that was heavily inspired by [Timothy's Tailwind NextJS Start
 ## Committing
 
 1. The pull request title should have a corresponding emoji before the start of the title.
-> - ✨ New Feature or Enhancement
-> - 📝 New Blog
-> - 📚 Doc changes
-> - 🐛 Bug Fix
-> - 🎨 UI Change
+   > - ✨ New Feature or Enhancement
+   > - 📝 New Blog
+   > - 📚 Doc changes
+   > - 🐛 Bug Fix
+   > - 🎨 UI Change
 2. PR description should enumerate or outline the code changes.
 3. Make sure that the vercel bot has deployed it in `preview` environment and is working properly.
-
 
 ## Quick Start Guide
 
@@ -41,11 +39,14 @@ yarn
 
 ## Development
 
-First, make sure you're using `NVM` and use `Node 20.10.0`.
+First, make sure you're using `NVM` and use `node 22.14.0` and `yarn 4.7.0`.
 
 After, you can then run the development server:
 
 ```bash
+yarn set version 4.7.0
+yarn install
+yarn build
 yarn dev
 ```
 

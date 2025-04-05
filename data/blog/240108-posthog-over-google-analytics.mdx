@@ -12,16 +12,16 @@ summary: "Reasons why I chose an open source analytics tool over a trillion doll
 
 Greetings! 🚀 On December 21, 2023, I launched the first version of my site, and you can check out the inaugural post [here](https://francisaguilar.co/blog/231221-hello-world).
 A few days later, I realized I wanted to add some analytics to my site to better track how it performs and be more data-driven when it comes to making changes.
-Moreover, I wanted to see how good my site's SEO is. Almost all of my past projects including the startup I cofounded used Google Analytics (GA). 
+Moreover, I wanted to see how good my site's SEO is. Almost all of my past projects including the startup I cofounded used Google Analytics (GA).
 GA is reliable when it comes to tracking ad efficiency, funnels, retention, tracking monetization analytics, and Google integration.
 However, it does have its shortcomings like being unable to do group analytics - tracking events and grouping data on a group or company level, not having built-in A/B testing features,
 and lack of support for GA in the backend. Unless you manually talk to it via Google's [Measurement Protocol](https://developers.google.com/analytics/devguides/collection/protocol/ga4)
-or use a third-party service like Twilio's [Segment](https://segment.com/), you will not be able to use it on the server side. 
+or use a third-party service like Twilio's [Segment](https://segment.com/), you will not be able to use it on the server side.
 Nonetheless, I wanted to find an easier way to have analytics for my site that meets my criteria.
 
 ![PostHog Image](/static/images/2401/2401-08-posthog-image.webp)
 
-Enter [PostHog](https://posthog.com/), an open-source analytics tool that promised not just analytics but also session replays, A/B testing, feature flags, and more. 
+Enter [PostHog](https://posthog.com/), an open-source analytics tool that promised not just analytics but also session replays, A/B testing, feature flags, and more.
 Developed by James Hawkins & Tim Glaser in Y Combinator's W20 batch, PostHog skyrocketed to over 1,500 stars on GitHub within two weeks of launch.
 The company has received $27.125 million in funding from Y Combinator, Github's CTO (Jason Warner), and more.
 
@@ -31,30 +31,28 @@ Now, why choose PostHog over the giant that is Google Analytics? Let's dive into
 
 ## Reason 1: The Amount of Features It Offers
 
-They've only been around since January 2020 but the amount of features that they have is extremely more useful compared to Google Analytics which has existed since November 2005. 
+They've only been around since January 2020 but the amount of features that they have is extremely more useful compared to Google Analytics which has existed since November 2005.
 Here are a couple of key functionalities that caught my attention.
 
 ### Product OS
 
 This is the foundation that powers the whole of PostHog. It is where you can record pageviews, log events, and identify users both from your back and front-end applications.
-You can easily record data through the different [libraries or SDKs](https://posthog.com/docs/getting-started/install?tab=sdks) provided 
+You can easily record data through the different [libraries or SDKs](https://posthog.com/docs/getting-started/install?tab=sdks) provided
 
-``` javascript
-
+```javascript
 import { PostHog } from 'posthog-node'
 
 const client = new PostHog(
-    phc_GIW8CmUGH4He1qWyN21ln4UR6dRAs683i69OULuzY9s,
-    { host: '<ph_instance_address>' } // You can omit this line if using PostHog Cloud
+  phc_GIW8CmUGH4He1qWyN21ln4UR6dRAs683i69OULuzY9s,
+  { host: '<ph_instance_address>' } // You can omit this line if using PostHog Cloud
 )
 
 await client.shutdownAsync() // TIP: On program exit, call shutdown to stop pending pollers and flush any remaining events
-
 ```
 
 or directly through its [API](https://posthog.com/docs/getting-started/install?tab=api).
 
-``` http
+```http
 POST https://[your-instance].com/capture/
 Content-Type: application/json
 Body:
@@ -71,19 +69,19 @@ Body:
 
 ```
 
-I found how easy it is to immediately start logging on the client side and have certain backend events recorded with data from the front end. 
-This used to be impossible or extremely difficult with Google Analytics and its Measurement Protocol. 
+I found how easy it is to immediately start logging on the client side and have certain backend events recorded with data from the front end.
+This used to be impossible or extremely difficult with Google Analytics and its Measurement Protocol.
 I was only able to do this with Segment which had a middleware that handled the server side logs before communicating it with GA.
 The simplicity of just plugging in a simple line of code in the front and back end of your application and immediately start receiving events & data is just amazing.
 
 ### Session Replay
 
 When I was building the early version of our startup's product, I found how extremely difficult it was to debug and understand the issues encountered by our customers.
-Users were experiencing bugs that we couldn't replicate and it was almost impossible for us to understand what was happening. 
-We would have been lucky if our front or back-end system was able to successfully log the error and what exactly caused it. 
+Users were experiencing bugs that we couldn't replicate and it was almost impossible for us to understand what was happening.
+We would have been lucky if our front or back-end system was able to successfully log the error and what exactly caused it.
 Unfortunately, most of the time, our logging system failed to help us solve the issues our customers faced without directly getting in touch with them.
 
-PostHog solves this with [session recordings or session replay](https://posthog.com/docs/session-replay). 
+PostHog solves this with [session recordings or session replay](https://posthog.com/docs/session-replay).
 It takes a recording of the user's session so you can review how users use the newly developed feature, what areas of the platform might be causing confusion, or how exactly an issue occurred.
 You can review the video as much as you want so you can make better assumptions and propsose more valid solutions.
 
@@ -94,35 +92,32 @@ A sample example can be found [here](https://posthog.com/docs/session-replay/ins
 GA does not come with A/B testing and feature flags out of the box. It will need extra integrations with third-party services to do this. PostHog on the other hand offers this from the get-go.
 You can easily test out certain situations and features with simple flags and keys without having to change any parts of your code once you've deployed it. Here's an example below.
 
-``` javascript
+```javascript
+if (posthog.isFeatureEnabled('flag-key')) {
+  // Do something differently for this user
 
-if (posthog.isFeatureEnabled('flag-key') ) {
-    // Do something differently for this user
-
-    // Optional: fetch the payload
-    const matchedFlagPayload = posthog.getFeatureFlagPayload('flag-key')
+  // Optional: fetch the payload
+  const matchedFlagPayload = posthog.getFeatureFlagPayload('flag-key')
 }
-
 ```
 
 Moreover, you can even try multivariate feature flags which means you can experiment with more than just the traditional true or false boolean values of a feature flag.
 This also allows you to explore two or more variations and receive better A/B tests.
 
-``` javascript
+```javascript
+if (posthog.getFeatureFlag('flag-key') == 'variant-key') {
+  // replace 'variant-key' with the key of your variant
+  // Do something differently for this user
 
-if (posthog.getFeatureFlag('flag-key')  == 'variant-key') { // replace 'variant-key' with the key of your variant
-    // Do something differently for this user
-    
-    // Optional: fetch the payload
-    const matchedFlagPayload = posthog.getFeatureFlagPayload('flag-key')
+  // Optional: fetch the payload
+  const matchedFlagPayload = posthog.getFeatureFlagPayload('flag-key')
 }
-
 ```
 
 ## Reason 2: Affordable Pricing
 
-As a startup founder, I have always been very stringent especially when it comes to our company's infrastructure. 
-My co-founder and I even made sure to maximize credits given to us by accelerators and grants. 
+As a startup founder, I have always been very stringent especially when it comes to our company's infrastructure.
+My co-founder and I even made sure to maximize credits given to us by accelerators and grants.
 Therefore, PostHog wouldn't have been an option if their pricing was ludicrous or became expensive relatively quickly.
 The company's approach is through usage-based pricing. They only offer two tiers (Free and Unlimited) with a very generous free tier for almost all of their products.
 You would need to explicitly opt-in to the Unlimited tier to use certain features. That's okay though since you won't be charged even though you've chosen to go to the higher one.
@@ -130,29 +125,29 @@ This is because you won't be charged unless you exceed the free tier limits. Bel
 
 ![PostHog Pricing](/static/images/2401/2401-08-posthog-pricing.webp)
 
-You can find more about their latest pricing on their [site](https://posthog.com/pricing). 
+You can find more about their latest pricing on their [site](https://posthog.com/pricing).
 Another thing I appreciate about their approach is that they implemented billing limits which prevents their users & customers from overpaying especially when a misconfiguration or DDOS attack occurs.
 
 ## Reason 3: The DX (Developer Experience) & Founder Centric Approach
 
-PostHog's founders, with a background in software engineering, designed everything with developers in mind. 
-From an intuitive admin site to comprehensive documentation, they aim to simplify the analytics journey for engineers. 
+PostHog's founders, with a background in software engineering, designed everything with developers in mind.
+From an intuitive admin site to comprehensive documentation, they aim to simplify the analytics journey for engineers.
 Ready-to-go integrations with apps like Hubspot, SendGrid, Salesforce, and more further boost productivity.
-Moreover, as experienced founders, they generously share resources about their journey. 
+Moreover, as experienced founders, they generously share resources about their journey.
 One in particular was on how analytics can be leveraged to increase the chances of startup success as seen in this [article](https://posthog.com/founders/early-stage-analytics) on how founders can make use of session replays to help in debugging, reviewing, and creating better assumptions while showing the importance of having key metrics.
 
 # Every Great Product has its Caveats
 
-As great as Posthog may seem, it has its fair share of limitations. 
-In an [in-depth comparison between PostHog vs GA4](https://posthog.com/blog/posthog-vs-ga4), the Posthog team acknowledges that GA4 excels in calculating monetization and ROI for marketing campaigns, particularly beneficial for e-commerce websites. 
+As great as Posthog may seem, it has its fair share of limitations.
+In an [in-depth comparison between PostHog vs GA4](https://posthog.com/blog/posthog-vs-ga4), the Posthog team acknowledges that GA4 excels in calculating monetization and ROI for marketing campaigns, particularly beneficial for e-commerce websites.
 Although, this is possible in PostHog, creating custom insights to copy GA4's reports requires additional effort.
 
 Lastly, nothing beats GA when it comes to seamless integrations within the Google ecosystem. Apps like Looker Stuidio, Ad Sense, Search Console, and BigQuery offer immedediate compatibility.
 
 # My Takeaway
 
-Overall, I will be using PostHog for my future hobby projects and custom developments unless explicitly specified that it requires Google Analytics. 
-The features that it offers cover almost 95% of the use cases that I handle while having a cheap price tag. 
+Overall, I will be using PostHog for my future hobby projects and custom developments unless explicitly specified that it requires Google Analytics.
+The features that it offers cover almost 95% of the use cases that I handle while having a cheap price tag.
 Google Analytics isn't to be dismissed especially for simpler e-commerce sites where GA4 already covers all the necessary tracking.
 
 Now, over to you, what's your take on PostHog? Would you consider it for your upcoming projects?
