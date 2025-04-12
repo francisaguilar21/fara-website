@@ -39,12 +39,12 @@ yarn
 
 ## Development
 
-First, make sure you're using `NVM` and use `node 22.14.0` and `yarn 4.7.0`.
+First, make sure you're using `NVM` and use `node 22.14.0` and `yarn 4.9.0`.
 
 After, you can then run the development server:
 
 ```bash
-yarn set version 4.7.0
+yarn set version 4.9.0
 yarn install
 yarn build
 yarn dev
