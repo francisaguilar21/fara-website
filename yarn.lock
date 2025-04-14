@@ -1495,12 +1495,33 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@contentlayer2/cli@npm:0.5.7":
+  version: 0.5.7
+  resolution: "@contentlayer2/cli@npm:0.5.7"
+  dependencies:
+    "@contentlayer2/core": "npm:0.5.7"
+    "@contentlayer2/utils": "npm:0.5.7"
+    clipanion: "npm:^3.2.1"
+    typanion: "npm:^3.12.1"
+  checksum: 10c0/2dbc479c13084c39b2e978cf675a75278028d89d2d6eff1f8056516379b53517dffb0e654b7df3eb9ba32356650424600b145aae874ae0404046bea011d77cc3
+  languageName: node
+  linkType: hard
+
 "@contentlayer2/client@npm:0.5.5":
   version: 0.5.5
   resolution: "@contentlayer2/client@npm:0.5.5"
   dependencies:
     "@contentlayer2/core": "npm:0.5.5"
   checksum: 10c0/ee067ecebe0f283fb95cedc0a5043e0821f1df18269b0ee4470da265713c7262635bca4b1ebea69f7d875da7141b650e8c69bada3b080bbe5699424ac4929473
+  languageName: node
+  linkType: hard
+
+"@contentlayer2/client@npm:0.5.7":
+  version: 0.5.7
+  resolution: "@contentlayer2/client@npm:0.5.7"
+  dependencies:
+    "@contentlayer2/core": "npm:0.5.7"
+  checksum: 10c0/8f7f790dc188c4faffe69845a6aeecb91a69988669580c1f8cf0db46013fc2fb380eeb3ced64d5d263ccd3a062ad4000ca7f0e6074b4e43e4c5ec332d662866e
   languageName: node
   linkType: hard
 
@@ -1533,6 +1554,35 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@contentlayer2/core@npm:0.5.7":
+  version: 0.5.7
+  resolution: "@contentlayer2/core@npm:0.5.7"
+  dependencies:
+    "@contentlayer2/utils": "npm:0.5.7"
+    camel-case: "npm:^4.1.2"
+    comment-json: "npm:^4.2.3"
+    esbuild: "npm:>=0.17"
+    gray-matter: "npm:^4.0.3"
+    mdx-bundler: "npm:^10.1.1"
+    rehype-stringify: "npm:^10.0.0"
+    remark-frontmatter: "npm:^5.0.0"
+    remark-parse: "npm:^11.0.0"
+    remark-rehype: "npm:^11.1.0"
+    source-map-support: "npm:^0.5.21"
+    type-fest: "npm:^4.10.0"
+    unified: "npm:^11.0.4"
+  peerDependencies:
+    esbuild: ">=0.17"
+    markdown-wasm: 1.x
+  peerDependenciesMeta:
+    esbuild:
+      optional: true
+    markdown-wasm:
+      optional: true
+  checksum: 10c0/9b259d942b641425aff1a1ca31502cc3123e48e348ca2f6040c11e62592dda0a24c1d89f67239d996211a0546d6c0ae6d8c4a2953eb76355e60eb0e1c719d1cb
+  languageName: node
+  linkType: hard
+
 "@contentlayer2/source-files@npm:0.5.5":
   version: 0.5.5
   resolution: "@contentlayer2/source-files@npm:0.5.5"
@@ -1552,6 +1602,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@contentlayer2/source-files@npm:0.5.7":
+  version: 0.5.7
+  resolution: "@contentlayer2/source-files@npm:0.5.7"
+  dependencies:
+    "@contentlayer2/core": "npm:0.5.7"
+    "@contentlayer2/utils": "npm:0.5.7"
+    chokidar: "npm:^3.5.3"
+    fast-glob: "npm:^3.2.12"
+    gray-matter: "npm:^4.0.3"
+    imagescript: "npm:^1.2.16"
+    micromatch: "npm:^4.0.5"
+    ts-pattern: "npm:^5.0.6"
+    unified: "npm:^11.0.4"
+    yaml: "npm:^2.3.1"
+    zod: "npm:^3.22.4"
+  checksum: 10c0/08301b3328f3230268b3467037914039f8bf2947a7d7b551e13cd41d68993180c67184d09fe38b21b43b0a2beb8b9dcdd9127878cb568bdac5a6b62a7e43b164
+  languageName: node
+  linkType: hard
+
 "@contentlayer2/source-remote-files@npm:0.5.5":
   version: 0.5.5
   resolution: "@contentlayer2/source-remote-files@npm:0.5.5"
@@ -1560,6 +1629,17 @@ __metadata:
     "@contentlayer2/source-files": "npm:0.5.5"
     "@contentlayer2/utils": "npm:0.5.5"
   checksum: 10c0/a77d6b05fab7b27cb8b62739659eef65f38f5bbf50bd2298d35e813bde936918ae595a8659ed5b175c09a9e6599a447e3ff1ab90053f810f83fa401f1f484c56
+  languageName: node
+  linkType: hard
+
+"@contentlayer2/source-remote-files@npm:0.5.7":
+  version: 0.5.7
+  resolution: "@contentlayer2/source-remote-files@npm:0.5.7"
+  dependencies:
+    "@contentlayer2/core": "npm:0.5.7"
+    "@contentlayer2/source-files": "npm:0.5.7"
+    "@contentlayer2/utils": "npm:0.5.7"
+  checksum: 10c0/1a9ab3efca3d66cebae6b850e16256847f8a9357472316d789ee8f18fb8765eb3c6495c2ab96178c1d6915bc492c0386b1dc4906ff496ba7bf07202ab6aef9d8
   languageName: node
   linkType: hard
 
@@ -1593,6 +1673,39 @@ __metadata:
     "@effect-ts/otel-node":
       optional: true
   checksum: 10c0/b2f2dd58e5eabaebc1bc63eb18e2de98737ab1e4cedb4d909f469295decfce043eec07713e0eac301a35cbce566c7a4676e25d750565fa3d94098e326282a755
+  languageName: node
+  linkType: hard
+
+"@contentlayer2/utils@npm:0.5.7":
+  version: 0.5.7
+  resolution: "@contentlayer2/utils@npm:0.5.7"
+  dependencies:
+    "@effect-ts/core": "npm:^0.60.5"
+    "@effect-ts/otel": "npm:^0.15.1"
+    "@effect-ts/otel-sdk-trace-node": "npm:^0.15.1"
+    "@js-temporal/polyfill": "npm:^0.4.4"
+    "@opentelemetry/api": "npm:^1.9.0"
+    "@opentelemetry/core": "npm:^1.30.1"
+    "@opentelemetry/exporter-trace-otlp-grpc": "npm:^0.57.1"
+    "@opentelemetry/resources": "npm:^1.30.1"
+    "@opentelemetry/sdk-trace-base": "npm:^1.30.1"
+    "@opentelemetry/sdk-trace-node": "npm:^1.30.1"
+    "@opentelemetry/semantic-conventions": "npm:^1.28.0"
+    chokidar: "npm:^3.5.3"
+    hash-wasm: "npm:^4.11.0"
+    inflection: "npm:^3.0.0"
+    memfs: "npm:^4.8.2"
+    oo-ascii-tree: "npm:^1.94.0"
+    ts-pattern: "npm:^5.0.6"
+    type-fest: "npm:^4.10.0"
+  peerDependenciesMeta:
+    "@effect-ts/core":
+      optional: true
+    "@effect-ts/otel":
+      optional: true
+    "@effect-ts/otel-node":
+      optional: true
+  checksum: 10c0/67ecce9c1be0a534b739b77ecb9395b0f16f2a76cf9f726e1ce9052e9f4b3b16e23119a7aba1de97b64960798f82fa42701d16b253777baf12f11e6e3b0c41c7
   languageName: node
   linkType: hard
 
@@ -4740,7 +4853,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"contentlayer2@npm:0.5.5, contentlayer2@npm:^0.5.3":
+"contentlayer2@npm:0.5.7":
+  version: 0.5.7
+  resolution: "contentlayer2@npm:0.5.7"
+  dependencies:
+    "@contentlayer2/cli": "npm:0.5.7"
+    "@contentlayer2/client": "npm:0.5.7"
+    "@contentlayer2/core": "npm:0.5.7"
+    "@contentlayer2/source-files": "npm:0.5.7"
+    "@contentlayer2/source-remote-files": "npm:0.5.7"
+    "@contentlayer2/utils": "npm:0.5.7"
+  bin:
+    contentlayer2: ./bin/cli.cjs
+  checksum: 10c0/fef2a224c2c2aafef1d0eae4b8c9c68f9d2735f57a54adf7ac92eed02a2ced4a027f6c8339729723d8f60081e8b137da39e5bdbe1f8530607b48b71c7a56d894
+  languageName: node
+  linkType: hard
+
+"contentlayer2@npm:^0.5.3":
   version: 0.5.5
   resolution: "contentlayer2@npm:0.5.5"
   dependencies:
@@ -5990,7 +6119,7 @@ __metadata:
     "@typescript-eslint/parser": "npm:^8.12.0"
     autoprefixer: "npm:^10.4.20"
     body-scroll-lock: "npm:^4.0.0-beta.0"
-    contentlayer2: "npm:0.5.5"
+    contentlayer2: "npm:0.5.7"
     cross-env: "npm:^7.0.3"
     esbuild: "npm:0.25.2"
     eslint: "npm:^9.14.0"
