@@ -20,7 +20,7 @@
     "@tailwindcss/postcss": "^4.0.5",
     "@tailwindcss/typography": "^0.5.15",
     "body-scroll-lock": "^4.0.0-beta.0",
-    "contentlayer2": "0.5.5",
+    "contentlayer2": "0.5.8",
     "esbuild": "0.25.2",
     "github-slugger": "^2.0.0",
     "gray-matter": "^4.0.2",
