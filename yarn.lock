@@ -1533,6 +1533,35 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@contentlayer2/core@npm:0.5.8":
+  version: 0.5.8
+  resolution: "@contentlayer2/core@npm:0.5.8"
+  dependencies:
+    "@contentlayer2/utils": "npm:0.5.8"
+    camel-case: "npm:^4.1.2"
+    comment-json: "npm:^4.2.3"
+    esbuild: "npm:>=0.17"
+    gray-matter: "npm:^4.0.3"
+    mdx-bundler: "npm:^10.1.1"
+    rehype-stringify: "npm:^10.0.0"
+    remark-frontmatter: "npm:^5.0.0"
+    remark-parse: "npm:^11.0.0"
+    remark-rehype: "npm:^11.1.0"
+    source-map-support: "npm:^0.5.21"
+    type-fest: "npm:^4.10.0"
+    unified: "npm:^11.0.4"
+  peerDependencies:
+    esbuild: ">=0.17"
+    markdown-wasm: 1.x
+  peerDependenciesMeta:
+    esbuild:
+      optional: true
+    markdown-wasm:
+      optional: true
+  checksum: 10c0/1be0a0fdadc11b2a5b51c1c063e2a5723f02a281b77d33eebb9143beabb56ac14ad12f1d93251e572878bbf13a7ed919544634a4b7d02167f05bdc294a2145e4
+  languageName: node
+  linkType: hard
+
 "@contentlayer2/source-files@npm:0.5.5":
   version: 0.5.5
   resolution: "@contentlayer2/source-files@npm:0.5.5"
@@ -1593,6 +1622,39 @@ __metadata:
     "@effect-ts/otel-node":
       optional: true
   checksum: 10c0/b2f2dd58e5eabaebc1bc63eb18e2de98737ab1e4cedb4d909f469295decfce043eec07713e0eac301a35cbce566c7a4676e25d750565fa3d94098e326282a755
+  languageName: node
+  linkType: hard
+
+"@contentlayer2/utils@npm:0.5.8":
+  version: 0.5.8
+  resolution: "@contentlayer2/utils@npm:0.5.8"
+  dependencies:
+    "@effect-ts/core": "npm:^0.60.5"
+    "@effect-ts/otel": "npm:^0.15.1"
+    "@effect-ts/otel-sdk-trace-node": "npm:^0.15.1"
+    "@js-temporal/polyfill": "npm:^0.4.4"
+    "@opentelemetry/api": "npm:^1.9.0"
+    "@opentelemetry/core": "npm:^1.30.1"
+    "@opentelemetry/exporter-trace-otlp-grpc": "npm:^0.57.1"
+    "@opentelemetry/resources": "npm:^1.30.1"
+    "@opentelemetry/sdk-trace-base": "npm:^1.30.1"
+    "@opentelemetry/sdk-trace-node": "npm:^1.30.1"
+    "@opentelemetry/semantic-conventions": "npm:^1.28.0"
+    chokidar: "npm:^3.5.3"
+    hash-wasm: "npm:^4.11.0"
+    inflection: "npm:^3.0.0"
+    memfs: "npm:^4.8.2"
+    oo-ascii-tree: "npm:^1.94.0"
+    ts-pattern: "npm:^5.0.6"
+    type-fest: "npm:^4.10.0"
+  peerDependenciesMeta:
+    "@effect-ts/core":
+      optional: true
+    "@effect-ts/otel":
+      optional: true
+    "@effect-ts/otel-node":
+      optional: true
+  checksum: 10c0/28f45ac6db4049a4e0dd8a1272bc2cd3f34b7648dbe1fb95f24b25272dc3b8d7bca7f98a037851c713bf48515ee832c1e519daef86bb5fd98ae4f208541fc86d
   languageName: node
   linkType: hard
 
@@ -6005,7 +6067,7 @@ __metadata:
     image-size: "npm:2.0.2"
     lint-staged: "npm:^15.0.0"
     next: "npm:15.3.0"
-    next-contentlayer2: "npm:0.5.5"
+    next-contentlayer2: "npm:0.5.8"
     next-themes: "npm:^0.4.6"
     pliny: "npm:0.4.1"
     postcss: "npm:^8.4.24"
@@ -9059,7 +9121,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next-contentlayer2@npm:0.5.5, next-contentlayer2@npm:^0.5.3":
+"next-contentlayer2@npm:0.5.8":
+  version: 0.5.8
+  resolution: "next-contentlayer2@npm:0.5.8"
+  dependencies:
+    "@contentlayer2/core": "npm:0.5.8"
+    "@contentlayer2/utils": "npm:0.5.8"
+  peerDependencies:
+    contentlayer2: 0.5.8
+    next: ">=12.0.0"
+    react: ^18 || ^19 || ^19.0.0-rc
+    react-dom: ^18 || ^19 || ^19.0.0-rc
+  checksum: 10c0/0dcbad1367bd0da818067e5d49ee90062b2309a02556cc9222ac8f438d270464f4ba382dad7b6a5a02290054d4ea7b555970d979b4539acbf57c95f909ced45e
+  languageName: node
+  linkType: hard
+
+"next-contentlayer2@npm:^0.5.3":
   version: 0.5.5
   resolution: "next-contentlayer2@npm:0.5.5"
   dependencies:
