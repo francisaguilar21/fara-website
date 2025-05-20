@@ -14,7 +14,7 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@headlessui/react": "2.2.1",
+    "@headlessui/react": "2.2.4",
     "@next/bundle-analyzer": "15.3.0",
     "@tailwindcss/forms": "^0.5.9",
     "@tailwindcss/postcss": "^4.0.5",
