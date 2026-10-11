@@ -24,13 +24,6 @@ of it, and has an obvious way to reach him.**
 | Running & tech community         | Races, pacing, talks, writing                                     | Beyond work → Writing → /now    |
 | Francis himself                  | A place that is easy to update (MDX + content files, no CMS)      | `content/`                      |
 
-### Inspiration (taken as reference, not copied)
-
-- **bryllim.com**: the breadth of content (experience, stack, certifications, recommendations,
-  community, gallery). We keep the *coverage* and present it with a different voice and structure.
-- **tim-gesemann.dev**: a timeline that animates as you scroll. We do our own version with a rose line
-  that draws itself (see §7.2).
-
 ---
 
 ## 2. Decisions so far
