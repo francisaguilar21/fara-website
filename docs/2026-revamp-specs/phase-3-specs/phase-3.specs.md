@@ -78,7 +78,7 @@ UI primitives and the motion system. Phases 4–6 then assemble pages without in
   --line: #e7e2e3;
   --fg: #141112;
   --muted: #6b6365;
-  --accent: #e11d48;
+  --accent: #df1d47;
   --accent-ink: #ffffff;
   --ok: #15803d;
   --error: #c2410c;

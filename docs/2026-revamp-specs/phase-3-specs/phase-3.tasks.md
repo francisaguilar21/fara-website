@@ -5,14 +5,14 @@ Specs: [phase-3.specs.md](./phase-3.specs.md)
 ## PR 1: Tokens, fonts and theme (`feat(design): add tokens, fonts and theme switching`)
 
 - [ ] **P3-T01** · Francis · Answer open question 1 (Display XL size); Claude updates DESIGN §3.4 to match → P3-R3
-- [ ] **P3-T02** · Claude · `pnpm add next-themes clsx tailwind-merge` and `pnpm add -D @tailwindcss/typography` → P3-R1
-- [ ] **P3-T03** · Claude · `app/globals.css` tokens + `@theme inline` mapping ([specs §4.1](./phase-3.specs.md#41-tokens-appglobalscss)) → P3-R1
-- [ ] **P3-T04** · Claude · Load the 3 fonts with `next/font/google` in `app/fonts.ts` and apply the variables on `<html>` → P3-R2
-- [ ] **P3-T05** · Claude · Type scale utilities ([specs §4.2](./phase-3.specs.md#42-type-scale)) and prose overrides for `@tailwindcss/typography` → P3-R3
-- [ ] **P3-T06** · Claude · `ThemeProvider` (next-themes, dark default, no system) in the root layout → P3-R4
-- [ ] **P3-T07** · Claude · `lib/cn.ts` (`clsx` + `tailwind-merge`) → P3-R7
-- [ ] **P3-T08** · Claude · `/styleguide` page with the colors and type sections. Returns 404 in production. → P3-R12
-- [ ] **P3-T09** · Claude · Check P3-AC3 and the contrast part of P3-AC7 → P3-R11
+- [x] **P3-T02** · Claude · `pnpm add next-themes clsx tailwind-merge` and `pnpm add -D @tailwindcss/typography` → P3-R1
+- [x] **P3-T03** · Claude · `app/globals.css` tokens + `@theme inline` mapping ([specs §4.1](./phase-3.specs.md#41-tokens-appglobalscss)) → P3-R1
+- [x] **P3-T04** · Claude · Load the 3 fonts with `next/font/google` in `app/fonts.ts` and apply the variables on `<html>` → P3-R2
+- [x] **P3-T05** · Claude · Type scale utilities ([specs §4.2](./phase-3.specs.md#42-type-scale)) and prose overrides for `@tailwindcss/typography` → P3-R3
+- [x] **P3-T06** · Claude · `ThemeProvider` (next-themes, dark default, no system) in the root layout → P3-R4
+- [x] **P3-T07** · Claude · `lib/cn.ts` (`clsx` + `tailwind-merge`) → P3-R7
+- [x] **P3-T08** · Claude · `/styleguide` page with the colors and type sections. Returns 404 in production. → P3-R12
+- [x] **P3-T09** · Claude · Check P3-AC3 and the contrast part of P3-AC7 → P3-R11
 
 ## PR 2: Logo, layout and UI (`feat(design): add logo, header, footer and UI primitives`)
 

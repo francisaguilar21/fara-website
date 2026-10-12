@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import { fontVariables } from './fonts'
+import { ThemeProvider } from '@/components/layout/ThemeProvider'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -16,9 +18,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className="min-h-screen bg-white text-neutral-900 antialiased dark:bg-neutral-950 dark:text-neutral-50">
-        {children}
+    // next-themes sets `data-theme` on <html> before hydration, hence suppressHydrationWarning.
+    <html lang="en" className={fontVariables} suppressHydrationWarning>
+      <body>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   )

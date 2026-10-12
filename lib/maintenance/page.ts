@@ -32,7 +32,7 @@ export function renderMaintenancePage(): string {
     color-scheme: dark;
   }
   @media (prefers-color-scheme: light) {
-    :root { --bg: #FAF9F9; --fg: #141112; --muted: #6B6365; --line: #E7E2E3; --accent: #E11D48; color-scheme: light; }
+    :root { --bg: #FAF9F9; --fg: #141112; --muted: #6B6365; --line: #E7E2E3; --accent: #DF1D47; color-scheme: light; }
   }
   * { box-sizing: border-box; }
   html, body { height: 100%; }

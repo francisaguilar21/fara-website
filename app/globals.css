@@ -1,1 +1,230 @@
 @import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+@custom-variant light (&:where([data-theme='light'], [data-theme='light'] *));
+
+/*
+ * Color tokens (DESIGN §3.3). Dark is the default, whatever the OS prefers.
+ * Light only applies under [data-theme='light'], which next-themes sets on <html>.
+ * `lib/design/tokens.ts` reads these two blocks, so keep the `--name: #hex;` format.
+ */
+:root,
+[data-theme='dark'] {
+  --bg: #0b0a0b;
+  --surface: #151314;
+  --line: #2a2527;
+  --fg: #f5f2f3;
+  --muted: #9c9496;
+  --accent: #f43f5e;
+  --accent-ink: #0b0a0b;
+  --ok: #22c55e;
+  --error: #f97316;
+  color-scheme: dark;
+}
+
+[data-theme='light'] {
+  --bg: #faf9f9;
+  --surface: #ffffff;
+  --line: #e7e2e3;
+  --fg: #141112;
+  --muted: #6b6365;
+  --accent: #df1d47;
+  --accent-ink: #ffffff;
+  --ok: #15803d;
+  --error: #c2410c;
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-line: var(--line);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-ok: var(--ok);
+  --color-error: var(--error);
+  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --container-site: 1240px;
+}
+
+@layer base {
+  html {
+    background: var(--bg);
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+
+  /* P3-R11: visible focus ring everywhere, 2px accent with a 2px offset. */
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+}
+
+/* Type scale (DESIGN §3.4). */
+@utility display-xl {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+@utility h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2.25rem, 5vw, 4rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+@utility h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+@utility h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+@utility body {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  max-width: 68ch;
+}
+
+@utility small {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+@utility label {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+@utility data {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+/* Blog posts and long-form text: same faces, rose links, mono inline code. */
+/* The typography plugin emits `.prose` in the utilities layer, so these overrides live there too.
+   `html` raises specificity above the plugin's own defaults. */
+@layer utilities {
+  html .prose {
+    --tw-prose-body: var(--fg);
+    --tw-prose-headings: var(--fg);
+    --tw-prose-lead: var(--muted);
+    --tw-prose-links: var(--accent);
+    --tw-prose-bold: var(--fg);
+    --tw-prose-counters: var(--muted);
+    --tw-prose-bullets: var(--muted);
+    --tw-prose-hr: var(--line);
+    --tw-prose-quotes: var(--fg);
+    --tw-prose-quote-borders: var(--accent);
+    --tw-prose-captions: var(--muted);
+    --tw-prose-kbd: var(--fg);
+    --tw-prose-code: var(--fg);
+    --tw-prose-pre-code: var(--fg);
+    --tw-prose-pre-bg: var(--surface);
+    --tw-prose-th-borders: var(--line);
+    --tw-prose-td-borders: var(--line);
+    max-width: 68ch;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+  }
+
+  .prose :where(h1, h2, h3, h4) {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  .prose :where(a):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+    font-weight: 500;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+
+  .prose :where(code):not(:where(pre code, [class~='not-prose'] *)) {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+    font-weight: 500;
+    padding: 0.15em 0.35em;
+    border: 1px solid var(--line);
+    background: var(--surface);
+  }
+
+  .prose :where(code):not(:where(pre code))::before,
+  .prose :where(code):not(:where(pre code))::after {
+    content: none;
+  }
+
+  .prose :where(pre) {
+    border: 1px solid var(--line);
+    border-radius: 0;
+  }
+
+  .prose :where(pre code) {
+    font-family: var(--font-mono);
+  }
+
+  .prose :where(blockquote) {
+    font-style: normal;
+    font-family: var(--font-display);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

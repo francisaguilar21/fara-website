@@ -82,10 +82,10 @@ mark.
 | `--line`       | `#2A2527`      | `#E7E2E3` | Borders, timeline track (unreached)    |
 | `--fg`         | `#F5F2F3`      | `#141112` | Primary text, logo                     |
 | `--muted`      | `#9C9496`      | `#6B6365` | Secondary text, metadata               |
-| `--accent`     | `#F43F5E`      | `#E11D48` | Rose: links, timeline fill, focus, CTA |
+| `--accent`     | `#F43F5E`      | `#DF1D47` | Rose: links, timeline fill, focus, CTA |
 | `--accent-ink` | `#0B0A0B`      | `#FFFFFF` | Text on an accent fill                 |
 
-Light mode uses `rose-600` so body-size links meet a 4.5:1 contrast ratio on near-white. Status colors
+Light mode uses `#DF1D47`, a hair darker than Tailwind's `rose-600` (`#E11D48`, which measures 4.47:1 on `--bg`), so body-size links meet a 4.5:1 contrast ratio on near-white. Status colors
 (form success/error, Strava "PR") are kept separate from the accent: success `#22C55E`, error `#F97316`.
 
 Tailwind v4 `@theme` mapping:
@@ -112,16 +112,16 @@ Tailwind v4 `@theme` mapping:
 
 Load all three fonts through `next/font/google` (self-hosted, no layout shift), as variable fonts.
 
-| Role       | Face           | Size (mobile → desktop)          | Weight | Tracking | Notes                            |
-| ---------- | -------------- | -------------------------------- | ------ | -------- | -------------------------------- |
-| Display XL | Space Grotesk  | `clamp(3rem, 9vw, 8.5rem)`       | 600    | -0.04em  | Hero only, `text-wrap: balance`  |
-| H1         | Space Grotesk  | `clamp(2.25rem, 5vw, 4rem)`      | 600    | -0.03em  | Page titles                      |
-| H2         | Space Grotesk  | `clamp(1.75rem, 3.5vw, 2.75rem)` | 500    | -0.02em  | Section titles                   |
-| H3         | Space Grotesk  | `1.25rem`                        | 500    | -0.01em  | Cards, timeline roles            |
-| Body       | Inter          | `1.0625rem` / 1.65               | 400    | 0        | Measure ≤ 68ch                   |
-| Small      | Inter          | `0.875rem` / 1.5                 | 400    | 0        | Metadata                         |
-| Label      | JetBrains Mono | `0.75rem`                        | 500    | 0.08em   | Uppercase eyebrows, dates, stats |
-| Data       | JetBrains Mono | `1.5rem` – `3rem`                | 500    | -0.02em  | Strava km, pace, counts; tabular |
+| Role       | Face           | Size (mobile → desktop)          | Weight | Tracking | Notes                                             |
+| ---------- | -------------- | -------------------------------- | ------ | -------- | ------------------------------------------------- |
+| Display XL | Space Grotesk  | `clamp(2.5rem, 6vw, 5.5rem)`     | 600    | -0.045em | Hero only, line-height 0.95, `text-wrap: balance` |
+| H1         | Space Grotesk  | `clamp(2.25rem, 5vw, 4rem)`      | 600    | -0.03em  | Page titles                                       |
+| H2         | Space Grotesk  | `clamp(1.75rem, 3.5vw, 2.75rem)` | 500    | -0.02em  | Section titles                                    |
+| H3         | Space Grotesk  | `1.25rem`                        | 500    | -0.01em  | Cards, timeline roles                             |
+| Body       | Inter          | `1.0625rem` / 1.65               | 400    | 0        | Measure ≤ 68ch                                    |
+| Small      | Inter          | `0.875rem` / 1.5                 | 400    | 0        | Metadata                                          |
+| Label      | JetBrains Mono | `0.75rem`                        | 500    | 0.08em   | Uppercase eyebrows, dates, stats                  |
+| Data       | JetBrains Mono | `1.5rem` – `3rem`                | 500    | -0.02em  | Strava km, pace, counts; tabular                  |
 
 Blog posts use the same faces through `@tailwindcss/typography`, restyled: Space Grotesk headings,
 rose links, mono inline code.
