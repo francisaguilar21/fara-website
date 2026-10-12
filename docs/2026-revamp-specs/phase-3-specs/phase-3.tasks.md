@@ -16,15 +16,15 @@ Specs: [phase-3.specs.md](./phase-3.specs.md)
 
 ## PR 2: Logo, layout and UI (`feat(design): add logo, header, footer and UI primitives`)
 
-- [ ] **P3-T10** · Claude · `components/ui/Logo.tsx` with hand-built SVG paths ([specs §4.6](./phase-3.specs.md#46-logo)) → P3-R5
-- [ ] **P3-T11** · Claude · `app/icon.svg`, `app/apple-icon.png`, `app/favicon.ico`; delete `public/static/favicons/` → P3-R5
-- [ ] **P3-T12** · Claude · `Button`, `Eyebrow`, `SlashDivider`, `Tag`, `Label`, `DraftChip`, `UnderlineLink` in `components/ui/` → P3-R7
-- [ ] **P3-T13** · Claude · `Container`, `Section`, `SkipLink` in `components/layout/` → P3-R6
-- [ ] **P3-T14** · Claude · `SiteHeader`: sticky, hides on scroll, nav, CTA; mobile menu (static for now, the wipe comes in PR 3) → P3-R6
-- [ ] **P3-T15** · Claude · `SiteFooter` with the outlined wordmark and link columns → P3-R6
-- [ ] **P3-T16** · Claude · Focus ring styles and skip link → P3-R11
-- [ ] **P3-T17** · Claude · Add the components to `/styleguide` → P3-R12
-- [ ] **P3-T18** · Claude · Unit tests: `Button` renders as a link with `href`; `DraftChip` renders its text; `Logo` uses `currentColor` → P3-R7
+- [x] **P3-T10** · Claude · `components/ui/Logo.tsx` with hand-built SVG paths ([specs §4.6](./phase-3.specs.md#46-logo)) → P3-R5
+- [x] **P3-T11** · Claude · `app/icon.svg`, `app/apple-icon.png`, `app/favicon.ico`; delete `public/static/favicons/` → P3-R5
+- [x] **P3-T12** · Claude · `Button`, `Eyebrow`, `SlashDivider`, `Tag`, `Label`, `DraftChip`, `UnderlineLink` in `components/ui/` → P3-R7
+- [x] **P3-T13** · Claude · `Container`, `Section`, `SkipLink` in `components/layout/` → P3-R6
+- [x] **P3-T14** · Claude · `SiteHeader`: sticky, hides on scroll, nav, CTA; mobile menu (static for now, the wipe comes in PR 3) → P3-R6
+- [x] **P3-T15** · Claude · `SiteFooter` with the outlined wordmark and link columns → P3-R6
+- [x] **P3-T16** · Claude · Focus ring styles and skip link → P3-R11
+- [x] **P3-T17** · Claude · Add the components to `/styleguide` → P3-R12
+- [x] **P3-T18** · Claude · Unit tests: `Button` renders as a link with `href`; `DraftChip` renders its text; `Logo` uses `currentColor` → P3-R7
 
 ## PR 3: Motion (`feat(design): add motion system`)
 

@@ -1,6 +1,15 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import { Section } from '@/components/layout/Section'
 import { ThemePanel } from '@/components/layout/ThemePanel'
+import { Button } from '@/components/ui/Button'
+import { DraftChip } from '@/components/ui/DraftChip'
+import { Eyebrow } from '@/components/ui/Eyebrow'
+import { Label } from '@/components/ui/Label'
+import { Logo } from '@/components/ui/Logo'
+import { SlashDivider } from '@/components/ui/SlashDivider'
+import { Tag } from '@/components/ui/Tag'
+import { UnderlineLink } from '@/components/ui/UnderlineLink'
 import { AA_TEXT, contrastRatio } from '@/lib/design/contrast'
 import { readTokens, TEXT_PAIRS, TOKEN_NAMES, type Theme } from '@/lib/design/tokens'
 
@@ -15,7 +24,7 @@ export default function StyleguidePage() {
   const tokens = readTokens()
 
   return (
-    <main id="main" className="mx-auto max-w-[1240px] px-[clamp(16px,4vw,40px)] py-16">
+    <div className="mx-auto max-w-[1240px] px-[clamp(16px,4vw,40px)] py-16">
       <p className="label">/styleguide</p>
       <h1 className="mt-4 h1">Design system</h1>
       <p className="mt-4 max-w-[60ch] text-muted">
@@ -143,7 +152,90 @@ export default function StyleguidePage() {
           ))}
         </div>
       </StyleSection>
-    </main>
+
+      <StyleSection id="logo" title="Logo">
+        <div className="grid gap-6 lg:grid-cols-2">
+          {THEMES.map((theme) => (
+            <ThemePanel key={theme} theme={theme} className="flex flex-wrap items-end gap-10">
+              <Specimen name="<Logo />">
+                <Logo className="h-12" />
+              </Specimen>
+              <Specimen name="<Logo accent />">
+                <Logo accent className="h-12" />
+              </Specimen>
+              <Specimen name="Small, in a link">
+                <Logo accent className="h-6" />
+              </Specimen>
+            </ThemePanel>
+          ))}
+        </div>
+      </StyleSection>
+
+      <StyleSection id="components" title="UI primitives">
+        <div className="grid gap-6 lg:grid-cols-2">
+          {THEMES.map((theme) => (
+            <ThemePanel key={theme} theme={theme} className="space-y-8">
+              <Specimen name="<Button />: solid, ghost, sm">
+                <div className="flex flex-wrap items-center gap-3">
+                  <Button href="#components">See my work</Button>
+                  <Button href="#components" variant="ghost">
+                    Book a call
+                  </Button>
+                  <Button href="#components" size="sm">
+                    Let&apos;s talk
+                  </Button>
+                  <Button href="#components" variant="ghost" size="sm">
+                    Full timeline →
+                  </Button>
+                </div>
+              </Specimen>
+              <Specimen name="<Eyebrow /> and <Label />">
+                <div className="flex items-center gap-4">
+                  <Eyebrow path="/work" />
+                  <Label>Experience &amp; milestones</Label>
+                </div>
+              </Specimen>
+              <Specimen name="<Tag />">
+                <div className="flex flex-wrap gap-1.5">
+                  <Tag>TypeScript</Tag>
+                  <Tag>React</Tag>
+                  <Tag>Cloud</Tag>
+                </div>
+              </Specimen>
+              <Specimen name="<DraftChip />">
+                <p>
+                  Senior Software Engineer <DraftChip>company?</DraftChip> <DraftChip />
+                </p>
+              </Specimen>
+              <Specimen name="<UnderlineLink /> (hover or focus)">
+                <UnderlineLink href="#components">
+                  A link with a growing rose underline
+                </UnderlineLink>
+              </Specimen>
+              <Specimen name="<SlashDivider />">
+                <SlashDivider />
+              </Specimen>
+            </ThemePanel>
+          ))}
+        </div>
+      </StyleSection>
+
+      <StyleSection id="layout" title="Layout">
+        <p className="mb-6 max-w-[60ch] text-muted">
+          The sticky <code className="data">&lt;SiteHeader /&gt;</code> and the{' '}
+          <code className="data">&lt;SiteFooter /&gt;</code> are this page&apos;s own header and
+          footer. Below is <code className="data">&lt;Section eyebrow label /&gt;</code>.
+        </p>
+        <div className="border border-line">
+          <Section eyebrow="/work" label="Experience" className="py-12 md:py-12">
+            <h3 className="h2">Section content sits in the right column.</h3>
+            <p className="mt-4 body text-muted">
+              The eyebrow and label live in a narrow rail on the left. Under 820px they stack.
+            </p>
+          </Section>
+        </div>
+      </StyleSection>
+    </div>
   )
 }
 

@@ -228,3 +228,33 @@
     scroll-behavior: auto;
   }
 }
+
+/* Rose 1px underline that grows from 0 to 100% on hover and focus (DESIGN §3.2). */
+@utility underline-grow {
+  text-decoration: none;
+  background: linear-gradient(var(--accent), var(--accent)) 0 100% / 0 1px no-repeat;
+  transition: background-size 350ms var(--ease-out-quint);
+
+  &:hover,
+  &:focus-visible {
+    background-size: 100% 1px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+/* Outlined text that fills in on hover, for the footer wordmark. */
+@utility text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--line);
+  transition:
+    color 600ms var(--ease-out-quint),
+    -webkit-text-stroke-color 600ms var(--ease-out-quint);
+
+  &:hover {
+    color: var(--fg);
+    -webkit-text-stroke-color: var(--fg);
+  }
+}
