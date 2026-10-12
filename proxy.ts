@@ -15,7 +15,7 @@ function isAllowedPath(pathname: string): boolean {
   return allowed.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`))
 }
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const token = process.env.MAINTENANCE_BYPASS_TOKEN
   const { searchParams, pathname } = request.nextUrl
 
