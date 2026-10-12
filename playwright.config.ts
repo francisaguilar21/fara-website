@@ -12,7 +12,16 @@ export default defineConfig({
     baseURL: `http://localhost:${PORT}`,
     trace: 'on-first-retry',
   },
-  projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
+  projects: [
+    {
+      name: 'chromium',
+      use: {
+        ...devices['Desktop Chrome'],
+        // Optional: point at an already-installed Chromium instead of Playwright's download.
+        launchOptions: { executablePath: process.env.CHROMIUM_EXECUTABLE_PATH || undefined },
+      },
+    },
+  ],
   webServer: {
     command: 'pnpm build && pnpm start',
     url: `http://localhost:${PORT}`,
