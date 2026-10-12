@@ -2,7 +2,7 @@
 
 | Status      | Depends on            | Ships as                | Effort |
 | ----------- | --------------------- | ----------------------- | ------ |
-| Not started | Phase 1 (same branch) | **One PR with Phase 1** | 1 day  |
+| In progress | Phase 1 (same branch) | **One PR with Phase 1** | 1 day  |
 
 References: [plan §2](../2026-revamp-plan.md#2-how-well-work), [plan §6](../2026-revamp-plan.md#6-dependencies), [DESIGN §11](../design/DESIGN.md#11-tech-stack)
 

@@ -28,15 +28,15 @@ Specs: [phase-3.specs.md](./phase-3.specs.md)
 
 ## PR 3: Motion (`feat(design): add motion system`)
 
-- [ ] **P3-T19** · Claude · `pnpm add motion lenis lucide-react` → P3-R8
-- [ ] **P3-T20** · Claude · `lib/motion.ts` (easing, durations, `useMotionEnabled`) → P3-R9
-- [ ] **P3-T21** · Claude · `Reveal` and `Parallax` (visible resting state) → P3-R8, P3-R10
-- [ ] **P3-T22** · Claude · `SmoothScroll` (Lenis), loaded after `requestIdleCallback` → P3-R8, P3-R13
-- [ ] **P3-T23** · Claude · `Cursor` + `data-cursor` labels, loaded after `requestIdleCallback` → P3-R8, P3-R13
-- [ ] **P3-T24** · Claude · `Magnetic` wrapper; apply it to header CTA and theme toggle → P3-R8
-- [ ] **P3-T25** · Claude · `SlashWipe` + `ThemeToggle`; mobile menu uses the wipe → P3-R7, P3-R8
-- [ ] **P3-T26** · Claude · Route transitions (resolve open question 2) → P3-R8
-- [ ] **P3-T27** · Claude · Motion demos + "simulate reduced motion" switch in `/styleguide` → P3-R12
+- [x] **P3-T19** · Claude · `pnpm add motion lenis lucide-react` → P3-R8
+- [x] **P3-T20** · Claude · `lib/motion.ts` (easing, durations, `useMotionEnabled`) → P3-R9
+- [x] **P3-T21** · Claude · `Reveal` and `Parallax` (visible resting state) → P3-R8, P3-R10
+- [x] **P3-T22** · Claude · `SmoothScroll` (Lenis), loaded after `requestIdleCallback` → P3-R8, P3-R13
+- [x] **P3-T23** · Claude · `Cursor` + `data-cursor` labels, loaded after `requestIdleCallback` → P3-R8, P3-R13
+- [x] **P3-T24** · Claude · `Magnetic` wrapper; apply it to header CTA and theme toggle → P3-R8
+- [x] **P3-T25** · Claude · `SlashWipe` + `ThemeToggle`; mobile menu uses the wipe → P3-R7, P3-R8
+- [x] **P3-T26** · Claude · Route transitions (resolve open question 2) → P3-R8
+- [x] **P3-T27** · Claude · Motion demos + "simulate reduced motion" switch in `/styleguide` → P3-R12
 - [ ] **P3-T28** · Claude · Run P3-AC1 to P3-AC9. Attach before/after screenshots to the PR. → all
 
 ## Done when

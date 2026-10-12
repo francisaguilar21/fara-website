@@ -258,3 +258,61 @@
     -webkit-text-stroke-color: var(--fg);
   }
 }
+
+/* Added by <Cursor /> while the custom cursor is on. */
+body.has-cursor,
+body.has-cursor a,
+body.has-cursor button {
+  cursor: none;
+}
+
+/*
+ * Route transitions (React <ViewTransition>). The new page is revealed by a 17° slash that sweeps
+ * left to right; the old page fades out underneath. Reduced motion gets a short cross-fade.
+ */
+@property --slash {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 0%;
+}
+
+@keyframes page-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes slash-reveal {
+  from {
+    --slash: 0%;
+  }
+  to {
+    --slash: 135%;
+  }
+}
+
+::view-transition-old(.page) {
+  animation: 250ms var(--ease-out-quint) both page-out;
+}
+
+::view-transition-new(.page) {
+  clip-path: polygon(0 0, var(--slash) 0, calc(var(--slash) - 30%) 100%, 0 100%);
+  animation: 700ms var(--ease-out-quint) both slash-reveal;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(.page) {
+    animation: 200ms linear both page-out;
+  }
+
+  ::view-transition-new(.page) {
+    clip-path: none;
+    animation: 200ms linear both page-in;
+  }
+}

@@ -3,6 +3,8 @@
 import { Menu, X } from 'lucide-react'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
+import { Magnetic } from '@/components/motion/Magnetic'
+import { useSlashWipe } from '@/components/motion/SlashWipe'
 import { Button } from '@/components/ui/Button'
 import { Logo } from '@/components/ui/Logo'
 import { cn } from '@/lib/cn'
@@ -38,6 +40,7 @@ function useHideOnScroll(disabled: boolean) {
 export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false)
   const hidden = useHideOnScroll(menuOpen)
+  const wipe = useSlashWipe()
 
   // Lock page scroll and close on Escape while the full-screen menu is open.
   useEffect(() => {
@@ -76,17 +79,21 @@ export function SiteHeader() {
           </nav>
 
           <div className="ml-auto flex items-center gap-2.5 min-[760px]:ml-0">
-            <ThemeToggle />
-            <Button href="/contact" size="sm" className="hidden min-[760px]:inline-flex">
-              Let&apos;s talk
-            </Button>
+            <Magnetic>
+              <ThemeToggle />
+            </Magnetic>
+            <Magnetic className="hidden min-[760px]:inline-flex">
+              <Button href="/contact" size="sm">
+                Let&apos;s talk
+              </Button>
+            </Magnetic>
             <button
               type="button"
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={menuOpen}
               aria-controls="mobile-menu"
               className="grid size-[38px] cursor-pointer place-items-center rounded-full border border-line bg-transparent text-fg hover:border-accent hover:text-accent min-[760px]:hidden"
-              onClick={() => setMenuOpen((open) => !open)}
+              onClick={() => wipe(() => setMenuOpen((open) => !open))}
             >
               {menuOpen ? (
                 <X className="size-4" aria-hidden="true" />
@@ -99,7 +106,7 @@ export function SiteHeader() {
       </header>
 
       {/* A sibling of <header>: its backdrop-filter would otherwise trap this fixed panel. */}
-      {/* Static for now. The slash wipe opens and closes it from PR 3. */}
+      {/* The slash wipe opens and closes it. */}
       <div
         id="mobile-menu"
         hidden={!menuOpen}

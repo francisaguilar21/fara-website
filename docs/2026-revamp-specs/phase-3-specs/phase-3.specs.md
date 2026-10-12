@@ -2,7 +2,7 @@
 
 | Status      | Depends on | Ships as                                               | Effort   |
 | ----------- | ---------- | ------------------------------------------------------ | -------- |
-| Not started | Phases 1–2 | 3 PRs: tokens & type → layout & UI components → motion | 2–3 days |
+| In progress | Phases 1–2 | 3 PRs: tokens & type → layout & UI components → motion | 2–3 days |
 
 References: [DESIGN §3](../design/DESIGN.md#3-brand), [DESIGN §6](../design/DESIGN.md#6-components), [DESIGN §7](../design/DESIGN.md#7-motion), [mockup](../design/mockup.html) (its `<style>` block is the reference CSS)
 
@@ -190,8 +190,8 @@ motion demos (with a "simulate reduced motion" switch).
 
 ## 6. Open questions
 
-| #   | Question                                                                                                                                                                   | Default if unanswered                                                                                               |
-| --- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| 1   | DESIGN §3.4 says Display XL is `clamp(3rem, 9vw, 8.5rem)`, but the mockup was tuned to `clamp(2.5rem, 6vw, 5.5rem)` so the headline fits next to the portrait. Which wins? | The mockup value. Update DESIGN §3.4 in the first Phase 3 PR.                                                       |
-| 2   | Route transitions with React `<ViewTransition>` (still experimental in Next.js) or Motion?                                                                                 | Use `<ViewTransition>` if it's stable in the installed Next.js. Otherwise Motion's `AnimatePresence` in a template. |
-| 3   | Trace the logo by hand or with a tool?                                                                                                                                     | Hand-built paths. The mark is simple, and clean paths keep the file small.                                          |
+| #   | Question                                                                                                                                                                                                   | Default if unanswered                                                                                               |
+| --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| 1   | DESIGN §3.4 says Display XL is `clamp(3rem, 9vw, 8.5rem)`, but the mockup was tuned to `clamp(2.5rem, 6vw, 5.5rem)` so the headline fits next to the portrait. Which wins?                                 | The mockup value. Update DESIGN §3.4 in the first Phase 3 PR.                                                       |
+| 2   | Route transitions with React `<ViewTransition>` (still experimental in Next.js) or Motion? **Resolved:** `<ViewTransition>` ships in React 19.3 and works in the App Router without config, so it is used. | Use `<ViewTransition>` if it's stable in the installed Next.js. Otherwise Motion's `AnimatePresence` in a template. |
+| 3   | Trace the logo by hand or with a tool?                                                                                                                                                                     | Hand-built paths. The mark is simple, and clean paths keep the file small.                                          |

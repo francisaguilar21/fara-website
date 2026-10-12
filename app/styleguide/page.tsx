@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import { MotionDemos } from './MotionDemos'
 import { Section } from '@/components/layout/Section'
 import { ThemePanel } from '@/components/layout/ThemePanel'
 import { Button } from '@/components/ui/Button'
@@ -234,6 +235,9 @@ export default function StyleguidePage() {
             </p>
           </Section>
         </div>
+      </StyleSection>
+      <StyleSection id="motion" title="Motion">
+        <MotionDemos />
       </StyleSection>
     </div>
   )

@@ -2,6 +2,7 @@
 
 import { Moon, Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
+import { useSlashWipe } from '@/components/motion/SlashWipe'
 import { cn } from '@/lib/cn'
 
 /**
@@ -10,6 +11,7 @@ import { cn } from '@/lib/cn'
  */
 export function ThemeToggle({ className }: { className?: string }) {
   const { setTheme } = useTheme()
+  const wipe = useSlashWipe()
 
   return (
     <button
@@ -22,7 +24,8 @@ export function ThemeToggle({ className }: { className?: string }) {
       onClick={() => {
         // Read the DOM rather than state: it's always what the visitor currently sees.
         const isLight = document.documentElement.dataset.theme === 'light'
-        setTheme(isLight ? 'dark' : 'light')
+        // The theme switches at the midpoint, while the wipe covers the page.
+        wipe(() => setTheme(isLight ? 'dark' : 'light'))
       }}
     >
       <Sun className="size-4 light:hidden" aria-hidden="true" />
