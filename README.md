@@ -35,11 +35,12 @@ PostHog flag is on, or `MAINTENANCE_MODE=on`.
 | `pnpm build`        | Production build                                                     |
 | `pnpm start`        | Serve the production build                                           |
 | `pnpm lint`         | ESLint, with no warnings allowed                                     |
-| `pnpm typecheck`    | `tsc --noEmit`                                                       |
+| `pnpm content`      | Build the content with Velite (`content/` to `.velite/`), strict     |
+| `pnpm typecheck`    | Build the content, then `tsc --noEmit`                               |
 | `pnpm format`       | Format everything with Prettier                                      |
 | `pnpm format:check` | Check formatting without writing                                     |
-| `pnpm test`         | Unit tests (Vitest)                                                  |
-| `pnpm test:watch`   | Unit tests in watch mode                                             |
+| `pnpm test`         | Build the content, then run the unit tests (Vitest)                  |
+| `pnpm test:watch`   | Unit tests in watch mode (run `pnpm content` first)                  |
 | `pnpm test:e2e`     | End-to-end tests (Playwright, Chromium). Builds and starts the site. |
 | `pnpm commit`       | Guided commit prompt (Commitizen)                                    |
 
