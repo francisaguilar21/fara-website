@@ -1,8 +1,10 @@
 import type { Metadata } from 'next'
-import { siteUrl } from './site-url'
 
 export const SITE_NAME = 'Francis Aguilar'
 export const SITE_DESCRIPTION = 'Software engineer, founder and long-distance runner.'
+
+/** `<link rel="alternate">` to the feed. A page's `alternates` replaces the layout's, so pages repeat it. */
+export const RSS_ALTERNATE = { 'application/rss+xml': '/rss.xml' }
 
 type PageMetadata = {
   /** Page title, without the ` · Francis Aguilar` suffix: the root layout's template adds it. */
@@ -22,7 +24,7 @@ export function pageMetadata({ title, description, path, openGraph }: PageMetada
   return {
     title,
     description,
-    alternates: { canonical: path },
+    alternates: { canonical: path, types: RSS_ALTERNATE },
     openGraph: {
       type: 'website',
       siteName: SITE_NAME,
@@ -34,6 +36,3 @@ export function pageMetadata({ title, description, path, openGraph }: PageMetada
     twitter: { card: 'summary_large_image', title, description },
   }
 }
-
-/** Absolute URL for a path on this site. */
-export const absoluteUrl = (path: string) => `${siteUrl}${path}`

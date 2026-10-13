@@ -145,6 +145,13 @@ const posts = defineCollection({
 | `/sitemap.xml`, `/robots.txt` | `app/sitemap.ts`, `app/robots.ts`                                |                                                                 |
 | OG images                     | `app/opengraph-image.tsx`, `app/blog/[slug]/opengraph-image.tsx` | Fonts loaded from `next/font` files or `fetch` of a bundled TTF |
 
+OG images: besides the two files above, `/blog` and each tag page have their own
+(`app/blog/opengraph-image.tsx`, `app/blog/tags/[tag]/opengraph-image.tsx`). A page's `openGraph`
+metadata hides an image that lives in a parent segment, and keeping every blog image under `/blog` means
+it stays public with `MAINTENANCE_ALLOWED_PATHS=/blog,/rss.xml` (the site default would be a 503).
+Satori can't read WOFF2, so `lib/og.tsx` loads Space Grotesk SemiBold from `@fontsource/space-grotesk`
+(WOFF). Emoji in a title are dropped from the card.
+
 MDX components (`components/mdx/`): `Figure` (img), `a` → `UnderlineLink` (external links open in a new
 tab with `rel="noopener"`), `pre`/`code` styling, `Callout`, `table` wrapped in an `overflow-x-auto`
 container.

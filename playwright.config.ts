@@ -27,7 +27,8 @@ export default defineConfig({
     url: `http://localhost:${PORT}`,
     reuseExistingServer: !process.env.CI,
     timeout: 180_000,
-    // Keep maintenance mode off so the tests don't depend on PostHog.
-    env: { MAINTENANCE_MODE: 'off' },
+    // Keep maintenance mode off so the tests don't depend on PostHog, and pin the canonical origin
+    // that the feed, sitemap and metadata tests expect.
+    env: { MAINTENANCE_MODE: 'off', NEXT_PUBLIC_SITE_URL: 'https://francisaguilar.co' },
   },
 })

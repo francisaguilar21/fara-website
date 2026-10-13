@@ -8,7 +8,7 @@ import { SiteFooter } from '@/components/layout/SiteFooter'
 import { SiteHeader } from '@/components/layout/SiteHeader'
 import { SkipLink } from '@/components/layout/SkipLink'
 import { ThemeProvider } from '@/components/layout/ThemeProvider'
-import { SITE_DESCRIPTION, SITE_NAME } from '@/lib/seo'
+import { RSS_ALTERNATE, SITE_DESCRIPTION, SITE_NAME } from '@/lib/seo'
 import { siteUrl } from '@/lib/site-url'
 import './globals.css'
 
@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: { default: SITE_NAME, template: `%s · ${SITE_NAME}` },
   description: SITE_DESCRIPTION,
+  alternates: { types: RSS_ALTERNATE },
   openGraph: {
     type: 'website',
     siteName: SITE_NAME,
