@@ -5,7 +5,7 @@ Specs: [phase-0.specs.md](./phase-0.specs.md)
 ## Git
 
 - [x] **P0-T01** · Francis · Tag `v2024` on `05edb13` and push it → P0-R1
-- [ ] **P0-T02** · Francis · Tag `v2024.1` on `0398fc8` (2024 site + security fix) and push it → P0-R2
+- [x] **P0-T02** · Francis · Tag `v2024.1` on `0398fc8` (2024 site + security fix) and push it → P0-R2
   ```bash
   git fetch origin && git tag -a v2024.1 0398fc8 -m "v2024 + RSC security fix" && git push origin v2024.1
   ```
@@ -13,7 +13,7 @@ Specs: [phase-0.specs.md](./phase-0.specs.md)
 ## Maintenance mode
 
 - [x] **P0-T03** · Claude · Build `middleware.ts` and `lib/maintenance/` (PR #72) → P0-R3
-- [ ] **P0-T04** · Francis · In PostHog, create the boolean flag `is_maintenance_mode`. Release condition:
+- [x] **P0-T04** · Francis · In PostHog, create the boolean flag `is_maintenance_mode`. Release condition:
       100% of all users. Leave it **off**. → P0-R3
 - [ ] **P0-T05** · Francis · In Vercel (Production + Preview), set `NEXT_PUBLIC_POSTHOG_KEY`,
       `MAINTENANCE_BYPASS_TOKEN`, and `NEXT_PUBLIC_POSTHOG_HOST` if the project is on EU cloud. Redeploy. → P0-R3, P0-R5
@@ -22,7 +22,7 @@ Specs: [phase-0.specs.md](./phase-0.specs.md)
 
 ## Repository & Vercel
 
-- [ ] **P0-T07** · Francis · Protect `main` in GitHub: require a PR and the Vercel check before merging,
+- [x] **P0-T07** · Francis · Protect `main` in GitHub: require a PR and the Vercel check before merging,
       and block force pushes. → P0-R4
 - [ ] **P0-T08** · Francis · Check that Vercel builds a preview deployment for every PR (Git settings). → P0-R4
 

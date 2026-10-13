@@ -4,6 +4,11 @@
  * (inline styles allowed, no external fonts or scripts).
  */
 
+// Inlined so the page stays self-contained (no request that maintenance mode could block).
+const ICON = `data:image/svg+xml,${encodeURIComponent(
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><rect width="120" height="120" fill="#0b0a0b"/><g transform="translate(0 20)" fill="#f43f5e" fill-rule="evenodd"><path d="M2.9 12.2 L35.3 12.2 L35.3 21.3 L12.9 21.3 L12.9 34.3 L33.1 34.3 L33.1 43.0 L12.9 43.0 L12.9 63.5 L2.9 63.5 Z M86.3 12.2 L99.6 12.2 L117.1 63.5 L106.9 63.5 L102.8 51.6 L82.8 51.6 L78.8 63.5 L68.8 63.5 Z M92.8 22.2 L85.8 43.0 L99.8 43.0 Z"/><path d="M57.2 9.2 L66.4 9.2 L47.2 70.8 L38.0 70.8 Z"/></g></svg>'
+)}`
+
 const links = [
   { label: 'GitHub', href: 'https://github.com/francisaguilar21' },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/francisaguilar21' },
@@ -23,7 +28,7 @@ export function renderMaintenancePage(): string {
 <title>Francis Aguilar · Back soon</title>
 <meta name="description" content="francisaguilar.co is being migrated to something better. Back soon.">
 <meta name="color-scheme" content="dark light">
-<link rel="icon" href="/static/favicons/favicon.ico">
+<link rel="icon" href="${ICON}">
 <style>
   :root {
     --bg: #0B0A0B; --fg: #F5F2F3; --muted: #9C9496; --line: #2A2527; --accent: #F43F5E;
@@ -32,7 +37,7 @@ export function renderMaintenancePage(): string {
     color-scheme: dark;
   }
   @media (prefers-color-scheme: light) {
-    :root { --bg: #FAF9F9; --fg: #141112; --muted: #6B6365; --line: #E7E2E3; --accent: #E11D48; color-scheme: light; }
+    :root { --bg: #FAF9F9; --fg: #141112; --muted: #6B6365; --line: #E7E2E3; --accent: #DF1D47; color-scheme: light; }
   }
   * { box-sizing: border-box; }
   html, body { height: 100%; }

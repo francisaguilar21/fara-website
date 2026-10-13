@@ -2,7 +2,7 @@
 
 | Status      | Depends on                             | Ships as                                                                | Effort  |
 | ----------- | -------------------------------------- | ----------------------------------------------------------------------- | ------- |
-| Not started | Phase 0 (flag created, keys in Vercel) | **One PR with Phase 2**: `chore: replace 2024 setup with 2026 scaffold` | 0.5 day |
+| In progress | Phase 0 (flag created, keys in Vercel) | **One PR with Phase 2**: `chore: replace 2024 setup with 2026 scaffold` | 0.5 day |
 
 References: [plan §2](../2026-revamp-plan.md#2-how-well-work), [Phase 2 specs](../phase-2-specs/phase-2.specs.md)
 

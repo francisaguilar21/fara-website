@@ -17,29 +17,29 @@ of it, and has an obvious way to reach him.**
 
 ### Audiences (in priority order)
 
-| Audience                         | What they need                                                    | Where they find it              |
-| -------------------------------- | ----------------------------------------------------------------- | ------------------------------- |
-| Recruiters / hiring managers     | Role, seniority, timeline, stack, proof (projects, recs, certs)   | Hero → Timeline → Projects      |
-| Founders / potential clients     | Founder credibility, how to book time                             | Entrepreneurship → Contact      |
-| Running & tech community         | Races, pacing, talks, writing                                     | Beyond work → Writing → /now    |
-| Francis himself                  | A place that is easy to update (MDX + content files, no CMS)      | `content/`                      |
+| Audience                     | What they need                                                  | Where they find it           |
+| ---------------------------- | --------------------------------------------------------------- | ---------------------------- |
+| Recruiters / hiring managers | Role, seniority, timeline, stack, proof (projects, recs, certs) | Hero → Timeline → Projects   |
+| Founders / potential clients | Founder credibility, how to book time                           | Entrepreneurship → Contact   |
+| Running & tech community     | Races, pacing, talks, writing                                   | Beyond work → Writing → /now |
+| Francis himself              | A place that is easy to update (MDX + content files, no CMS)    | `content/`                   |
 
 ---
 
 ## 2. Decisions so far
 
-| Topic            | Decision                                                                                   |
-| ---------------- | ------------------------------------------------------------------------------------------ |
-| Aesthetic        | **Editorial, bold type.** Mostly black & white, rose `#F43F5E` used sparingly               |
-| Theme            | **Dark by default**, light toggle (`next-themes`, persisted)                               |
-| Fonts            | **Space Grotesk** (display) · **Inter** (body) · **JetBrains Mono** (labels/data)          |
-| Timeline         | **Scroll-drawn rose line**, dots light up, year sticks to the side                         |
-| Motion           | **Rich**: smooth scroll, custom cursor, magnetic buttons, parallax, slash page transitions |
-| Voice            | **Confident & warm**: first person, short sentences, a little wit                          |
-| Live data        | **Strava**, **GitHub contributions**, **Spotify now playing**                              |
-| Content          | **Local MDX** + typed content files, no CMS                                                |
-| Hosting          | **Vercel**                                                                                 |
-| Contact          | **Contact form** + **Google Calendar appointment schedule** link                           |
+| Topic     | Decision                                                                                   |
+| --------- | ------------------------------------------------------------------------------------------ |
+| Aesthetic | **Editorial, bold type.** Mostly black & white, rose `#F43F5E` used sparingly              |
+| Theme     | **Dark by default**, light toggle (`next-themes`, persisted)                               |
+| Fonts     | **Space Grotesk** (display) · **Inter** (body) · **JetBrains Mono** (labels/data)          |
+| Timeline  | **Scroll-drawn rose line**, dots light up, year sticks to the side                         |
+| Motion    | **Rich**: smooth scroll, custom cursor, magnetic buttons, parallax, slash page transitions |
+| Voice     | **Confident & warm**: first person, short sentences, a little wit                          |
+| Live data | **Strava**, **GitHub contributions**, **Spotify now playing**                              |
+| Content   | **Local MDX** + typed content files, no CMS                                                |
+| Hosting   | **Vercel**                                                                                 |
+| Contact   | **Contact form** + **Google Calendar appointment schedule** link                           |
 
 ---
 
@@ -49,12 +49,12 @@ of it, and has an obvious way to reach him.**
 
 The F/A mark has four variants. Each one has a job:
 
-| File                     | Use                                                                         |
-| ------------------------ | --------------------------------------------------------------------------- |
-| `logo-white-on-black`    | Header mark in dark mode, social avatars                                    |
-| `logo-black-on-white`    | Header mark in light mode, print / résumé PDF                               |
-| `logo-rose-on-black`     | Favicon, app icon, OG image fallback, 404 page                              |
-| `logo-rose-on-white`     | Light-mode favicon (`media="(prefers-color-scheme: light)"`), email footer  |
+| File                  | Use                                                                        |
+| --------------------- | -------------------------------------------------------------------------- |
+| `logo-white-on-black` | Header mark in dark mode, social avatars                                   |
+| `logo-black-on-white` | Header mark in light mode, print / résumé PDF                              |
+| `logo-rose-on-black`  | Favicon, app icon, OG image fallback, 404 page                             |
+| `logo-rose-on-white`  | Light-mode favicon (`media="(prefers-color-scheme: light)"`), email footer |
 
 **Action:** redraw the mark as a single SVG component (`<Logo />`) that takes its color from
 `currentColor`, so one source covers every theme. Keep the PNGs only for favicons and OG images.
@@ -75,17 +75,17 @@ Use the slash in those places and nowhere else. Its weight comes from not being 
 Rose is exact to the logo. Neutrals lean slightly toward rose, so pure grey never sits next to the
 mark.
 
-| Token            | Dark (default)  | Light          | Use                                         |
-| ---------------- | --------------- | -------------- | ------------------------------------------- |
-| `--bg`           | `#0B0A0B`       | `#FAF9F9`      | Page background                             |
-| `--surface`      | `#151314`       | `#FFFFFF`      | Cards, form fields, now-playing             |
-| `--line`         | `#2A2527`       | `#E7E2E3`      | Borders, timeline track (unreached)         |
-| `--fg`           | `#F5F2F3`       | `#141112`      | Primary text, logo                          |
-| `--muted`        | `#9C9496`       | `#6B6365`      | Secondary text, metadata                    |
-| `--accent`       | `#F43F5E`       | `#E11D48`      | Rose: links, timeline fill, focus, CTA      |
-| `--accent-ink`   | `#0B0A0B`       | `#FFFFFF`      | Text on an accent fill                      |
+| Token          | Dark (default) | Light     | Use                                    |
+| -------------- | -------------- | --------- | -------------------------------------- |
+| `--bg`         | `#0B0A0B`      | `#FAF9F9` | Page background                        |
+| `--surface`    | `#151314`      | `#FFFFFF` | Cards, form fields, now-playing        |
+| `--line`       | `#2A2527`      | `#E7E2E3` | Borders, timeline track (unreached)    |
+| `--fg`         | `#F5F2F3`      | `#141112` | Primary text, logo                     |
+| `--muted`      | `#9C9496`      | `#6B6365` | Secondary text, metadata               |
+| `--accent`     | `#F43F5E`      | `#DF1D47` | Rose: links, timeline fill, focus, CTA |
+| `--accent-ink` | `#0B0A0B`      | `#FFFFFF` | Text on an accent fill                 |
 
-Light mode uses `rose-600` so body-size links meet a 4.5:1 contrast ratio on near-white. Status colors
+Light mode uses `#DF1D47`, a hair darker than Tailwind's `rose-600` (`#E11D48`, which measures 4.47:1 on `--bg`), so body-size links meet a 4.5:1 contrast ratio on near-white. Status colors
 (form success/error, Strava "PR") are kept separate from the accent: success `#22C55E`, error `#F97316`.
 
 Tailwind v4 `@theme` mapping:
@@ -112,16 +112,16 @@ Tailwind v4 `@theme` mapping:
 
 Load all three fonts through `next/font/google` (self-hosted, no layout shift), as variable fonts.
 
-| Role            | Face           | Size (mobile → desktop)          | Weight | Tracking  | Notes                              |
-| --------------- | -------------- | -------------------------------- | ------ | --------- | ---------------------------------- |
-| Display XL      | Space Grotesk  | `clamp(3rem, 9vw, 8.5rem)`       | 600    | -0.04em   | Hero only, `text-wrap: balance`    |
-| H1              | Space Grotesk  | `clamp(2.25rem, 5vw, 4rem)`      | 600    | -0.03em   | Page titles                        |
-| H2              | Space Grotesk  | `clamp(1.75rem, 3.5vw, 2.75rem)` | 500    | -0.02em   | Section titles                     |
-| H3              | Space Grotesk  | `1.25rem`                        | 500    | -0.01em   | Cards, timeline roles              |
-| Body            | Inter          | `1.0625rem` / 1.65               | 400    | 0         | Measure ≤ 68ch                     |
-| Small           | Inter          | `0.875rem` / 1.5                 | 400    | 0         | Metadata                           |
-| Label           | JetBrains Mono | `0.75rem`                        | 500    | 0.08em    | Uppercase eyebrows, dates, stats   |
-| Data            | JetBrains Mono | `1.5rem` – `3rem`                | 500    | -0.02em   | Strava km, pace, counts; tabular   |
+| Role       | Face           | Size (mobile → desktop)          | Weight | Tracking | Notes                                             |
+| ---------- | -------------- | -------------------------------- | ------ | -------- | ------------------------------------------------- |
+| Display XL | Space Grotesk  | `clamp(2.5rem, 6vw, 5.5rem)`     | 600    | -0.045em | Hero only, line-height 0.95, `text-wrap: balance` |
+| H1         | Space Grotesk  | `clamp(2.25rem, 5vw, 4rem)`      | 600    | -0.03em  | Page titles                                       |
+| H2         | Space Grotesk  | `clamp(1.75rem, 3.5vw, 2.75rem)` | 500    | -0.02em  | Section titles                                    |
+| H3         | Space Grotesk  | `1.25rem`                        | 500    | -0.01em  | Cards, timeline roles                             |
+| Body       | Inter          | `1.0625rem` / 1.65               | 400    | 0        | Measure ≤ 68ch                                    |
+| Small      | Inter          | `0.875rem` / 1.5                 | 400    | 0        | Metadata                                          |
+| Label      | JetBrains Mono | `0.75rem`                        | 500    | 0.08em   | Uppercase eyebrows, dates, stats                  |
+| Data       | JetBrains Mono | `1.5rem` – `3rem`                | 500    | -0.02em  | Strava km, pace, counts; tabular                  |
 
 Blog posts use the same faces through `@tailwindcss/typography`, restyled: Space Grotesk headings,
 rose links, mono inline code.
@@ -172,45 +172,45 @@ rose links, mono inline code.
 
 The mockup shows this page.
 
-| #  | Section                | Content                                                                                                         | Motion                                                     |
-| -- | ---------------------- | --------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| 1  | **Hero**               | Headline *"I build software & run long distances."* with a rose underline under "long distances". One-line intro. 3 role lines (Engineer · Founder · Pacer). CTAs: *See my work* / *Let's talk*. Portrait. | Words rise in line by line; underline draws; portrait parallax |
-| 2  | **Now strip**          | Thin ticker: `NOW → Training for <race> · Reading <book> · ♫ <Spotify track>`                                    | Marquee; pauses on hover                                   |
-| 3  | **/work: Timeline**    | 4–6 milestones (role, org, years, 1-line impact, 3 tags). Link to `/work`.                                      | Scroll-drawn rose line (§7.2)                              |
-| 4  | **Selected projects**  | 3 large rows (not cards): title, year, role, one-line outcome, stack. Hovering shows the image following the cursor. | Image reveal follows cursor; row underline                 |
-| 5  | **/life: Beyond work** | 4 tiles: *Running* (live Strava weekly km sparkline + last run), *Community* (latest talk), *Gallery* (3 photos), *Building* (Fitscovery story teaser). | Parallax on photos; numbers count up                       |
-| 6  | **Stack**              | Grouped list: Languages · Frontend · Backend · Cloud · Data · Tools. Mono labels, no logo soup.                  | Group highlight on hover                                   |
-| 7  | **Proof**              | Certifications (badge row) + 2–3 recommendation quotes (name, role, relationship) in a carousel.                | Quotes cross-fade; drag to scroll                          |
-| 8  | **/writing**           | Latest 3 posts: date (mono), title, reading time.                                                               | Title slides on hover                                      |
-| 9  | **GitHub**             | Contribution heatmap (last 52 weeks), with rose replacing GitHub's green.                                       | Cells fade in diagonally (slash angle)                     |
-| 10 | **Contact**            | *"Got something in mind?"* Form (name, email, topic, message) + **Book a 30-min call** button.                  | Magnetic CTA                                               |
-| 11 | **Footer**             | Big outlined **F/A** wordmark, links, now-playing mini.                                                         | Wordmark fills on hover                                    |
+| #   | Section                | Content                                                                                                                                                                                                    | Motion                                                         |
+| --- | ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| 1   | **Hero**               | Headline _"I build software & run long distances."_ with a rose underline under "long distances". One-line intro. 3 role lines (Engineer · Founder · Pacer). CTAs: _See my work_ / _Let's talk_. Portrait. | Words rise in line by line; underline draws; portrait parallax |
+| 2   | **Now strip**          | Thin ticker: `NOW → Training for <race> · Reading <book> · ♫ <Spotify track>`                                                                                                                              | Marquee; pauses on hover                                       |
+| 3   | **/work: Timeline**    | 4–6 milestones (role, org, years, 1-line impact, 3 tags). Link to `/work`.                                                                                                                                 | Scroll-drawn rose line (§7.2)                                  |
+| 4   | **Selected projects**  | 3 large rows (not cards): title, year, role, one-line outcome, stack. Hovering shows the image following the cursor.                                                                                       | Image reveal follows cursor; row underline                     |
+| 5   | **/life: Beyond work** | 4 tiles: _Running_ (live Strava weekly km sparkline + last run), _Community_ (latest talk), _Gallery_ (3 photos), _Building_ (Fitscovery story teaser).                                                    | Parallax on photos; numbers count up                           |
+| 6   | **Stack**              | Grouped list: Languages · Frontend · Backend · Cloud · Data · Tools. Mono labels, no logo soup.                                                                                                            | Group highlight on hover                                       |
+| 7   | **Proof**              | Certifications (badge row) + 2–3 recommendation quotes (name, role, relationship) in a carousel.                                                                                                           | Quotes cross-fade; drag to scroll                              |
+| 8   | **/writing**           | Latest 3 posts: date (mono), title, reading time.                                                                                                                                                          | Title slides on hover                                          |
+| 9   | **GitHub**             | Contribution heatmap (last 52 weeks), with rose replacing GitHub's green.                                                                                                                                  | Cells fade in diagonally (slash angle)                         |
+| 10  | **Contact**            | _"Got something in mind?"_ Form (name, email, topic, message) + **Book a 30-min call** button.                                                                                                             | Magnetic CTA                                                   |
+| 11  | **Footer**             | Outlined **F/A** wordmark (`clamp(5rem, 22vw, 16rem)`, a sign-off that fills in on hover; smaller than the mockup\'s 30vw so it doesn\'t dominate), links, now-playing mini.                               | Wordmark fills on hover                                        |
 
 ---
 
 ## 6. Components
 
-| Component                 | Notes                                                                                      |
-| ------------------------- | ------------------------------------------------------------------------------------------ |
-| `<Logo />`                | SVG, `currentColor`, optional `animated` (slash draws on load)                             |
-| `<SiteHeader />`          | Sticky, blurs on scroll, hides on scroll down and shows on scroll up. Mobile: full-screen menu with slash wipe |
-| `<Eyebrow path="/work" />`| Mono uppercase label with route-style path                                                 |
-| `<SlashDivider />`        | 17° slash rule                                                                             |
-| `<Timeline />`            | See §7.2. Data from `content/experience.ts`                                                |
-| `<ProjectRow />`          | Hover image follows cursor (desktop), inline image (mobile)                                |
-| `<StatTile />`            | Mono number + label + optional sparkline                                                   |
-| `<NowPlaying />`          | Spotify: album art, track, artist, live equaliser bars; "Last played" when idle            |
-| `<StravaCard />`          | Weekly km sparkline (12 weeks), last run (distance · pace · HR)                            |
-| `<ContributionGraph />`   | 53×7 grid, rose scale (5 steps), tooltip with count & date                                 |
-| `<Quote />`               | Recommendation with avatar, name, role, relationship                                       |
-| `<CertBadge />`           | Issuer logo (mono), name, year, verify link                                                |
-| `<ContactForm />`         | Server Action → Resend; Zod validation; honeypot + Turnstile                               |
-| `<BookCallButton />`      | Opens the Google Calendar appointment schedule URL in a new tab; fires a PostHog event     |
-| `<ThemeToggle />`         | Sun/moon icons swap with a slash wipe                                                      |
-| `<Cursor />`              | Dot + ring; grows over links and shows labels ("Read", "View", "Drag"). Disabled on touch & reduced motion |
-| `<Magnetic />`            | Wrapper; pulls child ≤ 12px toward the pointer                                             |
-| `<PageTransition />`      | Diagonal rose wipe between routes (View Transitions API, Motion as fallback)               |
-| MDX: `Callout`, `Figure`, `CodeBlock` (Shiki), `Strava` embed, `Gallery` |                                                     |
+| Component                                                                | Notes                                                                                                          |
+| ------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------- |
+| `<Logo />`                                                               | SVG, `currentColor`, optional `animated` (slash draws on load)                                                 |
+| `<SiteHeader />`                                                         | Sticky, blurs on scroll, hides on scroll down and shows on scroll up. Mobile: full-screen menu with slash wipe |
+| `<Eyebrow path="/work" />`                                               | Mono uppercase label with route-style path                                                                     |
+| `<SlashDivider />`                                                       | 17° slash rule                                                                                                 |
+| `<Timeline />`                                                           | See §7.2. Data from `content/experience.ts`                                                                    |
+| `<ProjectRow />`                                                         | Hover image follows cursor (desktop), inline image (mobile)                                                    |
+| `<StatTile />`                                                           | Mono number + label + optional sparkline                                                                       |
+| `<NowPlaying />`                                                         | Spotify: album art, track, artist, live equaliser bars; "Last played" when idle                                |
+| `<StravaCard />`                                                         | Weekly km sparkline (12 weeks), last run (distance · pace · HR)                                                |
+| `<ContributionGraph />`                                                  | 53×7 grid, rose scale (5 steps), tooltip with count & date                                                     |
+| `<Quote />`                                                              | Recommendation with avatar, name, role, relationship                                                           |
+| `<CertBadge />`                                                          | Issuer logo (mono), name, year, verify link                                                                    |
+| `<ContactForm />`                                                        | Server Action → Resend; Zod validation; honeypot + Turnstile                                                   |
+| `<BookCallButton />`                                                     | Opens the Google Calendar appointment schedule URL in a new tab; fires a PostHog event                         |
+| `<ThemeToggle />`                                                        | Sun/moon icons swap with a slash wipe                                                                          |
+| `<Cursor />`                                                             | Dot + ring; grows over links and shows labels ("Read", "View", "Drag"). Disabled on touch & reduced motion     |
+| `<Magnetic />`                                                           | Wrapper; pulls child ≤ 12px toward the pointer                                                                 |
+| `<PageTransition />`                                                     | Diagonal rose wipe between routes (View Transitions API, Motion as fallback)                                   |
+| MDX: `Callout`, `Figure`, `CodeBlock` (Shiki), `Strava` embed, `Gallery` |                                                                                                                |
 
 ---
 
@@ -222,7 +222,7 @@ The mockup shows this page.
 2. **Fast in, slow out.** Use `cubic-bezier(0.22, 1, 0.36, 1)` (ease-out-quint), 400–700ms for reveals and
    150–200ms for hovers.
 3. **Content is never hidden waiting for JS.** Reveals start from a visible state (e.g. `opacity: .001`
-   → 1 is *not* allowed; use `translateY(16px)` + `opacity .6` → 1). With JS disabled, the page reads
+   → 1 is _not_ allowed; use `translateY(16px)` + `opacity .6` → 1). With JS disabled, the page reads
    correctly.
 4. **`prefers-reduced-motion: reduce`** disables Lenis, the cursor, parallax, marquee and magnetic pull.
    Transitions become 0ms cross-fades. The timeline renders fully drawn.
@@ -250,16 +250,16 @@ The mockup shows this page.
 
 ### 7.3 Rich-motion package
 
-| Effect               | Library / technique                         | Where                              |
-| -------------------- | ------------------------------------------- | ---------------------------------- |
-| Smooth scroll        | **Lenis** (`lerp: 0.1`), synced with Motion | Global                             |
-| Custom cursor        | Motion springs, `pointer: fine` only        | Global                             |
-| Magnetic buttons     | `<Magnetic>` wrapper                        | CTAs, socials, theme toggle        |
-| Parallax             | `useScroll` + `useTransform` (±40px max)    | Hero portrait, gallery tiles       |
-| Text reveal          | Split by line (`SplitText`-like util) + stagger 60ms | Hero, H1s                 |
-| Page transition      | View Transitions API + slash clip-path       | Route changes                      |
-| Count-up             | Motion `animate()` on in-view               | Strava stats, project metrics      |
-| Marquee              | CSS keyframes, paused on hover              | Now strip                          |
+| Effect           | Library / technique                                  | Where                         |
+| ---------------- | ---------------------------------------------------- | ----------------------------- |
+| Smooth scroll    | **Lenis** (`lerp: 0.1`), synced with Motion          | Global                        |
+| Custom cursor    | Motion springs, `pointer: fine` only                 | Global                        |
+| Magnetic buttons | `<Magnetic>` wrapper                                 | CTAs, socials, theme toggle   |
+| Parallax         | `useScroll` + `useTransform` (±40px max)             | Hero portrait, gallery tiles  |
+| Text reveal      | Split by line (`SplitText`-like util) + stagger 60ms | Hero, H1s                     |
+| Page transition  | View Transitions API + slash clip-path               | Route changes                 |
+| Count-up         | Motion `animate()` on in-view                        | Strava stats, project metrics |
+| Marquee          | CSS keyframes, paused on hover                       | Now strip                     |
 
 Performance budget for motion: no layout-triggering properties (only `transform`, `opacity`, `clip-path`).
 Lenis and the cursor load after `requestIdleCallback`.
@@ -271,11 +271,11 @@ Lenis and the cursor load after `requestIdleCallback`.
 All calls run on the server (Route Handlers / RSC). They are cached with `fetch` + `next.revalidate`, and
 each one has a static fallback so the page never shows an error state.
 
-| Source   | API                                                     | Cache                 | Shows                                     | Env vars                                                        |
-| -------- | ------------------------------------------------------- | --------------------- | ----------------------------------------- | --------------------------------------------------------------- |
-| Strava   | `GET /athlete/activities`, `GET /athletes/{id}/stats` (OAuth refresh-token flow) | 1 h | Weekly km (12 wks), YTD km, last run, PRs | `STRAVA_CLIENT_ID`, `STRAVA_CLIENT_SECRET`, `STRAVA_REFRESH_TOKEN` |
-| GitHub   | GraphQL `contributionsCollection.contributionCalendar`  | 6 h                   | 52-week heatmap, total contributions      | `GITHUB_TOKEN` (read:user)                                      |
-| Spotify  | `GET /me/player/currently-playing`, fallback `recently-played` | 30 s (client polls `/api/now-playing` every 30 s while visible) | Track, artist, art, link | `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET`, `SPOTIFY_REFRESH_TOKEN` |
+| Source  | API                                                                              | Cache                                                           | Shows                                     | Env vars                                                              |
+| ------- | -------------------------------------------------------------------------------- | --------------------------------------------------------------- | ----------------------------------------- | --------------------------------------------------------------------- |
+| Strava  | `GET /athlete/activities`, `GET /athletes/{id}/stats` (OAuth refresh-token flow) | 1 h                                                             | Weekly km (12 wks), YTD km, last run, PRs | `STRAVA_CLIENT_ID`, `STRAVA_CLIENT_SECRET`, `STRAVA_REFRESH_TOKEN`    |
+| GitHub  | GraphQL `contributionsCollection.contributionCalendar`                           | 6 h                                                             | 52-week heatmap, total contributions      | `GITHUB_TOKEN` (read:user)                                            |
+| Spotify | `GET /me/player/currently-playing`, fallback `recently-played`                   | 30 s (client polls `/api/now-playing` every 30 s while visible) | Track, artist, art, link                  | `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET`, `SPOTIFY_REFRESH_TOKEN` |
 
 - Strava: show **only runs**. Round start locations away; never show maps of home or work.
 - Each widget sits behind a **PostHog feature flag** (`widget-strava`, `widget-github`, `widget-spotify`), so
@@ -311,36 +311,36 @@ each one has a static fallback so the page never shows an error state.
 
 ### Requested
 
-| Area               | Choice                                                                   |
-| ------------------ | ------------------------------------------------------------------------ |
-| Framework          | **Next.js** (latest stable, App Router, RSC, Server Actions), **React** + **TypeScript** (`strict`) |
-| Package manager    | **pnpm** (pinned via `packageManager` + Corepack)                        |
-| Styling            | **Tailwind CSS v4** (CSS-first `@theme`), `@tailwindcss/typography`       |
-| Git hygiene        | **Husky** + **lint-staged**, **commitlint** (`@commitlint/config-conventional`), **Commitizen** (`cz-git` adapter for a nicer prompt) |
-| Lint               | **ESLint** flat config (`eslint-config-next`, `typescript-eslint`, `eslint-plugin-jsx-a11y`) |
-| Analytics / flags  | **PostHog**                                                              |
+| Area              | Choice                                                                                                                                |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| Framework         | **Next.js** (latest stable, App Router, RSC, Server Actions), **React** + **TypeScript** (`strict`)                                   |
+| Package manager   | **pnpm** (pinned via `packageManager` + Corepack)                                                                                     |
+| Styling           | **Tailwind CSS v4** (CSS-first `@theme`), `@tailwindcss/typography`                                                                   |
+| Git hygiene       | **Husky** + **lint-staged**, **commitlint** (`@commitlint/config-conventional`), **Commitizen** (`cz-git` adapter for a nicer prompt) |
+| Lint              | **ESLint** flat config (`eslint-config-next`, `typescript-eslint`, `eslint-plugin-jsx-a11y`)                                          |
+| Analytics / flags | **PostHog**                                                                                                                           |
 
 ### Suggested additions
 
-| Need                       | Suggestion                                   | Why                                                                 |
-| -------------------------- | -------------------------------------------- | ------------------------------------------------------------------- |
-| Formatting                 | **Prettier** + `prettier-plugin-tailwindcss` | Class sorting; ESLint stays focused on correctness                  |
-| MDX content layer          | **Velite**                                   | Typed, Zod-validated MDX + JSON collections. Successor to Contentlayer, which the current site uses and which is no longer maintained |
-| Code highlighting          | **Shiki** via `rehype-pretty-code`           | Build-time, theme-aware (dual light/dark themes)                    |
-| Animation                  | **Motion** (`motion/react`)                  | Scroll-linked values, springs, layout animations                    |
-| Smooth scroll              | **Lenis**                                    | Needed for the rich-motion package                                  |
-| Theme                      | **next-themes**                              | No-flash theme switching                                            |
-| Email                      | **Resend** + **React Email**                 | Contact form delivery                                               |
-| Validation                 | **Zod**                                      | Forms, env vars (`@t3-oss/env-nextjs`), content schemas             |
-| Spam                       | **Cloudflare Turnstile**                     | Free, privacy-friendly CAPTCHA                                      |
-| OG images                  | **`next/og`**                                | Generated social cards per post/project with the F/A mark           |
-| Images                     | `next/image` + **plaiceholder** (blur)       | Gallery performance                                                 |
-| Icons                      | **lucide-react** + **simple-icons**          | UI + brand icons, tree-shakeable                                    |
-| Testing                    | **Vitest** + Testing Library, **Playwright** | Unit tests for data adapters; e2e smoke + visual tests              |
-| CI                         | **GitHub Actions**: lint, typecheck, test, build, Lighthouse CI | Keeps `main` deployable                          |
-| Releases                   | **release-please** or **changesets**         | Works well with conventional commits; automatic CHANGELOG + tags    |
-| Deps                       | **Renovate** (grouped, weekly, automerge patch) | Restores the paused bot without the PR noise                     |
-| Monitoring                 | **Vercel Speed Insights**                    | Real-user Core Web Vitals alongside PostHog                         |
+| Need              | Suggestion                                                      | Why                                                                                                                                   |
+| ----------------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| Formatting        | **Prettier** + `prettier-plugin-tailwindcss`                    | Class sorting; ESLint stays focused on correctness                                                                                    |
+| MDX content layer | **Velite**                                                      | Typed, Zod-validated MDX + JSON collections. Successor to Contentlayer, which the current site uses and which is no longer maintained |
+| Code highlighting | **Shiki** via `rehype-pretty-code`                              | Build-time, theme-aware (dual light/dark themes)                                                                                      |
+| Animation         | **Motion** (`motion/react`)                                     | Scroll-linked values, springs, layout animations                                                                                      |
+| Smooth scroll     | **Lenis**                                                       | Needed for the rich-motion package                                                                                                    |
+| Theme             | **next-themes**                                                 | No-flash theme switching                                                                                                              |
+| Email             | **Resend** + **React Email**                                    | Contact form delivery                                                                                                                 |
+| Validation        | **Zod**                                                         | Forms, env vars (`@t3-oss/env-nextjs`), content schemas                                                                               |
+| Spam              | **Cloudflare Turnstile**                                        | Free, privacy-friendly CAPTCHA                                                                                                        |
+| OG images         | **`next/og`**                                                   | Generated social cards per post/project with the F/A mark                                                                             |
+| Images            | `next/image` + **plaiceholder** (blur)                          | Gallery performance                                                                                                                   |
+| Icons             | **lucide-react** + **simple-icons**                             | UI + brand icons, tree-shakeable                                                                                                      |
+| Testing           | **Vitest** + Testing Library, **Playwright**                    | Unit tests for data adapters; e2e smoke + visual tests                                                                                |
+| CI                | **GitHub Actions**: lint, typecheck, test, build, Lighthouse CI | Keeps `main` deployable                                                                                                               |
+| Releases          | **release-please** or **changesets**                            | Works well with conventional commits; automatic CHANGELOG + tags                                                                      |
+| Deps              | **Renovate** (grouped, weekly, automerge patch)                 | Restores the paused bot without the PR noise                                                                                          |
+| Monitoring        | **Vercel Speed Insights**                                       | Real-user Core Web Vitals alongside PostHog                                                                                           |
 
 ### Quality budgets
 
@@ -376,17 +376,17 @@ production.
 
 ## 13. Migration plan
 
-| Phase | Work                                                                                                       | Output                         |
-| ----- | ---------------------------------------------------------------------------------------------------------- | ------------------------------ |
-| 0     | Tag current `main` as **`v2024`**                                                                          | Created locally (see note below) |
-| 1     | Clean slate: delete every file except `data/blog/*.mdx`, the images they reference, the logos, `README.md`, `LICENSE` | Empty-ish branch           |
-| 2     | Scaffold: Next.js + TS + pnpm + Tailwind v4 + ESLint/Prettier + Husky/commitlint/Commitizen + CI           | Running blank app              |
-| 3     | Design system: tokens, fonts, `Logo`, header/footer, theme toggle, motion primitives                       | `/` shell                      |
-| 4     | Content layer: Velite, move posts to `content/blog`, post page, tags, RSS, sitemap, OG images             | Blog parity with v2024         |
-| 5     | Homepage sections + `/work` timeline                                                                       | Main experience                |
-| 6     | `/projects`, `/life/*`, `/now`, `/uses`, `/contact`                                                        | Full IA                        |
-| 7     | Integrations: PostHog (+proxy, flags), Strava, GitHub, Spotify, Resend, Turnstile                          | Live data                      |
-| 8     | QA: a11y audit, Lighthouse CI, Playwright smoke, redirects check, content proofreading → launch            | v2026 live                     |
+| Phase | Work                                                                                                                  | Output                           |
+| ----- | --------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
+| 0     | Tag current `main` as **`v2024`**                                                                                     | Created locally (see note below) |
+| 1     | Clean slate: delete every file except `data/blog/*.mdx`, the images they reference, the logos, `README.md`, `LICENSE` | Empty-ish branch                 |
+| 2     | Scaffold: Next.js + TS + pnpm + Tailwind v4 + ESLint/Prettier + Husky/commitlint/Commitizen + CI                      | Running blank app                |
+| 3     | Design system: tokens, fonts, `Logo`, header/footer, theme toggle, motion primitives                                  | `/` shell                        |
+| 4     | Content layer: Velite, move posts to `content/blog`, post page, tags, RSS, sitemap, OG images                         | Blog parity with v2024           |
+| 5     | Homepage sections + `/work` timeline                                                                                  | Main experience                  |
+| 6     | `/projects`, `/life/*`, `/now`, `/uses`, `/contact`                                                                   | Full IA                          |
+| 7     | Integrations: PostHog (+proxy, flags), Strava, GitHub, Spotify, Resend, Turnstile                                     | Live data                        |
+| 8     | QA: a11y audit, Lighthouse CI, Playwright smoke, redirects check, content proofreading → launch                       | v2026 live                       |
 
 > **Note on the tag:** `v2024` points at `05edb13` (last commit on `main`). Pushing it from the cloud session
 > returned 403. If it isn't on GitHub yet, run:
@@ -396,7 +396,7 @@ production.
 
 ## 14. Content I still need from you
 
-Placeholders in the mockup are marked *draft*. To replace them I need:
+Placeholders in the mockup are marked _draft_. To replace them I need:
 
 1. **Experience**: each role with company, title, start/end month-year, and one sentence of impact. Should
    your current employer be named?
@@ -407,6 +407,6 @@ Placeholders in the mockup are marked *draft*. To replace them I need:
 6. **Community/speaking**: talks, events, mentoring.
 7. **Photos**: a new portrait (the 2023 one is fine for now) + 10–20 gallery shots.
 8. **Booking link**: your Google Calendar appointment schedule URL.
-9. **Headline**: do you like *"I build software & run long distances."*? Alternatives to A/B test:
-   *"Engineer by trade. Runner by choice."* · *"Shipping code. Pacing miles."*
+9. **Headline**: do you like _"I build software & run long distances."_? Alternatives to A/B test:
+   _"Engineer by trade. Runner by choice."_ · _"Shipping code. Pacing miles."_
 10. **Contact email** for the form to deliver to (the 2024 site had `iam@francisaguilar.co` commented out).

@@ -1,9 +1,7 @@
-import { sortPosts, allCoreContent } from 'pliny/utils/contentlayer'
-import { allBlogs } from 'contentlayer/generated'
-import Main from './Main'
-
-export default async function Page() {
-  const sortedPosts = sortPosts(allBlogs)
-  const posts = allCoreContent(sortedPosts)
-  return <Main posts={posts} />
+export default function Home() {
+  return (
+    <div className="flex min-h-[60vh] items-center justify-center p-8">
+      <h1 className="h1">New site in progress</h1>
+    </div>
+  )
 }

@@ -1,0 +1,7 @@
+.next
+node_modules
+pnpm-lock.yaml
+public
+data/blog
+docs/2026-revamp-specs/design/mockup.html
+next-env.d.ts
