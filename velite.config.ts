@@ -133,8 +133,6 @@ export default defineConfig({
           // CSS in `app/globals.css` switches between the two with the site's `data-theme`.
           theme: { dark: 'github-dark-dimmed', light: 'github-light' },
           keepBackground: false,
-          // Colors only as `--shiki-light` / `--shiki-dark` variables, so CSS can pick one.
-          defaultColor: false,
         },
       ],
       [rehypeAutolinkHeadings, { behavior: 'wrap' }],
