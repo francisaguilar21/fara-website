@@ -184,7 +184,7 @@ The mockup shows this page.
 | 8   | **/writing**           | Latest 3 posts: date (mono), title, reading time.                                                                                                                                                          | Title slides on hover                                          |
 | 9   | **GitHub**             | Contribution heatmap (last 52 weeks), with rose replacing GitHub's green.                                                                                                                                  | Cells fade in diagonally (slash angle)                         |
 | 10  | **Contact**            | _"Got something in mind?"_ Form (name, email, topic, message) + **Book a 30-min call** button.                                                                                                             | Magnetic CTA                                                   |
-| 11  | **Footer**             | Big outlined **F/A** wordmark, links, now-playing mini.                                                                                                                                                    | Wordmark fills on hover                                        |
+| 11  | **Footer**             | Outlined **F/A** wordmark (`clamp(5rem, 22vw, 16rem)`, a sign-off that fills in on hover; smaller than the mockup\'s 30vw so it doesn\'t dominate), links, now-playing mini.                               | Wordmark fills on hover                                        |
 
 ---
 

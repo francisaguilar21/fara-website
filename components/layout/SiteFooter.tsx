@@ -50,15 +50,16 @@ export function SiteFooter() {
           </FooterColumn>
         </div>
 
-        {/* Decorative: the outlined wordmark fills in on hover. */}
+        {/* Decorative: the outlined wordmark fills in on hover. The bottom padding gives the slash's
+            descender room, so it never runs into the copyright line. */}
         <div
           aria-hidden="true"
-          className="mt-10 font-display text-[clamp(6rem,30vw,24rem)] leading-[0.8] font-bold tracking-[-0.06em] text-outline select-none"
+          className="mt-10 -ml-[0.04em] pb-[0.16em] font-display text-[clamp(5rem,22vw,16rem)] leading-[0.85] font-bold tracking-[-0.06em] text-outline select-none"
         >
           F<span className="hover:text-accent">/</span>A
         </div>
 
-        <p className="mt-8 small text-muted">
+        <p className="mt-4 small text-muted">
           <Link href="/" className="hover:text-fg">
             © {new Date().getFullYear()} Francis Aguilar
           </Link>
