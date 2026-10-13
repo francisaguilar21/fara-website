@@ -26,7 +26,10 @@ export type ContributionLevel = 0 | 1 | 2 | 3 | 4
 export type ContributionCalendar = {
   isSample: boolean
   total: number
-  /** Columns of the heatmap, oldest first. Each week runs Sunday to Saturday. */
+  /**
+   * Columns of the heatmap, oldest first. Each week runs Sunday to Saturday, starting on a Sunday,
+   * and only the last (current) week may be short.
+   */
   weeks: { date: string; count: number; level: ContributionLevel }[][]
 }
 

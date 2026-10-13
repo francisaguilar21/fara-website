@@ -35,16 +35,16 @@ Missing items don't block the work. Placeholders with draft chips stand in.
 
 ## PR 4: Remaining sections (`feat(home): add stack, proof, writing, GitHub and contact`)
 
-- [ ] **P5-T18** · Claude · `StackGrid` → P5-R11
-- [ ] **P5-T19** · Claude · `Proof`: `QuoteCarousel` (keyboard, swipe, labelled dots) + `CertList` → P5-R12, P5-R18
-- [ ] **P5-T20** · Claude · `LatestPosts` → P5-R13
-- [ ] **P5-T21** · Claude · `ContributionGraph` (fallback calendar, tooltip, scrolls inside its own container) → P5-R14
-- [ ] **P5-T22** · Claude · `ContactSection`, `BookingCard`, `ContactForm` (client-side validation; submit stub) → P5-R15
+- [x] **P5-T18** · Claude · `StackGrid` → P5-R11
+- [x] **P5-T19** · Claude · `Proof`: `QuoteCarousel` (keyboard, swipe, labelled dots) + `CertList` → P5-R12, P5-R18
+- [x] **P5-T20** · Claude · `LatestPosts` → P5-R13
+- [x] **P5-T21** · Claude · `ContributionGraph` (fallback calendar, tooltip, scrolls inside its own container) → P5-R14
+- [x] **P5-T22** · Claude · `ContactSection`, `BookingCard`, `ContactForm` (client-side validation; submit stub) → P5-R15
 
 ## Verification
 
-- [ ] **P5-T23** · Claude · Screenshot comparison with the mockup (P5-AC1) and checks at 360px (P5-AC5) → P5-R3
-- [ ] **P5-T24** · Claude · axe and keyboard pass (P5-AC6). Check with JavaScript disabled (P5-AC8). → P5-R18
+- [x] **P5-T23** · Claude · Screenshot comparison with the mockup (P5-AC1) and checks at 360px (P5-AC5) → P5-R3
+- [x] **P5-T24** · Claude · axe and keyboard pass (P5-AC6). Check with JavaScript disabled (P5-AC8). → P5-R18
 - [ ] **P5-T25** · Claude · Lighthouse on the preview with the bypass cookie (P5-AC7) → P5-R16, P5-R17
 - [ ] **P5-T26** · Francis · Review the preview and sign off on the homepage → P5-R3
 

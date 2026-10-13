@@ -20,3 +20,26 @@ export function formatRunStart(startedAt: string): string {
   const part = (type: string) => parts.find((p) => p.type === type)?.value ?? ''
   return `${part('weekday')} ${part('hour')}:${part('minute')}`
 }
+
+const postDateFormat = new Intl.DateTimeFormat('en-GB', {
+  day: '2-digit',
+  month: 'short',
+  year: 'numeric',
+  timeZone: 'UTC',
+})
+
+/** `2024-01-12T00:00:00.000Z` becomes `12 Jan 2024`. Read in UTC, so every time zone agrees. */
+export function formatPostDate(iso: string): string {
+  return postDateFormat.format(new Date(iso))
+}
+
+/** `francisaguilar21` from the GitHub entry of `site.socials`, if there is one. */
+export function githubUsername(socials: { label: string; url: string }[]): string | undefined {
+  const url = socials.find((social) => social.label.toLowerCase() === 'github')?.url
+  return url?.replace(/\/+$/, '').split('/').pop() || undefined
+}
+
+/** `2.4` becomes `3 min`. Anything under a minute still reads as 1. */
+export function formatReadMinutes(minutes: number): string {
+  return `${Math.max(1, Math.ceil(minutes))} min`
+}

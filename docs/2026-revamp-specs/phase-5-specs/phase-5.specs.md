@@ -33,7 +33,7 @@ layer. Until real content and live data exist, sections show clearly marked plac
 
 | ID    | Requirement                                                                                                                                                                                                                       |
 | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| P5-R1 | Each section is a component in `components/home/` and takes typed data from `lib/content`. Each section wraps in `<Section eyebrow label id>`.                                                                                    |
+| P5-R1 | Each section is a component in `components/home/` and takes typed data from `lib/content`. Each section wraps in `<Section eyebrow label id>` (Contact keeps the mockup's own two-column layout instead).                         |
 | P5-R2 | **Placeholder policy.** Any entry with `draft: true` renders a `<DraftChip />`. A section never renders empty: it falls back to placeholder entries. `pnpm check:drafts` lists every draft entry; Phase 8 makes it a launch gate. |
 | P5-R3 | The page matches the mockup at 1440px and 390px in both themes. Where they differ, DESIGN wins, then the mockup.                                                                                                                  |
 | P5-R4 | Motion follows Phase 3 components and rules (reduced motion, visible resting state).                                                                                                                                              |
@@ -69,7 +69,7 @@ layer. Until real content and live data exist, sections show clearly marked plac
 | Component                                                                  | Client?                                         | Data                                                                     |
 | -------------------------------------------------------------------------- | ----------------------------------------------- | ------------------------------------------------------------------------ |
 | `Hero`                                                                     | Partly (`HeroPortrait` parallax, CTAs magnetic) | `site`                                                                   |
-| `NowStrip`                                                                 | Yes (marquee)                                   | `pages/now` frontmatter, `getNowPlaying()`, `getStravaWeek()` (fallback) |
+| `NowStrip`                                                                 | No (CSS marquee)                                | `pages/now` frontmatter, `getNowPlaying()`, `getStravaWeek()` (fallback) |
 | `Timeline`, `TimelineItem`, `TimelineYear`                                 | Yes                                             | `getExperience({ featured: true, limit: 6 })`                            |
 | `ProjectList`, `ProjectRow`, `CursorPeek`                                  | Row server, peek client                         | `getProjects({ featured: true, limit: 3 })`                              |
 | `LifeGrid`, `RunningTile`, `CommunityTile`, `GalleryStrip`, `BuildingTile` | Partly                                          | Strava fallback, `talks`, `gallery`, `pages/life/building`               |
@@ -113,11 +113,18 @@ type ContributionCalendar = {
 ### 4.3 Timeline mechanics
 
 - Progress = how far the timeline container has scrolled through the window from `start 70%` to
-  `end 50%`, via Motion `useScroll({ target, offset })` and then `useSpring`.
+  `end 50%` (`lib/use-scroll-progress.ts`: a scroll listener and `getBoundingClientRect`, on the next
+  animation frame). A spring with `stiffness 120, damping 30` (`lib/spring.ts`) follows it. This
+  replaces Motion's `useScroll` and `useSpring` (about 8 kB gzipped less JavaScript on the home route,
+  for the same result).
 - Fill: `transform: scaleY(progress)` on a 2px absolutely positioned bar.
-- Active entry: an `IntersectionObserver` with `rootMargin: '-55% 0px -45% 0px'`. The last entry above
-  the line is active and drives the sticky year.
-- Use CSS `animation-timeline: view()` where supported; Motion is the fallback.
+- Active entry: every frame the page scrolls, each entry's top is compared with a reading line at 55%
+  of the viewport. The last entry above the line is active and drives the sticky year. (An
+  `IntersectionObserver` on that line alone misses entries when the page jumps, for example to an
+  anchor, so it is not used.)
+- The server HTML, no-JS and reduced motion all render the timeline fully drawn. The CSS
+  `animation-timeline: view()` path is not used: it can't drive the active entry or the year, and a
+  second implementation of the fill would have to be kept in step.
 
 ### 4.4 Draft check
 

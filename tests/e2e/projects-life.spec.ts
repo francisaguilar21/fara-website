@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test'
+import { hydrated } from './helpers'
 
 const rows = (page: import('@playwright/test').Page) => page.locator('#projects ul > li')
 
@@ -21,7 +22,7 @@ test.describe('projects', () => {
     page,
   }) => {
     await page.goto('/')
-    await page.waitForTimeout(500) // client components hydrate
+    await hydrated(page)
     const row = rows(page).first().locator('a')
     const title = row.locator('h3')
     await row.scrollIntoViewIfNeeded()
@@ -76,7 +77,7 @@ test.describe('projects', () => {
 
     test('has no cursor preview', async ({ page }) => {
       await page.goto('/')
-      await page.waitForTimeout(500)
+      await hydrated(page)
       await expect(page.getByTestId('cursor-peek')).toHaveCount(0)
     })
   })
@@ -86,7 +87,7 @@ test.describe('projects', () => {
 
     test('has no cursor preview and the title does not move', async ({ page }) => {
       await page.goto('/')
-      await page.waitForTimeout(500)
+      await hydrated(page)
       await expect(page.getByTestId('cursor-peek')).toHaveCount(0)
       const row = rows(page).first().locator('a')
       await row.scrollIntoViewIfNeeded()

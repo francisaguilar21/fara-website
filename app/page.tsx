@@ -1,12 +1,33 @@
+import { ContactSection } from '@/components/home/ContactSection'
+import { GithubSection } from '@/components/home/GithubSection'
 import { Hero } from '@/components/home/Hero'
+import { LatestPosts } from '@/components/home/LatestPosts'
 import { LifeSection } from '@/components/home/LifeSection'
 import { NowStrip } from '@/components/home/NowStrip'
+import { Proof } from '@/components/home/Proof'
 import { ProjectsSection } from '@/components/home/ProjectsSection'
+import { StackGrid } from '@/components/home/StackGrid'
 import { WorkSection } from '@/components/home/WorkSection'
 import { SlashDivider } from '@/components/ui/SlashDivider'
-import { getExperience, getGallery, getPage, getProjects, getSite, getTalks } from '@/lib/content'
+import {
+  getCertifications,
+  getExperience,
+  getGallery,
+  getPage,
+  getPosts,
+  getProjects,
+  getRecommendations,
+  getSite,
+  getTalks,
+  getUses,
+} from '@/lib/content'
+import { githubUsername } from '@/lib/home/format'
 import { buildNowItems } from '@/lib/home/now-items'
-import { NOW_PLAYING_SAMPLE, STRAVA_SAMPLE } from '@/lib/integrations/fallbacks'
+import {
+  CONTRIBUTIONS_SAMPLE,
+  NOW_PLAYING_SAMPLE,
+  STRAVA_SAMPLE,
+} from '@/lib/integrations/fallbacks'
 
 // The homepage is the one-scroll story (DESIGN §5). Each section is a component in
 // `components/home/` that takes typed data from `lib/content`. Strava, Spotify and GitHub show
@@ -39,6 +60,12 @@ export default function Home() {
         building={building ?? {}}
       />
       <SlashDivider />
+      <StackGrid groups={getUses()} />
+      <Proof recommendations={getRecommendations()} certifications={getCertifications()} />
+      <SlashDivider />
+      <LatestPosts posts={getPosts({ limit: 3 })} />
+      <GithubSection calendar={CONTRIBUTIONS_SAMPLE} username={githubUsername(site.socials)} />
+      <ContactSection bookingUrl={site.bookingUrl} draft={site.draft} />
     </>
   )
 }

@@ -7,7 +7,7 @@ type SectionProps = {
   /** Route-style path shown in the left rail, for example `/work`. */
   eyebrow: string
   /** Mono label under the eyebrow. */
-  label?: string
+  label?: React.ReactNode
   /** Extra content under the label in the left rail, for example a legend. */
   aside?: React.ReactNode
   className?: string
