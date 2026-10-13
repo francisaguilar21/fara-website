@@ -221,6 +221,47 @@
     font-style: normal;
     font-family: var(--font-display);
   }
+
+  /* Heading anchors (rehype-autolink-headings wraps the heading text in a link): the heading keeps
+     its own color, and stays clear of the sticky header when jumped to. */
+  .prose :where(h1, h2, h3, h4) {
+    scroll-margin-top: 6rem;
+  }
+
+  .prose :where(h1, h2, h3, h4) a:not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+    color: inherit;
+    font-weight: inherit;
+    text-decoration: none;
+  }
+
+  /* Highlighted code (rehype-pretty-code + Shiki). Every token carries both themes as variables;
+     dark is the default and applies until next-themes sets data-theme='light'. */
+  .prose :where(figure[data-rehype-pretty-code-figure]) {
+    margin: 2rem 0;
+  }
+
+  .prose :where(pre[data-theme]) {
+    padding: 1rem 0;
+    background: var(--surface);
+  }
+
+  .prose :where(pre[data-theme] code) {
+    display: grid;
+    font-size: 0.875rem;
+    line-height: 1.7;
+  }
+
+  .prose :where(pre[data-theme] [data-line]) {
+    padding: 0 1.25rem;
+  }
+
+  .prose :where(pre[data-theme] span) {
+    color: var(--shiki-dark);
+  }
+
+  [data-theme='light'] .prose :where(pre[data-theme] span) {
+    color: var(--shiki-light);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
