@@ -1,5 +1,5 @@
 import { render, screen, within } from '@testing-library/react'
-import { beforeAll, describe, expect, it, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { Hero } from '@/components/home/Hero'
 import { NowStrip, type NowStripItem } from '@/components/home/NowStrip'
 
@@ -7,17 +7,6 @@ import { NowStrip, type NowStripItem } from '@/components/home/NowStrip'
 vi.mock('@/components/home/HeroPortrait', () => ({
   HeroPortrait: () => <div data-testid="portrait" />,
 }))
-
-// jsdom has no `matchMedia`, which the motion hooks read.
-beforeAll(() => {
-  window.matchMedia = (query: string) =>
-    ({
-      matches: false,
-      media: query,
-      addEventListener: () => {},
-      removeEventListener: () => {},
-    }) as unknown as MediaQueryList
-})
 
 const hero = {
   name: 'Francis Aguilar',
