@@ -1,4 +1,5 @@
 import type { NextConfig } from 'next'
+import { PHASE_DEVELOPMENT_SERVER, PHASE_PRODUCTION_SERVER } from 'next/constants'
 
 // Phase 7 adds the PostHog hosts to `script-src` and `connect-src`.
 const ContentSecurityPolicy = `
@@ -38,4 +39,17 @@ const nextConfig: NextConfig = {
   },
 }
 
-export default nextConfig
+// Builds the content (`velite.config.ts`) before Next reads it, as the Velite docs recommend for
+// Turbopack. `next dev` watches and tolerates schema errors, so a typo doesn't kill the dev server.
+// `next build` is strict: a schema error fails the build with the file and field named.
+// (Top-level await doesn't work here: Next.js loads this file as CommonJS.)
+export default async function config(phase: string) {
+  // The env flag stops the Next.js build workers, which load this file again, from rebuilding.
+  if (phase !== PHASE_PRODUCTION_SERVER && !process.env.VELITE_STARTED) {
+    process.env.VELITE_STARTED = '1'
+    const isDev = phase === PHASE_DEVELOPMENT_SERVER
+    const { build } = await import('velite')
+    await build({ watch: isDev, clean: !isDev, strict: !isDev })
+  }
+  return nextConfig
+}

@@ -2,7 +2,7 @@
 
 | Status      | Depends on | Ships as                                                                 | Effort |
 | ----------- | ---------- | ------------------------------------------------------------------------ | ------ |
-| Not started | Phase 3    | 3 PRs: content layer + schemas → blog pages → SEO (feeds, OG, redirects) | 2 days |
+| In progress | Phase 3    | 3 PRs: content layer + schemas → blog pages → SEO (feeds, OG, redirects) | 2 days |
 
 References: [DESIGN §4](../design/DESIGN.md#4-information-architecture), [DESIGN §12](../design/DESIGN.md#12-content-model), [plan §2.1](../2026-revamp-plan.md#21-maintenance-mode)
 
@@ -66,17 +66,27 @@ velite.config.ts
 
 ### 4.2 Velite
 
-Run it from `next.config.ts`, as the Velite docs recommend for Turbopack:
+Run it from `next.config.ts`, as the Velite docs recommend for Turbopack. Next.js 16 loads
+`next.config.ts` as CommonJS, so top-level `await` fails. Export an async config function instead:
 
 ```ts
-// next.config.ts (top)
-const isDev = process.argv.includes('dev')
-if (!process.env.VELITE_STARTED) {
-  process.env.VELITE_STARTED = '1'
-  const { build } = await import('velite')
-  await build({ watch: isDev, clean: !isDev })
+// next.config.ts
+export default async function config(phase: string) {
+  if (phase !== PHASE_PRODUCTION_SERVER && !process.env.VELITE_STARTED) {
+    process.env.VELITE_STARTED = '1'
+    const isDev = phase === PHASE_DEVELOPMENT_SERVER
+    const { build } = await import('velite')
+    await build({ watch: isDev, clean: !isDev, strict: !isDev })
+  }
+  return nextConfig
 }
 ```
+
+`strict` makes a schema error fail `next build` (P4-R1); `next dev` only warns. Two more details:
+
+- Velite's `clean` empties its assets folder, which defaults to `public/static`, where the post images
+  live. `velite.config.ts` points `output.assets` at `public/static/velite` instead.
+- `pnpm typecheck` and `pnpm test` run `pnpm content` first, because `.velite/` is generated and git-ignored.
 
 ```ts
 // velite.config.ts (posts collection)
