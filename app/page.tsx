@@ -1,6 +1,7 @@
 import { Hero } from '@/components/home/Hero'
 import { NowStrip } from '@/components/home/NowStrip'
-import { getPage, getSite } from '@/lib/content'
+import { WorkSection } from '@/components/home/WorkSection'
+import { getExperience, getPage, getSite } from '@/lib/content'
 import { buildNowItems } from '@/lib/home/now-items'
 import { NOW_PLAYING_SAMPLE, STRAVA_SAMPLE } from '@/lib/integrations/fallbacks'
 
@@ -23,6 +24,7 @@ export default function Home() {
       <NowStrip
         items={buildNowItems({ now, nowPlaying: NOW_PLAYING_SAMPLE, strava: STRAVA_SAMPLE })}
       />
+      <WorkSection entries={getExperience({ featured: true, limit: 6 })} />
     </>
   )
 }
