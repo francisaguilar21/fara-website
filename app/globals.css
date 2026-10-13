@@ -259,6 +259,96 @@
   }
 }
 
+/* Homepage motion (Phase 5). Everything here is CSS, so it also runs with JavaScript off, and each
+   one is switched off under `prefers-reduced-motion` (P3-R9). The resting state is always visible. */
+@keyframes rise {
+  from {
+    transform: translateY(0.25em);
+    opacity: 0.35;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* The strip repeats its items 4 times and slides by one copy, so the loop never shows a gap. */
+@keyframes marquee {
+  to {
+    transform: translateX(-25%);
+  }
+}
+
+@keyframes equalize {
+  50% {
+    height: 100%;
+  }
+}
+
+/* One line of the hero headline rising into place. Set `animation-delay` inline to stagger. */
+@utility animate-rise {
+  animation: rise 900ms var(--ease-out-quint) both;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+/* Rose underline under a headline phrase. It draws left to right once, after the lines rise. */
+@utility headline-under {
+  position: relative;
+  white-space: nowrap;
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0.02em;
+    left: 0;
+    height: 0.09em;
+    background: var(--accent);
+    transform-origin: left;
+    animation: draw 1s 500ms var(--ease-out-quint) both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &::after {
+      animation: none;
+    }
+  }
+}
+
+/* The now-strip track. Pauses while the strip is hovered (the strip carries `group`). */
+@utility marquee-track {
+  animation: marquee 38s linear infinite;
+
+  :where(.group:hover, .group:focus-within) & {
+    animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+/* Equaliser bar for the "playing" state of the Spotify widget and the now strip. */
+@utility animate-equalize {
+  animation: equalize 1s ease-in-out infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
 /* Added by <Cursor /> while the custom cursor is on. */
 body.has-cursor,
 body.has-cursor a,

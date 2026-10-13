@@ -2,7 +2,7 @@
 
 | Status      | Depends on | Ships as                                                                                      | Effort   |
 | ----------- | ---------- | --------------------------------------------------------------------------------------------- | -------- |
-| Not started | Phases 3–4 | 4 PRs: hero + now strip → timeline → projects + life → stack, proof, writing, GitHub, contact | 3–4 days |
+| In progress | Phases 3–4 | 4 PRs: hero + now strip → timeline → projects + life → stack, proof, writing, GitHub, contact | 3–4 days |
 
 References: [DESIGN §5](../design/DESIGN.md#5-homepage-section-by-section), [DESIGN §7.2](../design/DESIGN.md#72-scroll-drawn-timeline), [mockup](../design/mockup.html)
 

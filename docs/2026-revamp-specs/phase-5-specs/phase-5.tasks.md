@@ -13,11 +13,11 @@ Missing items don't block the work. Placeholders with draft chips stand in.
 
 ## PR 1: Hero & now strip (`feat(home): add hero and now strip`)
 
-- [ ] **P5-T05** · Claude · `lib/integrations/fallbacks.ts` (typed sample data, `isSample: true`) → P5-R2
-- [ ] **P5-T06** · Claude · `scripts/check-drafts.ts` + `pnpm check:drafts` → P5-R2
-- [ ] **P5-T07** · Claude · `app/page.tsx` composed from sections; section `id`s; header nav anchors on home → P5-R1, P5-R5
-- [ ] **P5-T08** · Claude · `Hero` (reveal, underline draw, roles, CTAs, portrait parallax and hover color) → P5-R6, P5-R17
-- [ ] **P5-T09** · Claude · `NowStrip` (marquee, duplicated items hidden from screen readers, static under reduced motion) → P5-R7
+- [x] **P5-T05** · Claude · `lib/integrations/fallbacks.ts` (typed sample data, `isSample: true`) → P5-R2
+- [x] **P5-T06** · Claude · `scripts/check-drafts.ts` + `pnpm check:drafts` → P5-R2
+- [x] **P5-T07** · Claude · `app/page.tsx` composed from sections; section `id`s; header nav anchors on home → P5-R1, P5-R5
+- [x] **P5-T08** · Claude · `Hero` (reveal, underline draw, roles, CTAs, portrait parallax and hover color) → P5-R6, P5-R17
+- [x] **P5-T09** · Claude · `NowStrip` (marquee, duplicated items hidden from screen readers, static under reduced motion) → P5-R7
 
 ## PR 2: Timeline (`feat(home): add scroll-drawn timeline`)
 

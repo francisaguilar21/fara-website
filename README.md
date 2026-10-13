@@ -36,6 +36,7 @@ PostHog flag is on, or `MAINTENANCE_MODE=on`.
 | `pnpm start`        | Serve the production build                                           |
 | `pnpm lint`         | ESLint, with no warnings allowed                                     |
 | `pnpm content`      | Build the content with Velite (`content/` to `.velite/`), strict     |
+| `pnpm check:drafts` | List every placeholder (draft entry or sample data). Exits 1 if any. |
 | `pnpm typecheck`    | Build the content, then `tsc --noEmit`                               |
 | `pnpm format`       | Format everything with Prettier                                      |
 | `pnpm format:check` | Check formatting without writing                                     |
