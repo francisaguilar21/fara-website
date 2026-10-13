@@ -294,9 +294,10 @@
   }
 }
 
+/* Bars are full height, scaled from the bottom: `transform` stays off the layout thread. */
 @keyframes equalize {
   50% {
-    height: 100%;
+    transform: scaleY(1);
   }
 }
 
@@ -357,6 +358,8 @@
 
 /* Equaliser bar for the "playing" state of the Spotify widget and the now strip. */
 @utility animate-equalize {
+  transform: scaleY(0.4);
+  transform-origin: bottom;
   animation: equalize 1s ease-in-out infinite;
 
   @media (prefers-reduced-motion: reduce) {
