@@ -47,7 +47,7 @@ Same branch and PR as [Phase 1](../phase-1-specs/phase-1.tasks.md). One commit p
 
 ## Vercel & merge
 
-- [ ] **P2-T19** · Francis · In Vercel, check that Install Command is left as the default (pnpm is detected) and
+- [x] **P2-T19** · Francis · In Vercel, check that Install Command is left as the default (pnpm is detected) and
       that Node.js Version matches `.nvmrc` → P2-R14
 - [ ] **P2-T20** · Claude · Run the full check locally (P2-AC1 to P2-AC4). Push and get CI green. → P2-AC5
 - [ ] **P2-T21** · Francis · Review the preview (P2-AC6). Then do [P1-T08](../phase-1-specs/phase-1.tasks.md)
