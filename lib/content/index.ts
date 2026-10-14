@@ -8,6 +8,7 @@ import { site } from '@/content/site'
 import { talks } from '@/content/talks'
 import { uses } from '@/content/uses'
 import { slugifyTag } from './tags'
+import { shouldHideDrafts } from './visibility'
 import type {
   Certification,
   Experience,
@@ -33,12 +34,17 @@ export type {
 
 // Typed getters over the content. Pages import from here, never from `.velite` or `content/`.
 //
-// Draft **posts** are hidden in production (pages, feeds, sitemap). Every other draft is a
-// placeholder that stays in the results, so the page can render it with a `<DraftChip />`.
+// Drafts are placeholders (or posts not ready to publish). Every getter below leaves them out when
+// `shouldHideDrafts()` is true (production, or `HIDE_DRAFTS=1`), and keeps them otherwise so the
+// page can render them with a `<DraftChip />`. The one exception is `getSite()`: a draft `site` is
+// still returned, because the site itself is not optional.
 
 type ListOptions = { limit?: number }
 
-const isProduction = () => process.env.NODE_ENV === 'production'
+/** The entries that should be on the page: all of them, minus the drafts when those are hidden. */
+function shown<T extends { draft?: boolean }>(items: T[]): T[] {
+  return shouldHideDrafts() ? items.filter((item) => !item.draft) : items
+}
 
 const take = <T>(items: T[], limit?: number) =>
   limit === undefined ? items : items.slice(0, limit)
@@ -47,8 +53,7 @@ const take = <T>(items: T[], limit?: number) =>
 const byNewest = (a: Post, b: Post) => b.date.localeCompare(a.date) || b.slug.localeCompare(a.slug)
 
 function publishedPosts(): Post[] {
-  const visible = isProduction() ? posts.filter((post) => !post.draft) : posts
-  return [...visible].sort(byNewest)
+  return [...shown(posts)].sort(byNewest)
 }
 
 /** Published posts, newest first. `tag` is a tag slug (see {@link slugifyTag}). */
@@ -90,8 +95,8 @@ export function getProjects({
   featured,
   limit,
 }: ListOptions & { featured?: boolean } = {}): Project[] {
-  const matching =
-    featured === undefined ? projects : projects.filter((p) => p.featured === featured)
+  const all = shown(projects)
+  const matching = featured === undefined ? all : all.filter((p) => p.featured === featured)
   return take(
     [...matching].sort((a, b) => a.order - b.order || b.year - a.year),
     limit
@@ -99,12 +104,12 @@ export function getProjects({
 }
 
 export function getProject(slug: string): Project | undefined {
-  return projects.find((project) => project.slug === slug)
+  return shown(projects).find((project) => project.slug === slug)
 }
 
 /** A long-form page: `now` or `life/building`. */
 export function getPage(slug: string): Page | undefined {
-  return pages.find((page) => page.slug === slug)
+  return shown(pages).find((page) => page.slug === slug)
 }
 
 /** Newest first. A role with no `end` is current, so it leads the roles that started the same month. */
@@ -113,7 +118,7 @@ export function getExperience({
   kind,
   limit,
 }: ListOptions & { featured?: boolean; kind?: Experience['kind'] } = {}): Experience[] {
-  const matching = experience.filter(
+  const matching = shown(experience).filter(
     (entry) =>
       (featured === undefined || entry.featured === featured) &&
       (kind === undefined || entry.kind === kind)
@@ -130,20 +135,20 @@ export function getExperience({
 /** Newest year first. */
 export function getCertifications({ limit }: ListOptions = {}): Certification[] {
   return take(
-    [...certifications].sort((a, b) => b.year - a.year),
+    [...shown(certifications)].sort((a, b) => b.year - a.year),
     limit
   )
 }
 
 /** In the order they are written in `content/recommendations.ts`. */
 export function getRecommendations({ limit }: ListOptions = {}): Recommendation[] {
-  return take(recommendations, limit)
+  return take(shown(recommendations), limit)
 }
 
 /** Newest first. */
 export function getRaces({ limit }: ListOptions = {}): Race[] {
   return take(
-    [...races].sort((a, b) => b.date.localeCompare(a.date)),
+    [...shown(races)].sort((a, b) => b.date.localeCompare(a.date)),
     limit
   )
 }
@@ -151,7 +156,7 @@ export function getRaces({ limit }: ListOptions = {}): Race[] {
 /** Newest first. */
 export function getTalks({ limit }: ListOptions = {}): Talk[] {
   return take(
-    [...talks].sort((a, b) => b.date.localeCompare(a.date)),
+    [...shown(talks)].sort((a, b) => b.date.localeCompare(a.date)),
     limit
   )
 }
@@ -161,13 +166,15 @@ export function getGallery({
   tag,
   limit,
 }: ListOptions & { tag?: GalleryImage['tag'] } = {}): GalleryImage[] {
-  return take(tag ? gallery.filter((image) => image.tag === tag) : gallery, limit)
+  const all = shown(gallery)
+  return take(tag ? all.filter((image) => image.tag === tag) : all, limit)
 }
 
 export function getUses(): UsesGroup[] {
-  return uses
+  return shown(uses)
 }
 
+/** Always returned, even while `site.draft` is set: that flag only means the copy isn't final. */
 export function getSite(): Site {
   return site
 }

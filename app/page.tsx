@@ -1,6 +1,7 @@
 import { Hero } from '@/components/home/Hero'
 import { NowStrip } from '@/components/home/NowStrip'
 import { WorkSection } from '@/components/home/WorkSection'
+import { getBookingUrl } from '@/lib/booking'
 import { getExperience, getPage, getSite } from '@/lib/content'
 import { buildNowItems } from '@/lib/home/now-items'
 import { NOW_PLAYING_SAMPLE, STRAVA_SAMPLE } from '@/lib/integrations/fallbacks'
@@ -19,7 +20,7 @@ export default function Home() {
         headline={site.headline}
         intro={site.intro}
         location={site.location}
-        bookingUrl={site.bookingUrl}
+        bookingUrl={getBookingUrl()}
       />
       <NowStrip
         items={buildNowItems({ now, nowPlaying: NOW_PLAYING_SAMPLE, strava: STRAVA_SAMPLE })}

@@ -1,7 +1,8 @@
 import type { Site } from '@/lib/content/schemas'
 
-// `draft: true` until Francis confirms the headline (DESIGN §14.9), supplies the booking link
-// (§14.8) and the contact email (§14.10).
+// `draft: true` until Francis confirms the headline (DESIGN §14.9) and the contact email (§14.10).
+// The flag only means the copy isn't final: `getSite()` returns the site either way, and no chip is
+// shown for it. The booking link is not content: it is the `NEXT_PUBLIC_BOOKING_URL` variable.
 export const site: Site = {
   name: 'Francis Aguilar',
   tagline: 'Software engineer, founder and long-distance runner.',
@@ -14,7 +15,5 @@ export const site: Site = {
     { label: 'LinkedIn', url: 'https://www.linkedin.com/in/francisaguilar21' },
     { label: 'X', url: 'https://twitter.com/faraguilar21' },
   ],
-  // Placeholder: replace with the Google Calendar appointment schedule URL.
-  bookingUrl: 'https://calendar.google.com',
   draft: true,
 }

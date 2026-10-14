@@ -42,9 +42,20 @@ export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false)
   const hidden = useHideOnScroll(menuOpen)
   const wipe = useSlashWipe()
-  // On the homepage the links scroll to the sections instead of leaving the page.
+  // On the homepage the links scroll to the sections instead of leaving the page. A section that
+  // did not render (a draft section hidden in production, or one with no entries) has no anchor to
+  // scroll to, so its link goes to the page itself instead of pointing at nothing.
   const onHome = usePathname() === '/'
-  const hrefFor = (link: { href: string; anchor: string }) => (onHome ? link.anchor : link.href)
+  const [missing, setMissing] = useState<string[]>([])
+  useEffect(() => {
+    if (!onHome) return
+    const anchors = [...NAV_LINKS.map((link) => link.anchor), CONTACT_LINK.anchor]
+    // The page's DOM can only be read after it has rendered, so this has to be state set here.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMissing(anchors.filter((anchor) => !document.getElementById(anchor.slice(1))))
+  }, [onHome])
+  const hrefFor = (link: { href: string; anchor: string }) =>
+    onHome && !missing.includes(link.anchor) ? link.anchor : link.href
 
   // Lock page scroll and close on Escape while the full-screen menu is open.
   useEffect(() => {

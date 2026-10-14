@@ -8,22 +8,34 @@ test.describe('hero and now strip', () => {
       await expect(page.locator('main ul li', { hasText: path }).first()).toBeVisible()
     }
     await expect(page.getByRole('link', { name: /See my work/ })).toHaveAttribute('href', '#work')
-    await expect(page.getByRole('link', { name: 'Book a call' })).toBeVisible()
-  })
-
-  test('the header links to the sections on the homepage', async ({ page }) => {
-    await page.goto('/')
-    const nav = page.getByRole('navigation', { name: 'Primary' })
-    for (const id of ['work', 'life', 'writing', 'now']) {
-      await expect(nav.getByRole('link', { name: new RegExp(`${id}$`) })).toHaveAttribute(
-        'href',
-        `#${id}`
-      )
-    }
-    await expect(page.getByRole('link', { name: "Let's talk" }).first()).toHaveAttribute(
+    // No booking page is set in this build, so there is no "Book a call": the button points at the
+    // contact form instead. (`hidden-drafts.spec.ts` covers the build that has one.)
+    await expect(page.getByRole('link', { name: 'Book a call' })).toHaveCount(0)
+    await expect(page.getByRole('link', { name: 'Send a message' })).toHaveAttribute(
       'href',
       '#contact'
     )
+  })
+
+  test('the header links to the sections that are on the page, and to the pages for the rest', async ({
+    page,
+  }) => {
+    await page.goto('/')
+    const links = [
+      ...['work', 'life', 'writing', 'now'].map((id) => ({ id, name: new RegExp(`${id}$`) })),
+      { id: 'contact', name: /Let's talk/ },
+    ]
+    for (const { id, name } of links) {
+      const link = page.locator('header').getByRole('link', { name }).first()
+      const present = (await page.locator(`#${id}`).count()) > 0
+      // The header looks at the page once it has rendered, so a link may settle after a moment.
+      if (present) await expect(link, id).toHaveAttribute('href', `#${id}`)
+      else await expect(link, id).not.toHaveAttribute('href', /^#/)
+    }
+    // The strip is always there, so at least that link is an anchor.
+    await expect(
+      page.getByRole('navigation', { name: 'Primary' }).getByRole('link', { name: /now$/ })
+    ).toHaveAttribute('href', '#now')
   })
 
   test('the portrait is grayscale and turns to color on hover', async ({ page }) => {
