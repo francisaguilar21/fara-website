@@ -100,3 +100,7 @@ If PostHog can't be reached, the site stays up (fail open). Details:
 
 Everything about the 2026 rebuild lives in [`docs/2026-revamp-specs/`](./docs/2026-revamp-specs/README.md):
 the plan, the design spec and mockup, and per-phase specs and tasks.
+
+## License
+
+Proprietary, all rights reserved. You may read the code, but you may not reuse, extend or republish it. See [`LICENSE`](./LICENSE).
