@@ -185,23 +185,24 @@ Versions current as of October 2026. Install the latest at scaffold time and pin
 
 ## 7. Environment variables
 
-| Variable                                                  | Scope  | Phase | Notes                                                                                                              |
-| --------------------------------------------------------- | ------ | ----- | ------------------------------------------------------------------------------------------------------------------ |
-| `NEXT_PUBLIC_SITE_URL`                                    | public | 4     | `https://francisaguilar.co`                                                                                        |
-| `NEXT_PUBLIC_POSTHOG_KEY`                                 | public | 0     | Project API key                                                                                                    |
-| `NEXT_PUBLIC_POSTHOG_HOST`                                | public | 0     | PostHog API host. Defaults to `https://us.i.posthog.com`. The browser client uses `/ingest` (proxied) from Phase 7 |
-| `MAINTENANCE_MODE`                                        | server | 0     | Optional override: `on` or `off`                                                                                   |
-| `MAINTENANCE_BYPASS_TOKEN`                                | server | 0     | Long random string, used in `/?preview=<token>`                                                                    |
-| `MAINTENANCE_ALLOWED_PATHS`                               | server | 0     | e.g. `/writings,/rss.xml` after Phase 4                                                                            |
-| `POSTHOG_PERSONAL_API_KEY`                                | server | 7     | Only for server-side flag evaluation                                                                               |
-| `STRAVA_CLIENT_ID` / `_SECRET` / `_REFRESH_TOKEN`         | server | 7     |                                                                                                                    |
-| `SPOTIFY_CLIENT_ID` / `_SECRET` / `_REFRESH_TOKEN`        | server | 7     |                                                                                                                    |
-| `GITHUB_TOKEN`                                            | server | 7     | Read-only                                                                                                          |
-| `RESEND_API_KEY`                                          | server | 7     |                                                                                                                    |
-| `CONTACT_TO_EMAIL`                                        | server | 7     | Where messages go                                                                                                  |
-| `NEXT_PUBLIC_TURNSTILE_SITE_KEY` / `TURNSTILE_SECRET_KEY` | mixed  | 7     |                                                                                                                    |
-| `UPSTASH_REDIS_REST_URL` / `_TOKEN`                       | server | 7     | Optional                                                                                                           |
-| `NEXT_PUBLIC_BOOKING_URL`                                 | public | 5     | Google Calendar appointment schedule                                                                               |
+| Variable                                                  | Scope  | Phase | Notes                                                                                                                                                  |
+| --------------------------------------------------------- | ------ | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `NEXT_PUBLIC_SITE_URL`                                    | public | 4     | `https://francisaguilar.co`                                                                                                                            |
+| `NEXT_PUBLIC_POSTHOG_KEY`                                 | public | 0     | Project API key                                                                                                                                        |
+| `NEXT_PUBLIC_POSTHOG_HOST`                                | public | 0     | PostHog API host. Defaults to `https://us.i.posthog.com`. The browser client uses `/ingest` (proxied) from Phase 7                                     |
+| `MAINTENANCE_MODE`                                        | server | 0     | Optional override: `on` or `off`                                                                                                                       |
+| `MAINTENANCE_BYPASS_TOKEN`                                | server | 0     | Long random string, used in `/?preview=<token>`                                                                                                        |
+| `MAINTENANCE_ALLOWED_PATHS`                               | server | 0     | e.g. `/writings,/rss.xml` after Phase 4                                                                                                                |
+| `POSTHOG_PERSONAL_API_KEY`                                | server | 7     | Only for server-side flag evaluation                                                                                                                   |
+| `STRAVA_CLIENT_ID` / `_SECRET` / `_REFRESH_TOKEN`         | server | 7     |                                                                                                                                                        |
+| `SPOTIFY_CLIENT_ID` / `_SECRET` / `_REFRESH_TOKEN`        | server | 7     |                                                                                                                                                        |
+| `GITHUB_TOKEN`                                            | server | 7     | Read-only                                                                                                                                              |
+| `RESEND_API_KEY`                                          | server | 7     |                                                                                                                                                        |
+| `CONTACT_TO_EMAIL`                                        | server | 7     | Where messages go                                                                                                                                      |
+| `NEXT_PUBLIC_TURNSTILE_SITE_KEY` / `TURNSTILE_SECRET_KEY` | mixed  | 7     |                                                                                                                                                        |
+| `UPSTASH_REDIS_REST_URL` / `_TOKEN`                       | server | 7     | Optional                                                                                                                                               |
+| `NEXT_PUBLIC_BOOKING_URL`                                 | public | 5     | Google Calendar appointment schedule. Unset: the "Book a call" button points at the contact form. Inlined at build time, so redeploy after changing it |
+| `HIDE_DRAFTS`                                             | server | 4     | `1` hides `draft: true` content on previews and locally. Production (`VERCEL_ENV=production`) always hides it                                          |
 
 Commit a `.env.example` with every key and no values.
 

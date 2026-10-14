@@ -8,7 +8,7 @@ Specs: [phase-4.specs.md](./phase-4.specs.md)
 - [x] **P4-T02** · Claude · `velite.config.ts` with `posts`, `projects` and `pages`; Velite wired into `next.config.ts`; `.velite/` added to `.gitignore` → P4-R1
 - [x] **P4-T03** · Claude · `git mv data/blog/*.mdx content/blog/`. Rename the template to `_template.mdx`. Apply the fixes in [specs §4.5](./phase-4.specs.md#45-content-fixes-made-while-moving). → P4-R4, P4-R5
 - [x] **P4-T04** · Claude · `lib/content/schemas.ts` and placeholder data files in `content/` (marked `draft: true`; real content arrives in Phases 5–6) → P4-R2, P4-R3
-- [x] **P4-T05** · Claude · `lib/content/index.ts` getters (filter drafts in production) and `lib/content/format.ts` (dates, pace, durations) → P4-R3
+- [x] **P4-T05** · Claude · `lib/content/index.ts` getters (leave drafts out where `shouldHideDrafts()` is true: production, or `HIDE_DRAFTS=1`) and `lib/content/format.ts` (dates, pace, durations) → P4-R3
 - [x] **P4-T06** · Claude · Unit tests: every data file passes its schema; draft posts are filtered in production; slug derivation; pace formatting → P4-R1–R3
 
 ## PR 2: Blog pages (`feat(blog): add blog index, tags and post pages`)
