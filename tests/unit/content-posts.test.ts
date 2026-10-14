@@ -119,8 +119,8 @@ describe('draft posts', () => {
     return import('@/lib/content')
   }
 
-  it('hides them in production from every getter', async () => {
-    vi.stubEnv('NODE_ENV', 'production')
+  it('hides them in production (VERCEL_ENV=production) from every getter', async () => {
+    vi.stubEnv('VERCEL_ENV', 'production')
     const content = await loadWithDraft()
     expect(content.getPosts().map((p) => p.slug)).toEqual(['published-new', 'published-old'])
     expect(content.getPost('secret-draft')).toBeUndefined()
@@ -129,8 +129,8 @@ describe('draft posts', () => {
     expect(content.getAdjacentPosts('published-new').next).toBeUndefined()
   })
 
-  it('shows them in development', async () => {
-    vi.stubEnv('NODE_ENV', 'development')
+  it('shows them on a preview', async () => {
+    vi.stubEnv('VERCEL_ENV', 'preview')
     const content = await loadWithDraft()
     expect(content.getPosts().map((p) => p.slug)).toEqual([
       'secret-draft',

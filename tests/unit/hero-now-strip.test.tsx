@@ -1,5 +1,5 @@
 import { render, screen, within } from '@testing-library/react'
-import { beforeAll, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest'
 import { Hero } from '@/components/home/Hero'
 import { NowStrip, type NowStripItem } from '@/components/home/NowStrip'
 
@@ -18,6 +18,8 @@ beforeAll(() => {
       removeEventListener: () => {},
     }) as unknown as MediaQueryList
 })
+
+afterEach(() => vi.unstubAllEnvs())
 
 const hero = {
   name: 'Francis Aguilar',
@@ -41,10 +43,28 @@ describe('Hero', () => {
   })
 
   it('lists the three roles and marks the unconfirmed employer as a draft', () => {
+    vi.stubEnv('VERCEL_ENV', 'preview')
+    vi.stubEnv('HIDE_DRAFTS', '')
     render(<Hero {...hero} />)
     for (const path of ['/work', '/build', '/run'])
       expect(screen.getByText(path)).toBeInTheDocument()
     expect(screen.getByText('company?')).toBeInTheDocument()
+  })
+
+  it('keeps the roles but drops the draft chip where drafts are hidden', () => {
+    for (const [vercel, hide] of [
+      ['production', ''],
+      ['preview', '1'],
+    ]) {
+      vi.stubEnv('VERCEL_ENV', vercel!)
+      vi.stubEnv('HIDE_DRAFTS', hide!)
+      const { unmount } = render(<Hero {...hero} />)
+      for (const path of ['/work', '/build', '/run'])
+        expect(screen.getByText(path)).toBeInTheDocument()
+      expect(screen.getByText('Senior Software Engineer')).toBeInTheDocument()
+      expect(screen.queryByText('company?')).not.toBeInTheDocument()
+      unmount()
+    }
   })
 
   it('links the CTAs to the work section and the booking page', () => {
@@ -55,9 +75,12 @@ describe('Hero', () => {
     expect(book).toHaveAttribute('target', '_blank')
   })
 
-  it('falls back to the contact section when there is no booking URL yet', () => {
-    render(<Hero {...hero} bookingUrl="" />)
-    expect(screen.getByRole('link', { name: 'Book a call' })).toHaveAttribute('href', '#contact')
+  it('has no booking button without a booking URL: it points at the contact form instead', () => {
+    render(<Hero {...hero} bookingUrl={undefined} />)
+    expect(screen.queryByRole('link', { name: 'Book a call' })).not.toBeInTheDocument()
+    const message = screen.getByRole('link', { name: 'Send a message' })
+    expect(message).toHaveAttribute('href', '#contact')
+    expect(message).not.toHaveAttribute('target')
   })
 })
 

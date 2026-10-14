@@ -108,7 +108,6 @@ export const SiteSchema = z.object({
   intro: z.string().min(1),
   location: z.string().min(1),
   socials: z.array(z.object({ label: z.string().min(1), url })),
-  bookingUrl: url,
   resumeUrl: url.optional(),
   email: z.email().optional(),
   draft,
