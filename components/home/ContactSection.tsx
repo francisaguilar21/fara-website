@@ -4,9 +4,8 @@ import { BookingCard } from './BookingCard'
 import { ContactForm } from './ContactForm'
 
 type ContactSectionProps = {
-  bookingUrl: string
-  /** The booking link is still a placeholder. */
-  draft?: boolean
+  /** `getBookingUrl()`. Without it there is no booking card, and the text only mentions the form. */
+  bookingUrl?: string
 }
 
 /**
@@ -14,7 +13,7 @@ type ContactSectionProps = {
  * mockup's own, not the editorial rail the other sections share, so it is not wrapped in
  * `<Section>`.
  */
-export function ContactSection({ bookingUrl, draft }: ContactSectionProps) {
+export function ContactSection({ bookingUrl }: ContactSectionProps) {
   return (
     <Container
       as="section"
@@ -34,10 +33,11 @@ export function ContactSection({ bookingUrl, draft }: ContactSectionProps) {
             in <span className="text-accent">mind?</span>
           </h2>
           <p className="mt-6 max-w-[42ch] text-muted">
-            Hiring, a project, a talk, or a long run. Send a note, or skip the back-and-forth and
-            grab 30 minutes on my calendar.
+            {bookingUrl
+              ? 'Hiring, a project, a talk, or a long run. Send a note, or skip the back-and-forth and grab 30 minutes on my calendar.'
+              : 'Hiring, a project, a talk, or a long run. Send a note and I will get back to you.'}
           </p>
-          <BookingCard bookingUrl={bookingUrl} draft={draft} />
+          {bookingUrl ? <BookingCard bookingUrl={bookingUrl} /> : null}
         </div>
         <ContactForm />
       </div>

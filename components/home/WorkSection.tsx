@@ -8,6 +8,10 @@ import type { TimelineEntry } from './TimelineItem'
 
 /** Section 3, `/work`: the latest featured entries on the scroll-drawn timeline. */
 export function WorkSection({ entries }: { entries: TimelineEntry[] }) {
+  // Nothing to draw (every entry was a hidden draft): render no section, and the header drops
+  // its `#work` anchor in favor of the `/work` route.
+  if (entries.length === 0) return null
+
   return (
     <Section
       id="work"

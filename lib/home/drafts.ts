@@ -1,16 +1,14 @@
+import { pages, projects } from '#site/content'
 import { HERO_ROLES } from '@/components/home/hero-roles'
-import {
-  getCertifications,
-  getExperience,
-  getGallery,
-  getPage,
-  getProjects,
-  getRaces,
-  getRecommendations,
-  getSite,
-  getTalks,
-  getUses,
-} from '@/lib/content'
+import { certifications } from '@/content/certifications'
+import { experience } from '@/content/experience'
+import { gallery } from '@/content/gallery'
+import { races } from '@/content/races'
+import { recommendations } from '@/content/recommendations'
+import { site } from '@/content/site'
+import { talks } from '@/content/talks'
+import { uses } from '@/content/uses'
+import { getBookingUrl } from '@/lib/booking'
 import { SAMPLES } from '@/lib/integrations/fallbacks'
 
 export type DraftItem = {
@@ -30,8 +28,10 @@ const SAMPLE_LABELS: Record<keyof typeof SAMPLES, string> = {
  * Everything on the site that is still a placeholder (P5-R2): content entries with
  * `draft: true`, hero roles with a `draft` note, and live-data fallbacks flagged `isSample`.
  *
- * Draft blog posts are not listed. They are hidden in production by design, so they never
- * reach a visitor.
+ * It reads the raw content, not the getters in `lib/content`, because those leave drafts out where
+ * drafts are hidden (production, `HIDE_DRAFTS=1`) and this has to list them everywhere. Draft blog
+ * posts are not listed: they are never shown in production, so they never reach a visitor. It also
+ * reports a missing `NEXT_PUBLIC_BOOKING_URL`, since the booking button needs it.
  */
 export function findDrafts(): DraftItem[] {
   const drafts: DraftItem[] = []
@@ -39,25 +39,22 @@ export function findDrafts(): DraftItem[] {
     if (draft) drafts.push({ source, label })
   }
 
-  const site = getSite()
   add('site', site.name, site.draft)
   HERO_ROLES.forEach((role) => add('hero roles', `${role.path} ${role.text.trim()}`, !!role.draft))
-  getExperience().forEach((entry) => add('experience', `${entry.role} · ${entry.org}`, entry.draft))
-  getProjects().forEach((project) => add('projects', project.title, project.draft))
-  getCertifications().forEach((cert) =>
+  experience.forEach((entry) => add('experience', `${entry.role} · ${entry.org}`, entry.draft))
+  projects.forEach((project) => add('projects', project.title, project.draft))
+  certifications.forEach((cert) =>
     add('certifications', `${cert.name} · ${cert.issuer} ${cert.year}`, cert.draft)
   )
-  getRecommendations().forEach((rec) =>
+  recommendations.forEach((rec) =>
     add('recommendations', `${rec.name} · ${rec.role}, ${rec.company}`, rec.draft)
   )
-  getRaces().forEach((race) => add('races', `${race.name} (${race.date})`, race.draft))
-  getTalks().forEach((talk) => add('talks', `${talk.title} · ${talk.event}`, talk.draft))
-  getGallery().forEach((image) => add('gallery', image.src, image.draft))
-  getUses().forEach((group) => add('uses', group.category, group.draft))
-  for (const slug of ['now', 'life/building']) {
-    const page = getPage(slug)
-    add('pages', slug, page?.draft)
-  }
+  races.forEach((race) => add('races', `${race.name} (${race.date})`, race.draft))
+  talks.forEach((talk) => add('talks', `${talk.title} · ${talk.event}`, talk.draft))
+  gallery.forEach((image) => add('gallery', image.src, image.draft))
+  uses.forEach((group) => add('uses', group.category, group.draft))
+  pages.forEach((page) => add('pages', page.slug, page.draft))
+  add('env', 'NEXT_PUBLIC_BOOKING_URL is not set', getBookingUrl() === undefined)
 
   for (const [name, sample] of Object.entries(SAMPLES) as [
     keyof typeof SAMPLES,

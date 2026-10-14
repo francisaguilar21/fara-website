@@ -14,7 +14,7 @@ const post = (slug: string, date: string, readingTime: number) =>
     title: `Title ${slug}`,
     summary: `Summary ${slug}`,
     date,
-    permalink: `/blog/${slug}`,
+    permalink: `/writings/${slug}`,
     metadata: { readingTime, wordCount: 100 },
   }) as Post
 
@@ -50,12 +50,12 @@ describe('LatestPosts', () => {
   it('lists the posts with date, title, summary and reading time, linking to each', () => {
     render(<LatestPosts posts={posts} />)
     const links = screen.getAllByRole('link', { name: /Title/ })
-    expect(links.map((link) => link.getAttribute('href'))).toEqual(['/blog/b', '/blog/a'])
+    expect(links.map((link) => link.getAttribute('href'))).toEqual(['/writings/b', '/writings/a'])
     expect(links[0]).toHaveTextContent('12 Jan 2024')
     expect(links[0]).toHaveTextContent('Summary b')
     expect(links[0]).toHaveTextContent('3 min')
     expect(links[1]).toHaveTextContent('2 min')
-    expect(screen.getByRole('link', { name: /All posts/ })).toHaveAttribute('href', '/blog')
+    expect(screen.getByRole('link', { name: /All posts/ })).toHaveAttribute('href', '/writings')
     expect(screen.getByRole('heading', { level: 2 })).toHaveAttribute('id', 'writing-heading')
   })
 

@@ -12,20 +12,22 @@ export function CommunityTile({ talks, track }: { talks: Talk[]; track: NowPlayi
       <Eyebrow path="/life/community" />
       <h3 className="h3">Pacing, talks &amp; showing up.</h3>
 
-      <ul>
-        {talks.map((talk) => (
-          <li
-            key={`${talk.date}-${talk.title}`}
-            className="grid grid-cols-[64px_minmax(0,1fr)] gap-3 border-t border-line py-3"
-          >
-            <Label>{talk.date.slice(0, 4)}</Label>
-            <span>
-              {talk.title} <span className="text-muted">· {talk.event}</span>
-              {talk.draft ? <DraftChip className="ml-1.5" /> : null}
-            </span>
-          </li>
-        ))}
-      </ul>
+      {talks.length > 0 ? (
+        <ul>
+          {talks.map((talk) => (
+            <li
+              key={`${talk.date}-${talk.title}`}
+              className="grid grid-cols-[64px_minmax(0,1fr)] gap-3 border-t border-line py-3"
+            >
+              <Label>{talk.date.slice(0, 4)}</Label>
+              <span>
+                {talk.title} <span className="text-muted">· {talk.event}</span>
+                {talk.draft ? <DraftChip className="ml-1.5" /> : null}
+              </span>
+            </li>
+          ))}
+        </ul>
+      ) : null}
 
       <NowPlaying track={track} className="mt-auto" />
     </article>

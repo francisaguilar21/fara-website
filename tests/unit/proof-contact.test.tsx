@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { renderToString } from 'react-dom/server'
 import { describe, expect, it } from 'vitest'
 import { CertList } from '@/components/home/CertList'
+import { ContactSection } from '@/components/home/ContactSection'
 import { ContactForm } from '@/components/home/ContactForm'
 import { QuoteCarousel, type Quote } from '@/components/home/QuoteCarousel'
 import { CONTACT_TOPICS, validateContact } from '@/lib/home/contact'
@@ -200,5 +201,27 @@ describe('ContactForm', () => {
     await userEvent.click(screen.getByRole('button', { name: /Send message/ }))
     expect(screen.getByLabelText('Email')).toHaveAccessibleDescription(/should look like/)
     expect(screen.getByLabelText('Name')).not.toHaveAttribute('aria-invalid')
+  })
+})
+
+describe('ContactSection and the booking URL', () => {
+  const card = 'Google Calendar · appointment schedule'
+
+  it('shows the booking card, with a link to the calendar, when a URL is set', () => {
+    render(<ContactSection bookingUrl="https://calendar.app.google/abc123" />)
+    expect(screen.getByText(card)).toBeInTheDocument()
+    const book = screen.getByRole('link', { name: /Book a 30-min call/ })
+    expect(book).toHaveAttribute('href', 'https://calendar.app.google/abc123')
+    expect(book).toHaveAttribute('target', '_blank')
+    expect(screen.getByText(/grab 30 minutes on my calendar/)).toBeInTheDocument()
+    expect(screen.getByRole('form', { name: 'Contact form' })).toBeInTheDocument()
+  })
+
+  it('leaves the card out, and the sentence about it, when there is none', () => {
+    render(<ContactSection />)
+    expect(screen.queryByText(card)).not.toBeInTheDocument()
+    expect(screen.queryByRole('link', { name: /Book/ })).not.toBeInTheDocument()
+    expect(screen.queryByText(/calendar/i)).not.toBeInTheDocument()
+    expect(screen.getByRole('form', { name: 'Contact form' })).toBeInTheDocument()
   })
 })

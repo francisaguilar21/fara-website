@@ -14,6 +14,11 @@ import { SectionTitle } from './SectionTitle'
 export function LatestPosts({ posts }: { posts: Post[] }) {
   if (posts.length === 0) return null
 
+  // The index is the parent of the posts' permalinks, so the route's name (`/blog`, `/writings`)
+  // lives in one place, the content config, and not here.
+  const first = posts[0]!.permalink
+  const indexPath = first.slice(0, first.lastIndexOf('/')) || '/'
+
   return (
     <Section id="writing" eyebrow="/writing" label="Latest posts" aria-labelledby="writing-heading">
       <SectionTitle
@@ -21,7 +26,7 @@ export function LatestPosts({ posts }: { posts: Post[] }) {
         title="Notes from the work & the road."
         action={
           <Magnetic>
-            <Button href="/blog" variant="ghost" size="sm">
+            <Button href={indexPath} variant="ghost" size="sm">
               All posts <span aria-hidden="true">→</span>
             </Button>
           </Magnetic>

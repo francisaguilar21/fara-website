@@ -9,6 +9,7 @@ import { ProjectsSection } from '@/components/home/ProjectsSection'
 import { StackGrid } from '@/components/home/StackGrid'
 import { WorkSection } from '@/components/home/WorkSection'
 import { SlashDivider } from '@/components/ui/SlashDivider'
+import { getBookingUrl } from '@/lib/booking'
 import {
   getCertifications,
   getExperience,
@@ -44,7 +45,7 @@ export default function Home() {
         headline={site.headline}
         intro={site.intro}
         location={site.location}
-        bookingUrl={site.bookingUrl}
+        bookingUrl={getBookingUrl()}
       />
       <NowStrip
         items={buildNowItems({ now, nowPlaying: NOW_PLAYING_SAMPLE, strava: STRAVA_SAMPLE })}
@@ -57,7 +58,7 @@ export default function Home() {
         talks={getTalks({ limit: 3 })}
         nowPlaying={NOW_PLAYING_SAMPLE}
         gallery={getGallery({ limit: 5 })}
-        building={building ?? {}}
+        building={building}
       />
       <SlashDivider />
       <StackGrid groups={getUses()} />
@@ -65,7 +66,7 @@ export default function Home() {
       <SlashDivider />
       <LatestPosts posts={getPosts({ limit: 3 })} />
       <GithubSection calendar={CONTRIBUTIONS_SAMPLE} username={githubUsername(site.socials)} />
-      <ContactSection bookingUrl={site.bookingUrl} draft={site.draft} />
+      <ContactSection bookingUrl={getBookingUrl()} />
     </>
   )
 }
