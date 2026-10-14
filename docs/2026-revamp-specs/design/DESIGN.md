@@ -151,9 +151,9 @@ rose links, mono inline code.
   /life/community         Talks, meetups, mentoring, volunteering
   /life/gallery           Photo gallery (masonry + lightbox)
   /life/building          Entrepreneurship: the Fitscovery story, lessons
-/blog                     Writing index (kept at /blog to preserve existing URLs & SEO)
-/blog/[slug]              Post (existing MDX, unchanged slugs)
-/blog/tags/[tag]          Tag listing
+/writings                 Writing index (was /blog in 2024; /blog/* redirects, decision D5)
+/writings/[slug]          Post (existing MDX, unchanged slugs)
+/writings/tags/[tag]      Tag listing
 /now                      What I'm focused on this month (+ live Strava/Spotify)
 /uses                     Tech stack, tools, gear (shoes and watch included)
 /contact                  Form + "Book a call" (Google Calendar appointment schedule)
@@ -163,8 +163,8 @@ rose links, mono inline code.
 **Primary nav** (4 + CTA): `Work` · `Life` · `Writing` · `Now` · **[Let's talk]**
 **Footer**: socials, `/uses`, RSS, "Built with …" (links to repo), last-deployed timestamp, theme toggle.
 
-**Redirects** (in `next.config.ts`): `/about` → `/`, `/projects` stays, `/tags/:tag` → `/blog/tags/:tag`,
-`/blog/page/:n` → `/blog`.
+**Redirects** (in `next.config.ts`): `/about` → `/`, `/projects` stays, `/tags/:tag` → `/writings/tags/:tag`,
+`/blog/page/:n` → `/writings`, and the old `/blog`, `/blog/tags/:tag` and `/blog/:slug` → `/writings/...`.
 
 ---
 
