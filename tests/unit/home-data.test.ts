@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { findDrafts } from '@/lib/home/drafts'
 import { buildNowItems } from '@/lib/home/now-items'
 import { NOW_PLAYING_SAMPLE, STRAVA_SAMPLE } from '@/lib/integrations/fallbacks'
@@ -55,6 +55,8 @@ describe('buildNowItems', () => {
 })
 
 describe('findDrafts', () => {
+  afterEach(() => vi.unstubAllEnvs())
+
   const drafts = findDrafts()
   const sources = new Set(drafts.map((draft) => draft.source))
 
@@ -74,5 +76,22 @@ describe('findDrafts', () => {
 
   it('does not list blog posts, which are hidden in production by design', () => {
     expect(sources).not.toContain('posts')
+  })
+
+  it('lists the same drafts where drafts are hidden, because it reads the raw content', () => {
+    const shown = findDrafts()
+    vi.stubEnv('VERCEL_ENV', 'production')
+    vi.stubEnv('HIDE_DRAFTS', '1')
+    expect(findDrafts()).toEqual(shown)
+  })
+
+  it('reports a missing booking URL, and stops once it is set', () => {
+    vi.stubEnv('NEXT_PUBLIC_BOOKING_URL', '')
+    expect(findDrafts()).toContainEqual({
+      source: 'env',
+      label: 'NEXT_PUBLIC_BOOKING_URL is not set',
+    })
+    vi.stubEnv('NEXT_PUBLIC_BOOKING_URL', 'https://calendar.app.google/abc')
+    expect(findDrafts().filter((draft) => draft.source === 'env')).toEqual([])
   })
 })

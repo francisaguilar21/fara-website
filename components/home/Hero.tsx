@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/Button'
 import { DraftChip } from '@/components/ui/DraftChip'
 import { Label } from '@/components/ui/Label'
 import { UnderlineLink } from '@/components/ui/UnderlineLink'
+import { shouldHideDrafts } from '@/lib/content/visibility'
 import { splitHeadline } from '@/lib/home/headline'
 import { HERO_ROLES } from './hero-roles'
 import { HeroPortrait } from './HeroPortrait'
@@ -16,12 +17,15 @@ type HeroProps = {
   headline: string
   intro: string
   location: string
-  bookingUrl: string
+  /** The booking page (`getBookingUrl()`). Without one the second button points at the contact form. */
+  bookingUrl?: string
 }
 
 /** Section 1: the only `h1` on the page. A server component; only the portrait is client code. */
 export function Hero({ name, headline, intro, location, bookingUrl }: HeroProps) {
   const lines = splitHeadline(headline)
+  // A draft chip is for reviewing placeholders. It never shows where drafts are hidden.
+  const showChips = !shouldHideDrafts()
 
   return (
     <Container
@@ -77,7 +81,9 @@ export function Hero({ name, headline, intro, location, bookingUrl }: HeroProps)
                       {role.link.label}
                     </UnderlineLink>
                   ) : null}
-                  {role.draft ? <DraftChip className="ml-1.5">{role.draft}</DraftChip> : null}
+                  {role.draft && showChips ? (
+                    <DraftChip className="ml-1.5">{role.draft}</DraftChip>
+                  ) : null}
                 </span>
               </li>
             ))}
@@ -90,8 +96,9 @@ export function Hero({ name, headline, intro, location, bookingUrl }: HeroProps)
               </Button>
             </Magnetic>
             <Magnetic>
-              <Button href={bookingUrl || '#contact'} variant="ghost">
-                Book a call
+              {/* Without a booking page there is nothing to book: send them to the form instead. */}
+              <Button href={bookingUrl ?? '#contact'} variant="ghost">
+                {bookingUrl ? 'Book a call' : 'Send a message'}
               </Button>
             </Magnetic>
           </div>
