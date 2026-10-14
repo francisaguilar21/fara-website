@@ -10,7 +10,8 @@ type LifeGridProps = {
   talks: Talk[]
   nowPlaying: NowPlaying
   gallery: GalleryImage[]
-  building: { quote?: string; teaser?: string; draft?: boolean }
+  /** `undefined` when the page is a hidden draft: the tile, and its link to a page that is not there, are left out. */
+  building?: { quote?: string; teaser?: string; draft?: boolean }
 }
 
 /** The four tiles of `/life` on a 12-column grid: running, community, gallery and building. */
@@ -20,7 +21,7 @@ export function LifeGrid({ strava, talks, nowPlaying, gallery, building }: LifeG
       <RunningTile strava={strava} />
       <CommunityTile talks={talks} track={nowPlaying} />
       <GalleryStrip images={gallery} />
-      <BuildingTile page={building} />
+      {building ? <BuildingTile page={building} /> : null}
     </div>
   )
 }

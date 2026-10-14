@@ -37,7 +37,7 @@ export default function Home() {
         talks={getTalks({ limit: 3 })}
         nowPlaying={NOW_PLAYING_SAMPLE}
         gallery={getGallery({ limit: 5 })}
-        building={building ?? {}}
+        building={building}
       />
       <SlashDivider />
     </>

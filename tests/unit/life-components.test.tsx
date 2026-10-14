@@ -1,12 +1,19 @@
 import { render, screen, within } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { BuildingTile } from '@/components/home/BuildingTile'
 import { CommunityTile } from '@/components/home/CommunityTile'
+import { LifeGrid } from '@/components/home/LifeGrid'
 import { ProjectRow } from '@/components/home/ProjectRow'
+import { ProjectsSection } from '@/components/home/ProjectsSection'
 import { RunningTile } from '@/components/home/RunningTile'
 import { NowPlaying } from '@/components/widgets/NowPlaying'
 import type { Project, Talk } from '@/lib/content'
 import { NOW_PLAYING_SAMPLE, STRAVA_SAMPLE } from '@/lib/integrations/fallbacks'
+
+// The gallery is an async server component with scroll-linked motion: covered by the e2e tests.
+vi.mock('@/components/home/GalleryStrip', () => ({
+  GalleryStrip: () => <div data-testid="gallery" />,
+}))
 
 const project = {
   slug: 'fitscovery',
@@ -162,5 +169,32 @@ describe('BuildingTile', () => {
     expect(screen.getByText('copy')).toBeInTheDocument()
     rerender(<BuildingTile page={{ ...page, draft: false }} />)
     expect(screen.queryByText('copy')).not.toBeInTheDocument()
+  })
+})
+
+describe('with drafts hidden, the sections that lose their content', () => {
+  it('keeps the community tile and the Spotify card when there are no talks', () => {
+    render(<CommunityTile talks={[]} track={NOW_PLAYING_SAMPLE} />)
+    expect(screen.queryByRole('list')).not.toBeInTheDocument()
+    expect(screen.getByText('Running Up That Hill')).toBeInTheDocument()
+  })
+
+  it('leaves the building tile, and its link to a page that is not there, out of the grid', () => {
+    const grid = {
+      strava: STRAVA_SAMPLE,
+      talks,
+      nowPlaying: NOW_PLAYING_SAMPLE,
+      gallery: [],
+    }
+    const { unmount } = render(<LifeGrid {...grid} />)
+    expect(screen.queryByRole('link', { name: /Read the story/ })).not.toBeInTheDocument()
+    unmount()
+    render(<LifeGrid {...grid} building={{ quote: 'A quote.' }} />)
+    expect(screen.getByRole('link', { name: /Read the story/ })).toBeInTheDocument()
+  })
+
+  it('renders no projects section without projects', () => {
+    const { container } = render(<ProjectsSection projects={[]} />)
+    expect(container).toBeEmptyDOMElement()
   })
 })

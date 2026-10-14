@@ -18,6 +18,8 @@ const SLOTS = [
 /** Tile 3: five photos with captions and a slow parallax, edge to edge in the grid. */
 export async function GalleryStrip({ images }: { images: GalleryImage[] }) {
   const shown = images.slice(0, SLOTS.length)
+  // Every photo is a hidden draft: no strip, instead of an empty box.
+  if (shown.length === 0) return null
   const blurs = await Promise.all(shown.map((image) => getBlurDataURL(image.src)))
 
   return (
