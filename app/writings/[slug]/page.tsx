@@ -49,7 +49,7 @@ export default async function PostPage({ params }: Props) {
   return (
     <Container as="article" className="py-16 md:py-24">
       <Link
-        href="/blog"
+        href="/writings"
         className="inline-flex items-center gap-2 label transition-colors hover:text-accent"
       >
         <ArrowLeft aria-hidden="true" className="size-4" />

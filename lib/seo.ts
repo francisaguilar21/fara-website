@@ -10,7 +10,7 @@ type PageMetadata = {
   /** Page title, without the ` · Francis Aguilar` suffix: the root layout's template adds it. */
   title: string
   description: string
-  /** Path of the page, for example `/blog/my-post`. Becomes the canonical URL. */
+  /** Path of the page, for example `/writings/my-post`. Becomes the canonical URL. */
   path: string
   openGraph?: NonNullable<Metadata['openGraph']>
 }

@@ -2,7 +2,7 @@
 export const NAV_LINKS = [
   { label: 'work', href: '/work' },
   { label: 'life', href: '/life' },
-  { label: 'writing', href: '/blog' },
+  { label: 'writing', href: '/writings' },
   { label: 'now', href: '/now' },
 ] as const
 

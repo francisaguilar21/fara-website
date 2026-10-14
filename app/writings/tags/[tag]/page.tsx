@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props) {
   return pageMetadata({
     title: `Posts tagged ${label}`,
     description: `Posts about ${label}.`,
-    path: `/blog/tags/${tag}`,
+    path: `/writings/tags/${tag}`,
   })
 }
 
@@ -33,14 +33,14 @@ export default async function TagPage({ params }: Props) {
 
   return (
     <Container className="py-16 md:py-24">
-      <Eyebrow path="/writing" />
+      <Eyebrow path="/writings" />
       <h1 className="mt-4 h1">
         <span className="text-muted">Tagged </span>
         {label}
       </h1>
       <p className="mt-6 text-muted">
         {posts.length} {posts.length === 1 ? 'post' : 'posts'}.{' '}
-        <Link href="/blog" className="underline-grow text-fg">
+        <Link href="/writings" className="underline-grow text-fg">
           All posts
         </Link>
       </p>

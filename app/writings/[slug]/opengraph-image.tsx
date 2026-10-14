@@ -17,5 +17,5 @@ export default async function Image({ params }: { params: Promise<{ slug: string
   const post = getPost(slug)
   if (!post) notFound()
 
-  return renderOgImage({ eyebrow: 'francisaguilar.co/blog', title: post.title })
+  return renderOgImage({ eyebrow: 'francisaguilar.co/writings', title: post.title })
 }

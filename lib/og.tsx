@@ -35,7 +35,7 @@ export async function renderOgImage({
   title,
   subtitle,
 }: {
-  /** Small label at the top right, for example `francisaguilar.co/blog`. */
+  /** Small label at the top right, for example `francisaguilar.co/writings`. */
   eyebrow: string
   title: string
   subtitle?: string

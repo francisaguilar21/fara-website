@@ -6,14 +6,18 @@ import { pageMetadata } from '@/lib/seo'
 
 const DESCRIPTION = 'Notes on technology, entrepreneurship and fitness.'
 
-export const metadata = pageMetadata({ title: 'Writing', description: DESCRIPTION, path: '/blog' })
+export const metadata = pageMetadata({
+  title: 'Writing',
+  description: DESCRIPTION,
+  path: '/writings',
+})
 
 export default function BlogIndexPage() {
   const posts = getPosts()
 
   return (
     <Container className="py-16 md:py-24">
-      <Eyebrow path="/writing" />
+      <Eyebrow path="/writings" />
       <h1 className="mt-4 h1">Writing</h1>
       <p className="mt-6 max-w-[60ch] text-muted">{DESCRIPTION}</p>
 

@@ -18,7 +18,7 @@ export default async function Image({ params }: { params: Promise<{ tag: string 
   if (!label) notFound()
 
   return renderOgImage({
-    eyebrow: 'francisaguilar.co/blog',
+    eyebrow: 'francisaguilar.co/writings',
     title: `Tagged ${label}`,
   })
 }

@@ -17,11 +17,11 @@ const POSTS = [
 ]
 
 for (const { slug, title, images } of POSTS) {
-  test(`/blog/${slug} returns 200 and renders the post`, async ({ page }) => {
-    const response = await page.goto(`/blog/${slug}`)
+  test(`/writings/${slug} returns 200 and renders the post`, async ({ page }) => {
+    const response = await page.goto(`/writings/${slug}`)
     expect(response?.status()).toBe(200)
     await expect(page.getByRole('heading', { level: 1, name: title })).toBeVisible()
-    await expect(page.getByRole('link', { name: 'All posts' })).toHaveAttribute('href', '/blog')
+    await expect(page.getByRole('link', { name: 'All posts' })).toHaveAttribute('href', '/writings')
 
     // Each image carries its intrinsic size, so the page doesn't shift as they load (P4-R6).
     const pictures = page.locator('.prose img')
@@ -32,8 +32,8 @@ for (const { slug, title, images } of POSTS) {
     }
   })
 
-  test(`/blog/${slug} has no axe violations`, async ({ page }) => {
-    await page.goto(`/blog/${slug}`)
+  test(`/writings/${slug} has no axe violations`, async ({ page }) => {
+    await page.goto(`/writings/${slug}`)
     const results = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag22aa'])
       .analyze()
@@ -56,7 +56,7 @@ test('a post page reserves space for images: no layout shift while scrolling thr
       }
     }).observe({ type: 'layout-shift', buffered: true })
   })
-  await page.goto('/blog/240108-posthog-over-google-analytics')
+  await page.goto('/writings/240108-posthog-over-google-analytics')
   const height = await page.evaluate(() => document.documentElement.scrollHeight)
   for (let y = 0; y < height; y += 400) {
     await page.evaluate((top) => window.scrollTo(0, top), y)
@@ -68,8 +68,10 @@ test('a post page reserves space for images: no layout shift while scrolling thr
   )
 })
 
-test('/blog lists the published posts, newest first, without the template', async ({ page }) => {
-  const response = await page.goto('/blog')
+test('/writings lists the published posts, newest first, without the template', async ({
+  page,
+}) => {
+  const response = await page.goto('/writings')
   expect(response?.status()).toBe(200)
   await expect(page.getByRole('heading', { level: 1, name: 'Writing' })).toBeVisible()
   await expect(page.locator('main article h2')).toHaveText([
@@ -80,8 +82,8 @@ test('/blog lists the published posts, newest first, without the template', asyn
   await expect(page.getByText('Blog Template')).toHaveCount(0)
 })
 
-test('/blog and /blog/tags/[tag] have no axe violations', async ({ page }) => {
-  for (const path of ['/blog', '/blog/tags/fitness']) {
+test('/writings and /writings/tags/[tag] have no axe violations', async ({ page }) => {
+  for (const path of ['/writings', '/writings/tags/fitness']) {
     await page.goto(path)
     const results = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag22aa'])
@@ -90,40 +92,40 @@ test('/blog and /blog/tags/[tag] have no axe violations', async ({ page }) => {
   }
 })
 
-test('/blog/tags/[tag] filters by tag, and unknown tags are 404', async ({ page }) => {
-  const response = await page.goto('/blog/tags/fitness')
+test('/writings/tags/[tag] filters by tag, and unknown tags are 404', async ({ page }) => {
+  const response = await page.goto('/writings/tags/fitness')
   expect(response?.status()).toBe(200)
   await expect(page.locator('main article h2')).toHaveText([
     'A Commitment to a Better Self: A Year of Change',
     'Hello World! 👋',
   ])
-  expect((await page.goto('/blog/tags/not-a-tag'))?.status()).toBe(404)
-  expect((await page.goto('/blog/not-a-post'))?.status()).toBe(404)
+  expect((await page.goto('/writings/tags/not-a-tag'))?.status()).toBe(404)
+  expect((await page.goto('/writings/not-a-post'))?.status()).toBe(404)
 })
 
 test('tag links on a post point at the lowercase, hyphenated tag page', async ({ page }) => {
-  await page.goto('/blog/240108-posthog-over-google-analytics')
+  await page.goto('/writings/240108-posthog-over-google-analytics')
   await expect(page.getByRole('link', { name: 'analytics' })).toHaveAttribute(
     'href',
-    '/blog/tags/analytics'
+    '/writings/tags/analytics'
   )
 })
 
 test('post pages link to the previous and next posts', async ({ page }) => {
-  await page.goto('/blog/240108-posthog-over-google-analytics')
+  await page.goto('/writings/240108-posthog-over-google-analytics')
   const nav = page.getByRole('navigation', { name: 'More posts' })
   await expect(nav.getByRole('link', { name: /Hello World/ })).toHaveAttribute(
     'href',
-    '/blog/231221-hello-world'
+    '/writings/231221-hello-world'
   )
   await expect(nav.getByRole('link', { name: /A Commitment to a Better Self/ })).toHaveAttribute(
     'href',
-    '/blog/240112-a-commitment-to-change'
+    '/writings/240112-a-commitment-to-change'
   )
 })
 
 test('external links in a post open in a new tab with rel=noopener', async ({ page }) => {
-  await page.goto('/blog/240108-posthog-over-google-analytics')
+  await page.goto('/writings/240108-posthog-over-google-analytics')
   const link = page.locator('.prose a', { hasText: 'Measurement Protocol' })
   await expect(link).toHaveAttribute('target', '_blank')
   await expect(link).toHaveAttribute('rel', /noopener/)
@@ -131,7 +133,7 @@ test('external links in a post open in a new tab with rel=noopener', async ({ pa
 
 test.describe('code blocks', () => {
   test('are highlighted at build time and follow the site theme', async ({ page }) => {
-    await page.goto('/blog/240108-posthog-over-google-analytics')
+    await page.goto('/writings/240108-posthog-over-google-analytics')
     const block = page.locator('pre[data-language="javascript"]').first()
     await expect(block).toBeVisible()
     const keyword = block.locator('span', { hasText: /^import$/ }).first()
@@ -150,14 +152,14 @@ test.describe('code blocks', () => {
   })
 
   test('highlight the javascript and http fences', async ({ page }) => {
-    await page.goto('/blog/240108-posthog-over-google-analytics')
+    await page.goto('/writings/240108-posthog-over-google-analytics')
     await expect(page.locator('pre[data-language="http"]')).toHaveCount(1)
     await expect(page.locator('pre[data-language="javascript"]')).toHaveCount(3)
   })
 })
 
 test('post metadata: title template, description and canonical URL', async ({ page }) => {
-  await page.goto('/blog/231221-hello-world')
+  await page.goto('/writings/231221-hello-world')
   await expect(page).toHaveTitle('Hello World! 👋 · Francis Aguilar')
   await expect(page.locator('meta[name="description"]')).toHaveAttribute(
     'content',
@@ -165,7 +167,7 @@ test('post metadata: title template, description and canonical URL', async ({ pa
   )
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     'href',
-    'https://francisaguilar.co/blog/231221-hello-world'
+    'https://francisaguilar.co/writings/231221-hello-world'
   )
   await expect(page.locator('meta[property="og:type"]')).toHaveAttribute('content', 'article')
 })

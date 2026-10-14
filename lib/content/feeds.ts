@@ -52,7 +52,7 @@ export function buildRss({
     '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">',
     '  <channel>',
     `    <title>${escapeXml(title)}</title>`,
-    `    <link>${escapeXml(siteUrl)}/blog</link>`,
+    `    <link>${escapeXml(siteUrl)}/writings</link>`,
     `    <description>${escapeXml(description)}</description>`,
     '    <language>en-us</language>',
     ...(lastBuildDate
@@ -92,13 +92,13 @@ export function buildSitemap({
 
   return [
     { url: siteUrl, lastModified: latest(posts) },
-    { url: `${siteUrl}/blog`, lastModified: latest(posts) },
+    { url: `${siteUrl}/writings`, lastModified: latest(posts) },
     ...posts.map((post) => ({
       url: `${siteUrl}${post.permalink}`,
       lastModified: new Date(modified(post)),
     })),
     ...[...tags].map(([slug, tagged]) => ({
-      url: `${siteUrl}/blog/tags/${slug}`,
+      url: `${siteUrl}/writings/tags/${slug}`,
       lastModified: latest(tagged),
     })),
   ]

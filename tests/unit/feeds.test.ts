@@ -14,7 +14,7 @@ const post = (overrides: Partial<Post>): Post =>
     images: [],
     draft: false,
     summary: 'A summary.',
-    permalink: '/blog/a-post',
+    permalink: '/writings/a-post',
     metadata: { readingTime: 1, wordCount: 10 },
     ...overrides,
   }) as Post
@@ -22,7 +22,7 @@ const post = (overrides: Partial<Post>): Post =>
 const posts = [
   post({
     slug: 'new',
-    permalink: '/blog/new',
+    permalink: '/writings/new',
     title: 'Fish & Chips <3 "quotes"',
     date: '2024-01-12T00:00:00.000Z',
     summary: "It's <b>fine</b> & done.",
@@ -30,7 +30,7 @@ const posts = [
   }),
   post({
     slug: 'old',
-    permalink: '/blog/old',
+    permalink: '/writings/old',
     date: '2023-12-21T00:00:00.000Z',
     lastmod: '2024-01-11T00:00:00.000Z',
     tags: ['web'],
@@ -48,15 +48,15 @@ describe('buildRss', () => {
   it('is RSS 2.0 with the channel details and a self link', () => {
     expect(xml).toMatch(/^<\?xml version="1.0" encoding="UTF-8"\?>\n<rss version="2.0" /)
     expect(xml).toContain('<title>Writing</title>')
-    expect(xml).toContain('<link>https://example.com/blog</link>')
+    expect(xml).toContain('<link>https://example.com/writings</link>')
     expect(xml).toContain('<atom:link href="https://example.com/rss.xml" rel="self"')
     expect(xml).toContain('<language>en-us</language>')
   })
 
   it('has an item per post with link, guid, RFC 822 date, summary and tags', () => {
     expect(xml.match(/<item>/g)).toHaveLength(2)
-    expect(xml).toContain('<link>https://example.com/blog/new</link>')
-    expect(xml).toContain('<guid isPermaLink="true">https://example.com/blog/new</guid>')
+    expect(xml).toContain('<link>https://example.com/writings/new</link>')
+    expect(xml).toContain('<guid isPermaLink="true">https://example.com/writings/new</guid>')
     expect(xml).toContain('<pubDate>Fri, 12 Jan 2024 00:00:00 GMT</pubDate>')
     expect(xml).toContain('<category>Machine Learning</category>')
   })
@@ -91,33 +91,57 @@ describe('buildSitemap', () => {
   it('lists the home page, the blog, every post and every tag page', () => {
     expect(urls).toEqual([
       'https://example.com',
-      'https://example.com/blog',
-      'https://example.com/blog/new',
-      'https://example.com/blog/old',
-      'https://example.com/blog/tags/machine-learning',
-      'https://example.com/blog/tags/web',
+      'https://example.com/writings',
+      'https://example.com/writings/new',
+      'https://example.com/writings/old',
+      'https://example.com/writings/tags/machine-learning',
+      'https://example.com/writings/tags/web',
     ])
   })
 
   it('gives each entry a lastModified, using lastmod when a post has one', () => {
     for (const entry of entries) expect(entry.lastModified).toBeInstanceOf(Date)
     const byUrl = Object.fromEntries(entries.map((e) => [e.url, e.lastModified]))
-    expect(byUrl['https://example.com/blog/old']).toEqual(new Date('2024-01-11T00:00:00.000Z'))
-    expect(byUrl['https://example.com/blog']).toEqual(new Date('2024-01-12T00:00:00.000Z'))
-    expect(byUrl['https://example.com/blog/tags/web']).toEqual(new Date('2024-01-12T00:00:00.000Z'))
+    expect(byUrl['https://example.com/writings/old']).toEqual(new Date('2024-01-11T00:00:00.000Z'))
+    expect(byUrl['https://example.com/writings']).toEqual(new Date('2024-01-12T00:00:00.000Z'))
+    expect(byUrl['https://example.com/writings/tags/web']).toEqual(
+      new Date('2024-01-12T00:00:00.000Z')
+    )
   })
 })
 
 describe('redirects (P4-R12)', () => {
-  it('are all permanent and cover the 2024 URLs', () => {
+  it('are all permanent', () => {
     expect(redirects.every((redirect) => redirect.permanent)).toBe(true)
+  })
+
+  it('cover the 2024 URLs and the move from /blog to /writings', () => {
     expect(redirects.map(({ source, destination }) => [source, destination])).toEqual([
-      ['/tags/:tag', '/blog/tags/:tag'],
-      ['/tags', '/blog'],
-      ['/blog/page/:n', '/blog'],
+      ['/tags/:tag', '/writings/tags/:tag'],
+      ['/tags', '/writings'],
+      ['/blog/page/:n', '/writings'],
       ['/about', '/'],
       ['/feed.xml', '/rss.xml'],
+      ['/blog', '/writings'],
+      ['/blog/tags/:tag', '/writings/tags/:tag'],
+      ['/blog/:slug', '/writings/:slug'],
     ])
+  })
+
+  it('put the specific /blog rules before the /blog/:slug catch-all', () => {
+    const sources = redirects.map((redirect) => redirect.source)
+    const catchAll = sources.indexOf('/blog/:slug')
+    expect(sources.indexOf('/blog')).toBeLessThan(catchAll)
+    expect(sources.indexOf('/blog/page/:n')).toBeLessThan(catchAll)
+    expect(sources.indexOf('/blog/tags/:tag')).toBeLessThan(catchAll)
+  })
+
+  it('never redirect to another redirect', () => {
+    const sources = new Set(redirects.map((redirect) => redirect.source))
+    for (const { destination } of redirects) {
+      expect(destination.startsWith('/blog'), destination).toBe(false)
+      expect(sources.has(destination), destination).toBe(false)
+    }
   })
 })
 

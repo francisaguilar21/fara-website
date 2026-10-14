@@ -35,7 +35,7 @@ const posts = defineCollection({
   pattern: 'blog/!(_)*.mdx',
   schema: s
     .object({
-      // The slug is the filename: `blog/231221-hello-world.mdx` is served at `/blog/231221-hello-world`.
+      // The slug is the filename: `blog/231221-hello-world.mdx` is served at `/writings/231221-hello-world`.
       slug: slugFrom('blog'),
       title: s.string().max(120),
       date: isoDate(),
@@ -65,7 +65,7 @@ const posts = defineCollection({
           ctx.addIssue({ code: 'custom', message: (error as Error).message, path: ['images', 0] })
         }
       }
-      return { ...post, permalink: `/blog/${post.slug}`, cover }
+      return { ...post, permalink: `/writings/${post.slug}`, cover }
     }),
 })
 
@@ -133,8 +133,6 @@ export default defineConfig({
           // CSS in `app/globals.css` switches between the two with the site's `data-theme`.
           theme: { dark: 'github-dark-dimmed', light: 'github-light' },
           keepBackground: false,
-          // Colors only as `--shiki-light` / `--shiki-dark` variables, so CSS can pick one.
-          defaultColor: false,
         },
       ],
       [rehypeAutolinkHeadings, { behavior: 'wrap' }],

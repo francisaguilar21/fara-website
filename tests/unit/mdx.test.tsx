@@ -16,9 +16,9 @@ describe('MdxLink', () => {
   })
 
   it('keeps site paths in the same tab', () => {
-    render(<MdxLink href="/blog/231221-hello-world">Hello</MdxLink>)
+    render(<MdxLink href="/writings/231221-hello-world">Hello</MdxLink>)
     const link = screen.getByRole('link', { name: 'Hello' })
-    expect(link).toHaveAttribute('href', '/blog/231221-hello-world')
+    expect(link).toHaveAttribute('href', '/writings/231221-hello-world')
     expect(link).not.toHaveAttribute('target')
   })
 
