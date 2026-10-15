@@ -14,7 +14,7 @@ import {
 const fieldClass =
   'w-full min-w-0 rounded-md border border-line bg-surface px-3.5 py-3 font-sans text-base leading-snug text-fg placeholder:text-muted focus:border-accent aria-[invalid=true]:border-error'
 
-type Status = { kind: 'idle' } | { kind: 'invalid' } | { kind: 'stub' }
+type Status = 'idle' | 'invalid' | 'stub'
 
 /**
  * The contact form. Client-side validation with an inline error under each bad field. Sending is a
@@ -24,28 +24,23 @@ type Status = { kind: 'idle' } | { kind: 'invalid' } | { kind: 'stub' }
 export function ContactForm() {
   const id = useId()
   const [errors, setErrors] = useState<ContactErrors>({})
-  const [status, setStatus] = useState<Status>({ kind: 'idle' })
+  const [status, setStatus] = useState<Status>('idle')
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    const data = new FormData(event.currentTarget)
-    const values: ContactValues = {
-      name: String(data.get('name') ?? ''),
-      email: String(data.get('email') ?? ''),
-      topic: String(data.get('topic') ?? ''),
-      message: String(data.get('message') ?? ''),
-    }
-    const found = validateContact(values)
+    const found = validateContact(
+      Object.fromEntries(new FormData(event.currentTarget)) as ContactValues
+    )
     setErrors(found)
     if (Object.keys(found).length > 0) {
-      setStatus({ kind: 'invalid' })
+      setStatus('invalid')
       // Put the visitor on the first field to fix.
       const first = (['name', 'email', 'topic', 'message'] as const).find((key) => found[key])
       const control = first ? event.currentTarget.elements.namedItem(first) : null
       if (control instanceof HTMLElement) control.focus()
       return
     }
-    setStatus({ kind: 'stub' })
+    setStatus('stub')
   }
 
   /** Props shared by the inputs: the id, the error link and the invalid state. */
@@ -131,11 +126,11 @@ export function ContactForm() {
           role="status"
           className={cn(
             'font-mono text-[0.8125rem] leading-snug',
-            status.kind === 'invalid' ? 'text-error' : 'text-muted'
+            status === 'invalid' ? 'text-error' : 'text-muted'
           )}
         >
-          {status.kind === 'invalid' ? 'Fix the highlighted fields and try again.' : null}
-          {status.kind === 'stub'
+          {status === 'invalid' ? 'Fix the highlighted fields and try again.' : null}
+          {status === 'stub'
             ? "Nothing was sent: the form isn't connected yet. Book a call instead."
             : null}
         </p>
