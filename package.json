@@ -18,7 +18,8 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "commit": "cz",
-    "prepare": "husky"
+    "prepare": "husky",
+    "git-bclear": "./scripts/cleanup-git.py"
   },
   "dependencies": {
     "clsx": "^2.1.1",
