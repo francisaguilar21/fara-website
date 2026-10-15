@@ -2,7 +2,7 @@ import { render, screen, within } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 import { BuildingTile } from '@/components/home/BuildingTile'
 import { CommunityTile } from '@/components/home/CommunityTile'
-import { LifeGrid } from '@/components/home/LifeGrid'
+import { LifeSection } from '@/components/home/LifeSection'
 import { ProjectRow } from '@/components/home/ProjectRow'
 import { ProjectsSection } from '@/components/home/ProjectsSection'
 import { RunningTile } from '@/components/home/RunningTile'
@@ -186,10 +186,10 @@ describe('with drafts hidden, the sections that lose their content', () => {
       nowPlaying: NOW_PLAYING_SAMPLE,
       gallery: [],
     }
-    const { unmount } = render(<LifeGrid {...grid} />)
+    const { unmount } = render(<LifeSection {...grid} />)
     expect(screen.queryByRole('link', { name: /Read the story/ })).not.toBeInTheDocument()
     unmount()
-    render(<LifeGrid {...grid} building={{ quote: 'A quote.' }} />)
+    render(<LifeSection {...grid} building={{ quote: 'A quote.' }} />)
     expect(screen.getByRole('link', { name: /Read the story/ })).toBeInTheDocument()
   })
 
