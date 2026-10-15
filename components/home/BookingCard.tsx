@@ -12,15 +12,11 @@ export function BookingCard({ bookingUrl }: { bookingUrl: string }) {
     <div className="mt-7 grid gap-3.5 border border-line p-[22px]">
       <Label>Google Calendar · appointment schedule</Label>
       <ul className="flex flex-wrap gap-2" aria-label="Call details">
-        <li>
-          <Tag>30 min</Tag>
-        </li>
-        <li>
-          <Tag>Video call</Tag>
-        </li>
-        <li>
-          <Tag>Asia/Manila (GMT+8)</Tag>
-        </li>
+        {['30 min', 'Video call', 'Asia/Manila (GMT+8)'].map((detail) => (
+          <li key={detail}>
+            <Tag>{detail}</Tag>
+          </li>
+        ))}
       </ul>
       <div>
         <Magnetic>

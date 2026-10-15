@@ -21,7 +21,7 @@ type HeroProps = {
   bookingUrl?: string
 }
 
-/** Section 1: the only `h1` on the page. A server component; only the portrait is client code. */
+/** Section 1: the only `h1` on the page. A server component. */
 export function Hero({ name, headline, intro, location, bookingUrl }: HeroProps) {
   const lines = splitHeadline(headline)
   // A draft chip is for reviewing placeholders. It never shows where drafts are hidden.

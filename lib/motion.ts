@@ -17,6 +17,25 @@ function useMediaQuery(query: string): boolean {
   )
 }
 
+/** False on the server and during hydration, true afterwards. */
+export function useIsClient(): boolean {
+  return useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  )
+}
+
+/** Runs `callback` once the browser is idle (or after 200ms where it can't tell). Returns the cancel. */
+export function whenIdle(callback: () => void): () => void {
+  if ('requestIdleCallback' in window) {
+    const id = window.requestIdleCallback(callback, { timeout: 2000 })
+    return () => window.cancelIdleCallback(id)
+  }
+  const id = setTimeout(callback, 200)
+  return () => clearTimeout(id)
+}
+
 /**
  * Lets /styleguide pretend the visitor prefers reduced motion. The real media query is still
  * respected when this is `null`.

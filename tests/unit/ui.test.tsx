@@ -25,18 +25,6 @@ describe('Button', () => {
     expect(screen.getByRole('button', { name: 'Send' })).toHaveAttribute('type', 'button')
   })
 
-  it('styles the child element with asChild', () => {
-    render(
-      <Button asChild variant="ghost">
-        <a href="/x" className="extra">
-          Child
-        </a>
-      </Button>
-    )
-    const link = screen.getByRole('link', { name: 'Child' })
-    expect(link).toHaveClass('extra', 'rounded-full', 'border-line')
-  })
-
   it('switches classes with variant and size', () => {
     render(
       <Button variant="ghost" size="sm">

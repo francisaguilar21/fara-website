@@ -1,24 +1,15 @@
 import { UnderlineLink } from '@/components/ui/UnderlineLink'
-import { cn } from '@/lib/cn'
 import { heatmapGeometry, LEVELS } from '@/lib/home/heatmap'
 import type { ContributionCalendar, ContributionLevel } from '@/lib/integrations/fallbacks'
 import { ContributionTooltip } from './ContributionTooltip'
 
 /** GitHub's green becomes rose: five steps from `--line` to `--accent`. */
-const LEVEL_FILL: Record<ContributionLevel, string> = {
-  0: 'fill-line',
-  1: 'fill-[color-mix(in_srgb,var(--accent)_28%,var(--line))]',
-  2: 'fill-[color-mix(in_srgb,var(--accent)_50%,var(--line))]',
-  3: 'fill-[color-mix(in_srgb,var(--accent)_75%,var(--line))]',
-  4: 'fill-accent',
-}
-
-const LEVEL_BG: Record<ContributionLevel, string> = {
-  0: 'bg-line',
-  1: 'bg-[color-mix(in_srgb,var(--accent)_28%,var(--line))]',
-  2: 'bg-[color-mix(in_srgb,var(--accent)_50%,var(--line))]',
-  3: 'bg-[color-mix(in_srgb,var(--accent)_75%,var(--line))]',
-  4: 'bg-accent',
+const LEVEL_COLOR: Record<ContributionLevel, string> = {
+  0: 'var(--line)',
+  1: 'color-mix(in srgb, var(--accent) 28%, var(--line))',
+  2: 'color-mix(in srgb, var(--accent) 50%, var(--line))',
+  3: 'color-mix(in srgb, var(--accent) 75%, var(--line))',
+  4: 'var(--accent)',
 }
 
 type ContributionGraphProps = {
@@ -78,7 +69,12 @@ export function ContributionGraph({ calendar, username }: ContributionGraphProps
             className="block max-w-none"
           >
             {LEVELS.map((level) => (
-              <path key={level} d={paths[level]} data-level={level} className={LEVEL_FILL[level]} />
+              <path
+                key={level}
+                d={paths[level]}
+                data-level={level}
+                style={{ fill: LEVEL_COLOR[level] }}
+              />
             ))}
           </svg>
         </div>
@@ -103,7 +99,8 @@ export function ContributionGraph({ calendar, username }: ContributionGraphProps
           {LEVELS.map((level) => (
             <i
               key={level}
-              className={cn('inline-block size-[11px] rounded-[2px]', LEVEL_BG[level])}
+              className="inline-block size-[11px] rounded-[2px]"
+              style={{ background: LEVEL_COLOR[level] }}
             />
           ))}
           More

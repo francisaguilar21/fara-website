@@ -1,7 +1,7 @@
 'use client'
 
 import { lazy, Suspense, useEffect, useState } from 'react'
-import { useMotionEnabled } from '@/lib/motion'
+import { useMotionEnabled, whenIdle } from '@/lib/motion'
 
 // The overlay (and the Motion springs it uses) is a separate chunk, fetched only once the browser
 // is idle and only for visitors who can see it.
@@ -17,14 +17,10 @@ export function Cursor() {
 
   useEffect(() => {
     if (!enabled) return
-    const hasIdle = 'requestIdleCallback' in window
-    const id = hasIdle
-      ? window.requestIdleCallback(() => setReady(true), { timeout: 2000 })
-      : window.setTimeout(() => setReady(true), 200)
+    const cancel = whenIdle(() => setReady(true))
     return () => {
       setReady(false)
-      if (hasIdle) window.cancelIdleCallback(id)
-      else window.clearTimeout(id)
+      cancel()
     }
   }, [enabled])
 

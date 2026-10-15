@@ -1,7 +1,5 @@
 import Link from 'next/link'
 import { Section } from '@/components/layout/Section'
-import { Magnetic } from '@/components/motion/Magnetic'
-import { Button } from '@/components/ui/Button'
 import { Label } from '@/components/ui/Label'
 import type { Post } from '@/lib/content'
 import { formatPostDate, formatReadMinutes } from '@/lib/home/format'
@@ -24,13 +22,7 @@ export function LatestPosts({ posts }: { posts: Post[] }) {
       <SectionTitle
         id="writing-heading"
         title="Notes from the work & the road."
-        action={
-          <Magnetic>
-            <Button href={indexPath} variant="ghost" size="sm">
-              All posts <span aria-hidden="true">→</span>
-            </Button>
-          </Magnetic>
-        }
+        more={{ href: indexPath, label: 'All posts' }}
       />
       <ul className="border-t border-line">
         {posts.map((post) => (
@@ -44,7 +36,7 @@ export function LatestPosts({ posts }: { posts: Post[] }) {
                 <time dateTime={post.date}>{formatPostDate(post.date)}</time>
               </Label>
               <div>
-                <h3 className="h3 transition-[translate,color] duration-[350ms] ease-out-quint group-hover:translate-x-2 group-hover:text-accent group-focus-visible:translate-x-2 group-focus-visible:text-accent motion-reduce:transition-none motion-reduce:group-hover:translate-x-0 motion-reduce:group-focus-visible:translate-x-0">
+                <h3 className="h3 transition-[translate,color] duration-[350ms] ease-out-quint group-hover:text-accent group-focus-visible:text-accent motion-safe:group-hover:translate-x-2 motion-safe:group-focus-visible:translate-x-2 motion-reduce:transition-none">
                   {post.title}
                 </h3>
                 <p className="mt-1 text-[0.9375rem] text-muted">{post.summary}</p>

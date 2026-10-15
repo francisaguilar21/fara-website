@@ -5,7 +5,7 @@ import { Container } from './Container'
 import { NAV_LINKS, REPO_URL, SOCIAL_LINKS } from './nav'
 
 const SITE_LINKS = [
-  ...NAV_LINKS.map((link) => ({ label: link.label, href: link.href })),
+  ...NAV_LINKS,
   { label: 'uses', href: '/uses' },
   { label: 'contact', href: '/contact' },
 ]

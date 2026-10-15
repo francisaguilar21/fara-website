@@ -1,12 +1,11 @@
 'use client'
 
-import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { activeEntries, entrySub, entryYear } from '@/lib/home/timeline'
-import { useMotionEnabled } from '@/lib/motion'
+import { useIsClient, useMotionEnabled } from '@/lib/motion'
 import { createSpring2D, type Spring2D } from '@/lib/spring'
 import { useScrollProgress, type ScrollWindow } from '@/lib/use-scroll-progress'
 import { TimelineItem, type TimelineEntry } from './TimelineItem'
-import { TimelineYear } from './TimelineYear'
 
 /** The reading line: an entry lights up when its top passes 55% of the viewport height. */
 const LINE = 0.55
@@ -16,15 +15,6 @@ const DRAWING: ScrollWindow = { startAt: 0.7, endAt: 0.5 }
 
 /** The spring runs on thousandths, so it settles to well under a pixel (see `lib/spring.ts`). */
 const SCALE = 1000
-
-const noop = () => () => {}
-/** False on the server and during hydration, true afterwards. */
-const useIsClient = () =>
-  useSyncExternalStore(
-    noop,
-    () => true,
-    () => false
-  )
 
 /**
  * The scroll-drawn timeline (DESIGN §7.2). A 2px track in `--line` with a rose fill that follows
@@ -105,7 +95,23 @@ export function Timeline({ entries }: { entries: TimelineEntry[] }) {
       data-testid="timeline"
       data-animated={animated}
     >
-      {active ? <TimelineYear year={entryYear(active)} sub={entrySub(active)} /> : null}
+      {/* The big year: sticky at 40% of the viewport, cross-fading (the keyed child remounts and
+          fades in) when the active entry changes. Decorative, since every entry shows its own dates. */}
+      {active ? (
+        <div
+          aria-hidden="true"
+          className="sticky top-[40vh] hidden self-start font-display text-[clamp(3rem,6vw,5rem)] leading-none font-semibold tracking-[-0.04em] min-[821px]:block"
+        >
+          <div
+            key={`${entryYear(active)}-${entrySub(active)}`}
+            className="animate-fade-in"
+            data-testid="timeline-year"
+          >
+            {entryYear(active)}
+            <span className="mt-2.5 block label">{entrySub(active)}</span>
+          </div>
+        </div>
+      ) : null}
 
       <div className="relative min-w-0 pl-9">
         <div aria-hidden="true" className="absolute top-1.5 bottom-1.5 left-[7px] w-0.5 bg-line" />

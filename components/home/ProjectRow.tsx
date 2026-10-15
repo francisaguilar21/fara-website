@@ -21,7 +21,7 @@ export function ProjectRow({ project }: { project: Project }) {
       >
         <Label className="max-[760px]:col-span-full">{project.year}</Label>
         <div>
-          <h3 className="text-[clamp(1.5rem,3.4vw,2.5rem)] leading-tight tracking-[-0.03em] transition-[translate,color] duration-[400ms] ease-out-quint group-hover:translate-x-2.5 group-hover:text-accent group-focus-visible:translate-x-2.5 group-focus-visible:text-accent motion-reduce:transition-none motion-reduce:group-hover:translate-x-0 motion-reduce:group-focus-visible:translate-x-0">
+          <h3 className="text-[clamp(1.5rem,3.4vw,2.5rem)] leading-tight tracking-[-0.03em] transition-[translate,color] duration-[400ms] ease-out-quint group-hover:text-accent group-focus-visible:text-accent motion-safe:group-hover:translate-x-2.5 motion-safe:group-focus-visible:translate-x-2.5 motion-reduce:transition-none">
             {project.title}
             {project.draft ? <DraftChip className="ml-1.5" /> : null}
           </h3>
@@ -33,7 +33,7 @@ export function ProjectRow({ project }: { project: Project }) {
         </p>
         <span
           aria-hidden="true"
-          className="justify-self-end font-display text-2xl transition-[rotate,color] duration-[350ms] ease-out-quint group-hover:-rotate-45 group-hover:text-accent group-focus-visible:-rotate-45 group-focus-visible:text-accent motion-reduce:transition-none motion-reduce:group-hover:rotate-0 motion-reduce:group-focus-visible:rotate-0"
+          className="justify-self-end font-display text-2xl transition-[rotate,color] duration-[350ms] ease-out-quint group-hover:text-accent group-focus-visible:text-accent motion-safe:group-hover:-rotate-45 motion-safe:group-focus-visible:-rotate-45 motion-reduce:transition-none"
         >
           →
         </span>

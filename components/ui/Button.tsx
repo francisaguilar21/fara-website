@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { cloneElement, isValidElement } from 'react'
 import { cn } from '@/lib/cn'
 
 const base =
@@ -24,34 +23,24 @@ type ButtonOwnProps = {
 
 type ButtonProps = ButtonOwnProps &
   (
-    | ({ href: string; asChild?: never } & Omit<React.ComponentProps<'a'>, 'href'>)
-    | ({ asChild: true; href?: never } & React.HTMLAttributes<HTMLElement>)
-    | ({ href?: never; asChild?: never } & React.ComponentProps<'button'>)
+    | ({ href: string } & Omit<React.ComponentProps<'a'>, 'href'>)
+    | ({ href?: never } & React.ComponentProps<'button'>)
   )
 
 const isExternal = (href: string) => /^(https?:)?\/\//.test(href) || href.startsWith('mailto:')
 
 /**
- * Pill button. Pass `href` to render a link, `asChild` to style your own element (for example a
- * form submit or a custom link), or neither for a `<button>`.
+ * Pill button. Pass `href` to render a link, or leave it out for a `<button>`.
  */
 export function Button({
   variant = 'solid',
   size = 'md',
   className,
   children,
-  asChild,
   href,
   ...rest
 }: ButtonProps) {
   const classes = cn(base, variants[variant], sizes[size], className)
-
-  if (asChild && isValidElement<{ className?: string }>(children)) {
-    return cloneElement(children, {
-      ...rest,
-      className: cn(classes, children.props.className),
-    } as React.HTMLAttributes<HTMLElement>)
-  }
 
   if (href !== undefined) {
     const anchorProps = rest as Omit<React.ComponentProps<'a'>, 'href'>
