@@ -1,3 +1,5 @@
+import type { Metadata } from 'next'
+import { RSS_ALTERNATE, SITE_DESCRIPTION, SITE_NAME } from '@/lib/seo'
 import { ContactSection } from '@/components/home/ContactSection'
 import { GithubSection } from '@/components/home/GithubSection'
 import { Hero } from '@/components/home/Hero'
@@ -29,6 +31,19 @@ import {
   NOW_PLAYING_SAMPLE,
   STRAVA_SAMPLE,
 } from '@/lib/integrations/fallbacks'
+
+// Canonical URL and share URL for the home page. A page's `openGraph` replaces the layout's, so it
+// repeats the rest of it.
+export const metadata: Metadata = {
+  alternates: { canonical: '/', types: RSS_ALTERNATE },
+  openGraph: {
+    type: 'website',
+    siteName: SITE_NAME,
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
+    url: '/',
+  },
+}
 
 // The homepage is the one-scroll story (DESIGN §5). Each section is a component in
 // `components/home/` that takes typed data from `lib/content`. Strava, Spotify and GitHub show

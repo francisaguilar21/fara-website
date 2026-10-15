@@ -30,10 +30,12 @@ export default defineConfig({
       url: `http://localhost:${PORT}`,
       reuseExistingServer: !process.env.CI,
       timeout: 180_000,
-      // Keep maintenance mode off so the tests don't depend on PostHog. Drafts are shown and no
-      // booking page is set: the default build, whatever the shell has in its environment.
+      // Keep maintenance mode off so the tests don't depend on PostHog, and pin the canonical origin
+      // that the feed, sitemap and metadata tests expect. Drafts are shown and no booking page is
+      // set: the default build, whatever the shell has in its environment.
       env: {
         MAINTENANCE_MODE: 'off',
+        NEXT_PUBLIC_SITE_URL: 'https://francisaguilar.co',
         VERCEL_ENV: '',
         HIDE_DRAFTS: '',
         NEXT_PUBLIC_BOOKING_URL: '',
@@ -49,6 +51,7 @@ export default defineConfig({
       timeout: 120_000,
       env: {
         MAINTENANCE_MODE: 'off',
+        NEXT_PUBLIC_SITE_URL: 'https://francisaguilar.co',
         VERCEL_ENV: '',
         HIDE_DRAFTS: '1',
         NEXT_PUBLIC_BOOKING_URL: 'https://calendar.app.google/e2e-test',
