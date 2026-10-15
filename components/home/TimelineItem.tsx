@@ -36,7 +36,7 @@ export function TimelineItem({ entry, lit, ref }: TimelineItemProps) {
       <span
         aria-hidden="true"
         className={cn(
-          'absolute top-1.5 -left-9 size-4 rounded-full border-2 border-line bg-bg transition-[background-color,border-color,box-shadow,transform] duration-300 ease-out-quint motion-reduce:transition-none',
+          'absolute top-1.5 -left-9 size-4 rounded-full border-2 border-line bg-bg transition-[background-color,border-color,box-shadow,scale] duration-300 ease-out-quint motion-reduce:transition-none',
           lit &&
             'scale-[1.15] border-accent shadow-[0_0_0_6px_color-mix(in_srgb,var(--accent)_22%,transparent)]',
           lit && entry.kind === 'work' && 'bg-accent'

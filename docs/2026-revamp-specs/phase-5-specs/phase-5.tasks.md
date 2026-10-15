@@ -27,11 +27,11 @@ Missing items don't block the work. Placeholders with draft chips stand in.
 
 ## PR 3: Projects & life (`feat(home): add projects and beyond-work sections`)
 
-- [ ] **P5-T13** · Claude · `ProjectList`, `ProjectRow`, `CursorPeek` (fine pointer only) → P5-R9
-- [ ] **P5-T14** · Claude · `RunningTile` + `WeeklyBars` SVG drawn to scale → P5-R10
-- [ ] **P5-T15** · Claude · `CommunityTile` + `NowPlaying` widget (fallback data) → P5-R10
-- [ ] **P5-T16** · Claude · `GalleryStrip` (5 photos, parallax, captions; crop the 2023 fitness collage as starter images) → P5-R10, P5-R17
-- [ ] **P5-T17** · Claude · `BuildingTile` (pull quote marked draft until the story exists) → P5-R10
+- [x] **P5-T13** · Claude · `ProjectList`, `ProjectRow`, `CursorPeek` (fine pointer only) → P5-R9
+- [x] **P5-T14** · Claude · `RunningTile` + `WeeklyBars` SVG drawn to scale → P5-R10
+- [x] **P5-T15** · Claude · `CommunityTile` + `NowPlaying` widget (fallback data) → P5-R10
+- [x] **P5-T16** · Claude · `GalleryStrip` (5 photos, parallax, captions; crop the 2023 fitness collage as starter images) → P5-R10, P5-R17
+- [x] **P5-T17** · Claude · `BuildingTile` (pull quote marked draft until the story exists) → P5-R10
 
 ## PR 4: Remaining sections (`feat(home): add stack, proof, writing, GitHub and contact`)
 

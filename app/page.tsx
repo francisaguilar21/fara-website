@@ -1,10 +1,13 @@
 import type { Metadata } from 'next'
 import { RSS_ALTERNATE, SITE_DESCRIPTION, SITE_NAME } from '@/lib/seo'
 import { Hero } from '@/components/home/Hero'
+import { LifeSection } from '@/components/home/LifeSection'
 import { NowStrip } from '@/components/home/NowStrip'
+import { ProjectsSection } from '@/components/home/ProjectsSection'
 import { WorkSection } from '@/components/home/WorkSection'
+import { SlashDivider } from '@/components/ui/SlashDivider'
 import { getBookingUrl } from '@/lib/booking'
-import { getExperience, getPage, getSite } from '@/lib/content'
+import { getExperience, getGallery, getPage, getProjects, getSite, getTalks } from '@/lib/content'
 import { buildNowItems } from '@/lib/home/now-items'
 import { NOW_PLAYING_SAMPLE, STRAVA_SAMPLE } from '@/lib/integrations/fallbacks'
 
@@ -27,6 +30,7 @@ export const metadata: Metadata = {
 export default function Home() {
   const site = getSite()
   const now = getPage('now')
+  const building = getPage('life/building')
 
   return (
     <>
@@ -41,6 +45,16 @@ export default function Home() {
         items={buildNowItems({ now, nowPlaying: NOW_PLAYING_SAMPLE, strava: STRAVA_SAMPLE })}
       />
       <WorkSection entries={getExperience({ featured: true, limit: 6 })} />
+      <SlashDivider />
+      <ProjectsSection projects={getProjects({ featured: true, limit: 3 })} />
+      <LifeSection
+        strava={STRAVA_SAMPLE}
+        talks={getTalks({ limit: 3 })}
+        nowPlaying={NOW_PLAYING_SAMPLE}
+        gallery={getGallery({ limit: 5 })}
+        building={building}
+      />
+      <SlashDivider />
     </>
   )
 }

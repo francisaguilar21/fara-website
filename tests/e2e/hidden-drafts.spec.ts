@@ -78,4 +78,26 @@ test.describe('with drafts hidden', () => {
       await expect(page.locator(anchor), anchor).toBeAttached()
     }
   })
+
+  test('sections whose content is all drafts are gone, with nothing left in them to link to', async ({
+    page,
+  }) => {
+    await page.goto('/')
+    await expect(page.locator('#projects')).toHaveCount(0)
+    await expect(page.locator('#life figure')).toHaveCount(0)
+    await expect(page.locator('article', { hasText: '/life/building' })).toHaveCount(0)
+    await expect(page.getByRole('link', { name: /Read the story/ })).toHaveCount(0)
+  })
+
+  test('the work timeline keeps its real entries, and the life tiles keep the live widgets', async ({
+    page,
+  }) => {
+    await page.goto('/')
+    await expect(page.locator('#work')).toBeAttached()
+    expect(await page.locator('#work ol > li').count()).toBeGreaterThan(0)
+    const community = page.locator('article', { hasText: '/life/community' })
+    await expect(community.locator('ul > li')).toHaveCount(0)
+    await expect(community.getByText('Running Up That Hill')).toBeVisible()
+    await expect(page.locator('article', { hasText: '/life/running' })).toBeVisible()
+  })
 })

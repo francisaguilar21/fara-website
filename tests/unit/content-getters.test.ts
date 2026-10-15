@@ -61,7 +61,8 @@ describe('data getters', () => {
   it('filters and limits the rest', () => {
     expect(getRecommendations({ limit: 1 })).toHaveLength(1)
     expect(getGallery({ tag: 'life' }).every((image) => image.tag === 'life')).toBe(true)
-    expect(getGallery({ tag: 'race' })).toEqual([])
+    expect(getGallery({ tag: 'race' }).every((image) => image.tag === 'race')).toBe(true)
+    expect(getGallery({ limit: 2 })).toHaveLength(2)
     expect(getUses().length).toBeGreaterThan(0)
     expect(getSite().name).toBe('Francis Aguilar')
   })

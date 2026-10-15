@@ -105,6 +105,10 @@ const pages = defineCollection({
     focus: s.string().optional(),
     reading: s.string().optional(),
     building: s.string().optional(),
+    // `life/building` feeds the homepage tile: a pull quote (wrap words in *asterisks* to set them
+    // in rose) and one line that leads into the story.
+    quote: s.string().optional(),
+    teaser: s.string().optional(),
     draft,
     toc: s.toc(),
     body: s.mdx(),
