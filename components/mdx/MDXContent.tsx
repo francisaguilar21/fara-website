@@ -11,6 +11,6 @@ function evaluate(code: string): MDXModule {
   return new Function(code)({ ...runtime }).default
 }
 
-export function MDXContent({ code, components }: { code: string; components?: MDXComponents }) {
-  return evaluate(code)({ components: { ...mdxComponents, ...components } })
+export function MDXContent({ code }: { code: string }) {
+  return evaluate(code)({ components: mdxComponents })
 }
