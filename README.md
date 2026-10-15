@@ -36,6 +36,7 @@ PostHog flag is on, or `MAINTENANCE_MODE=on`.
 | `pnpm start`        | Serve the production build                                           |
 | `pnpm lint`         | ESLint, with no warnings allowed                                     |
 | `pnpm content`      | Build the content with Velite (`content/` to `.velite/`), strict     |
+| `pnpm check:drafts` | List every placeholder (draft entry or sample data). Exits 1 if any. |
 | `pnpm typecheck`    | Build the content, then `tsc --noEmit`                               |
 | `pnpm format`       | Format everything with Prettier                                      |
 | `pnpm format:check` | Check formatting without writing                                     |
@@ -85,7 +86,7 @@ It runs from [`proxy.ts`](./proxy.ts) and [`lib/maintenance/`](./lib/maintenance
 | PostHog flag `is_maintenance_mode` | Release condition **100% of all users**. On = maintenance page, off = site. Takes up to about 30 seconds. |
 | `MAINTENANCE_MODE=on\|off`         | Emergency override that beats PostHog (needs a redeploy)                                                  |
 | `MAINTENANCE_BYPASS_TOKEN`         | Visit `/?preview=<token>` to see the real site for 7 days (cookie)                                        |
-| `MAINTENANCE_ALLOWED_PATHS`        | Path prefixes that stay public, e.g. `/blog,/rss.xml`                                                     |
+| `MAINTENANCE_ALLOWED_PATHS`        | Path prefixes that stay public, e.g. `/writings,/rss.xml`                                                 |
 
 If PostHog can't be reached, the site stays up (fail open). Details:
 [Phase 0 specs, §4.1](./docs/2026-revamp-specs/phase-0-specs/phase-0.specs.md#41-maintenance-mode-built-in-pr-72).

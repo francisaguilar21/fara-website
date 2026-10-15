@@ -8,8 +8,9 @@ References: [DESIGN §4](../design/DESIGN.md#4-information-architecture), [DESIG
 
 ## 1. Goal
 
-A typed, validated content layer for every content type in the design. The blog runs on it with
-**the same URLs** as the 2024 site, so the posts can come back online (via
+A typed, validated content layer for every content type in the design. The blog runs on it at
+`/writings` (decision D5: renamed from the 2024 site's `/blog`) with **the same post slugs**, and the old
+`/blog/*` URLs redirect permanently, so the posts can come back online (via
 `MAINTENANCE_ALLOWED_PATHS`) long before launch.
 
 ## 2. Scope
@@ -31,22 +32,22 @@ A typed, validated content layer for every content type in the design. The blog 
 
 ## 3. Requirements
 
-| ID     | Requirement                                                                                                                                                                                                                                             |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| P4-R1  | Velite builds the MDX collections `posts`, `projects` and `pages` (for `now.mdx` and `life/building.mdx`) with Zod schemas. A schema error fails the build with the file and field named.                                                               |
-| P4-R2  | The structured data files (`experience`, `certifications`, `recommendations`, `races`, `talks`, `gallery`, `uses`, `site`) are typed TypeScript modules in `content/`, validated by Zod schemas in `lib/content/schemas.ts`.                            |
-| P4-R3  | Every non-blog entry supports `draft?: boolean`. Draft entries render with `<DraftChip />` (Phase 5 policy). Draft **posts** are excluded from production pages, feeds and the sitemap.                                                                 |
-| P4-R4  | Posts move to `content/blog/`. **The slug is the filename without the extension**, so these URLs are unchanged: `/blog/231221-hello-world`, `/blog/240108-posthog-over-google-analytics`, `/blog/240112-a-commitment-to-change`.                        |
-| P4-R5  | The post frontmatter schema accepts the existing fields (`title`, `date`, `lastmod`, `tags`, `images`, `draft`, `summary`, plus the optional and ignored `authors`, `layout`, `canonicalUrl`), so the posts move without content edits other than §4.5. |
-| P4-R6  | Post images keep their `/static/images/...` paths. MDX `img` renders through a `<Figure />` that sets intrinsic `width`/`height` at build time, so there's no layout shift.                                                                             |
-| P4-R7  | Code blocks are highlighted at build time with `rehype-pretty-code` + Shiki, with light and dark themes that follow `data-theme`. At minimum `javascript`, `typescript`, `http`, `bash`, `json` and `tsx`.                                              |
-| P4-R8  | Post page: title, date, last-updated date, reading time, tags, cover image, prose, heading anchors, previous/next links, back to `/blog`. Uses DESIGN typography (Space Grotesk headings, rose links, mono inline code).                                |
-| P4-R9  | `/blog` lists all published posts, newest first, with date, title, summary and reading time. `/blog/tags/[tag]` filters by tag. Tag slugs are lowercase and hyphenated.                                                                                 |
-| P4-R10 | `/rss.xml` (RSS 2.0, full summaries), `sitemap.ts` (all published routes with `lastModified`) and `robots.ts` (allow all, link to the sitemap).                                                                                                         |
-| P4-R11 | OG images generated with `next/og`: the site default plus one per post. 1200×630, F/A mark, title in Space Grotesk, rose slash, both under 100 kB.                                                                                                      |
-| P4-R12 | Permanent redirects (308) from 2024 URLs: `/tags/:tag` → `/blog/tags/:tag`, `/tags` → `/blog`, `/blog/page/:n` → `/blog`, `/about` → `/`, `/feed.xml` → `/rss.xml`.                                                                                     |
-| P4-R13 | Per-page metadata through the `generateMetadata` API: title template `%s · Francis Aguilar`, description, canonical URL from `NEXT_PUBLIC_SITE_URL`, OG/Twitter cards.                                                                                  |
-| P4-R14 | After merge, `MAINTENANCE_ALLOWED_PATHS=/blog,/rss.xml` brings the posts back online in production. The 2024 post URLs return 200, not 503.                                                                                                             |
+| ID     | Requirement                                                                                                                                                                                                                                                                                                                                                                                                               |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| P4-R1  | Velite builds the MDX collections `posts`, `projects` and `pages` (for `now.mdx` and `life/building.mdx`) with Zod schemas. A schema error fails the build with the file and field named.                                                                                                                                                                                                                                 |
+| P4-R2  | The structured data files (`experience`, `certifications`, `recommendations`, `races`, `talks`, `gallery`, `uses`, `site`) are typed TypeScript modules in `content/`, validated by Zod schemas in `lib/content/schemas.ts`.                                                                                                                                                                                              |
+| P4-R3  | Every non-blog entry supports `draft?: boolean`. Draft entries render with `<DraftChip />` (Phase 5 policy) on previews and locally. Where drafts are hidden (`VERCEL_ENV=production`, or `HIDE_DRAFTS=1`, via `shouldHideDrafts()` in `lib/content/visibility.ts`) every getter leaves them out, so production pages, feeds and the sitemap never contain one. `getSite()` is the exception: it always returns the site. |
+| P4-R4  | Posts move to `content/blog/`. **The slug is the filename without the extension**, so each post keeps its slug under `/writings` (the 2024 `/blog/<slug>` URLs redirect to them): `/writings/231221-hello-world`, `/writings/240108-posthog-over-google-analytics`, `/writings/240112-a-commitment-to-change`.                                                                                                            |
+| P4-R5  | The post frontmatter schema accepts the existing fields (`title`, `date`, `lastmod`, `tags`, `images`, `draft`, `summary`, plus the optional and ignored `authors`, `layout`, `canonicalUrl`), so the posts move without content edits other than §4.5.                                                                                                                                                                   |
+| P4-R6  | Post images keep their `/static/images/...` paths. MDX `img` renders through a `<Figure />` that sets intrinsic `width`/`height` at build time, so there's no layout shift.                                                                                                                                                                                                                                               |
+| P4-R7  | Code blocks are highlighted at build time with `rehype-pretty-code` + Shiki, with light and dark themes that follow `data-theme`. At minimum `javascript`, `typescript`, `http`, `bash`, `json` and `tsx`.                                                                                                                                                                                                                |
+| P4-R8  | Post page: title, date, last-updated date, reading time, tags, cover image, prose, heading anchors, previous/next links, back to `/writings`. Uses DESIGN typography (Space Grotesk headings, rose links, mono inline code).                                                                                                                                                                                              |
+| P4-R9  | `/writings` lists all published posts, newest first, with date, title, summary and reading time. `/writings/tags/[tag]` filters by tag. Tag slugs are lowercase and hyphenated.                                                                                                                                                                                                                                           |
+| P4-R10 | `/rss.xml` (RSS 2.0, full summaries), `sitemap.ts` (all published routes with `lastModified`) and `robots.ts` (allow all, link to the sitemap).                                                                                                                                                                                                                                                                           |
+| P4-R11 | OG images generated with `next/og`: the site default plus one per post. 1200×630, F/A mark, title in Space Grotesk, rose slash, both under 100 kB.                                                                                                                                                                                                                                                                        |
+| P4-R12 | Permanent redirects (308) from 2024 URLs: `/tags/:tag` → `/writings/tags/:tag`, `/tags` → `/writings`, `/blog/page/:n` → `/writings`, `/about` → `/`, `/feed.xml` → `/rss.xml`. Plus the move from `/blog` (D5): `/blog` → `/writings`, `/blog/tags/:tag` → `/writings/tags/:tag`, `/blog/:slug` → `/writings/:slug`, with the specific rules first.                                                                      |
+| P4-R13 | Per-page metadata through the `generateMetadata` API: title template `%s · Francis Aguilar`, description, canonical URL from `NEXT_PUBLIC_SITE_URL`, OG/Twitter cards.                                                                                                                                                                                                                                                    |
+| P4-R14 | After merge, `MAINTENANCE_ALLOWED_PATHS=/writings,/rss.xml` brings the posts back online in production. The 3 post URLs under `/writings` return 200, not 503.                                                                                                                                                                                                                                                            |
 
 ## 4. Technical design
 
@@ -130,20 +131,27 @@ const posts = defineCollection({
 | `Talk`           | `title`, `event`, `date`, `location?`, `slidesUrl?`, `videoUrl?`, `draft?`                                                                                                                                |
 | `GalleryImage`   | `src`, `alt` (required, ≥ 10 chars), `caption?`, `date?`, `tag: 'race' \| 'travel' \| 'event' \| 'life'`                                                                                                  |
 | `UsesGroup`      | `category`, `items: { name, note?, url? }[]`                                                                                                                                                              |
-| `Site`           | `name`, `tagline`, `headline`, `intro`, `location`, `socials`, `bookingUrl`, `resumeUrl?`, `email?`                                                                                                       |
+| `Site`           | `name`, `tagline`, `headline`, `intro`, `location`, `socials`, `resumeUrl?`, `email?`                                                                                                                     |
 
 `pace` and durations are derived in helpers (`lib/content/format.ts`), never stored.
 
 ### 4.4 Routes
 
-| Route                         | File                                                             | Notes                                                           |
-| ----------------------------- | ---------------------------------------------------------------- | --------------------------------------------------------------- |
-| `/blog`                       | `app/blog/page.tsx`                                              | Static                                                          |
-| `/blog/[slug]`                | `app/blog/[slug]/page.tsx`                                       | `generateStaticParams`, `dynamicParams = false`                 |
-| `/blog/tags/[tag]`            | `app/blog/tags/[tag]/page.tsx`                                   | Static                                                          |
-| `/rss.xml`                    | `app/rss.xml/route.ts`                                           | `export const dynamic = 'force-static'`                         |
-| `/sitemap.xml`, `/robots.txt` | `app/sitemap.ts`, `app/robots.ts`                                |                                                                 |
-| OG images                     | `app/opengraph-image.tsx`, `app/blog/[slug]/opengraph-image.tsx` | Fonts loaded from `next/font` files or `fetch` of a bundled TTF |
+| Route                         | File                                                                 | Notes                                                           |
+| ----------------------------- | -------------------------------------------------------------------- | --------------------------------------------------------------- |
+| `/writings`                   | `app/writings/page.tsx`                                              | Static                                                          |
+| `/writings/[slug]`            | `app/writings/[slug]/page.tsx`                                       | `generateStaticParams`, `dynamicParams = false`                 |
+| `/writings/tags/[tag]`        | `app/writings/tags/[tag]/page.tsx`                                   | Static                                                          |
+| `/rss.xml`                    | `app/rss.xml/route.ts`                                               | `export const dynamic = 'force-static'`                         |
+| `/sitemap.xml`, `/robots.txt` | `app/sitemap.ts`, `app/robots.ts`                                    |                                                                 |
+| OG images                     | `app/opengraph-image.tsx`, `app/writings/[slug]/opengraph-image.tsx` | Fonts loaded from `next/font` files or `fetch` of a bundled TTF |
+
+OG images: besides the two files above, `/writings` and each tag page have their own
+(`app/writings/opengraph-image.tsx`, `app/writings/tags/[tag]/opengraph-image.tsx`). A page's `openGraph`
+metadata hides an image that lives in a parent segment, and keeping every writings image under `/writings` means
+it stays public with `MAINTENANCE_ALLOWED_PATHS=/writings,/rss.xml` (the site default would be a 503).
+Satori can't read WOFF2, so `lib/og.tsx` loads Space Grotesk SemiBold from `@fontsource/space-grotesk`
+(WOFF). Emoji in a title are dropped from the card.
 
 MDX components (`components/mdx/`): `Figure` (img), `a` → `UnderlineLink` (external links open in a new
 tab with `rel="noopener"`), `pre`/`code` styling, `Callout`, `table` wrapped in an `overflow-x-auto`
@@ -158,7 +166,7 @@ container.
 
 ### 4.6 Maintenance interaction
 
-Allowed paths are prefix matches, so `/blog` also covers `/blog/[slug]`, the tag pages and the post OG
+Allowed paths are prefix matches, so `/writings` also covers `/writings/[slug]`, the tag pages and the post OG
 images. `_next/` assets are already skipped. The site header's links to other pages still lead to
 the maintenance page until launch. That's expected.
 

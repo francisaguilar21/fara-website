@@ -19,7 +19,7 @@ Everything about the 2026 rebuild of francisaguilar.co lives in this folder.
 | 2     | Scaffold & tooling          | [specs](./phase-2-specs/phase-2.specs.md) | [tasks](./phase-2-specs/phase-2.tasks.md) | In progress |
 | 3     | Design system               | [specs](./phase-3-specs/phase-3.specs.md) | [tasks](./phase-3-specs/phase-3.tasks.md) | In progress |
 | 4     | Content layer & blog parity | [specs](./phase-4-specs/phase-4.specs.md) | [tasks](./phase-4-specs/phase-4.tasks.md) | In progress |
-| 5     | Homepage                    | [specs](./phase-5-specs/phase-5.specs.md) | [tasks](./phase-5-specs/phase-5.tasks.md) | Not started |
+| 5     | Homepage                    | [specs](./phase-5-specs/phase-5.specs.md) | [tasks](./phase-5-specs/phase-5.tasks.md) | In progress |
 | 6     | Inner pages                 | [specs](./phase-6-specs/phase-6.specs.md) | [tasks](./phase-6-specs/phase-6.tasks.md) | Not started |
 | 7     | Integrations                | [specs](./phase-7-specs/phase-7.specs.md) | [tasks](./phase-7-specs/phase-7.tasks.md) | Not started |
 | 8     | QA & launch                 | [specs](./phase-8-specs/phase-8.specs.md) | [tasks](./phase-8-specs/phase-8.tasks.md) | Not started |

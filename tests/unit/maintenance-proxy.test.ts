@@ -44,13 +44,13 @@ describe('proxy (maintenance mode)', () => {
   })
 
   describe('MAINTENANCE_ALLOWED_PATHS', () => {
-    beforeEach(() => vi.stubEnv('MAINTENANCE_ALLOWED_PATHS', '/blog, /rss.xml'))
+    beforeEach(() => vi.stubEnv('MAINTENANCE_ALLOWED_PATHS', '/writings, /rss.xml'))
 
-    it.each(['/blog', '/blog/hello-world', '/rss.xml'])('lets %s through', async (path) => {
+    it.each(['/writings', '/writings/hello-world', '/rss.xml'])('lets %s through', async (path) => {
       expect(passesThrough(await proxy(request(path)))).toBe(true)
     })
 
-    it.each(['/blogger', '/', '/work/blog'])('still blocks %s', async (path) => {
+    it.each(['/writingsx', '/', '/work/writings'])('still blocks %s', async (path) => {
       expect((await proxy(request(path))).status).toBe(503)
     })
   })
@@ -110,7 +110,7 @@ describe('proxy (maintenance mode)', () => {
       expect(matches(path)).toBe(false)
     })
 
-    it.each(['/', '/work', '/blog/hello-world'])('runs on %s', (path) => {
+    it.each(['/', '/work', '/writings/hello-world'])('runs on %s', (path) => {
       expect(matches(path)).toBe(true)
     })
   })

@@ -3,6 +3,7 @@ import rehypePrettyCode from 'rehype-pretty-code'
 import rehypeSlug from 'rehype-slug'
 import remarkGfm from 'remark-gfm'
 import { defineCollection, defineConfig, s, z } from 'velite'
+import { readImageSize, rehypeImages } from './lib/content/rehype-images'
 
 // Fields shared by every MDX collection. `draft` entries are placeholders (DESIGN §12).
 const draft = s.boolean().default(false)
@@ -34,7 +35,7 @@ const posts = defineCollection({
   pattern: 'blog/!(_)*.mdx',
   schema: s
     .object({
-      // The slug is the filename: `blog/231221-hello-world.mdx` is served at `/blog/231221-hello-world`.
+      // The slug is the filename: `blog/231221-hello-world.mdx` is served at `/writings/231221-hello-world`.
       slug: slugFrom('blog'),
       title: s.string().max(120),
       date: isoDate(),
@@ -49,9 +50,23 @@ const posts = defineCollection({
       canonicalUrl: s.unknown().optional(),
       metadata: s.metadata(), // reading time + word count
       toc: s.toc(),
+      raw: s.raw(),
       body: s.mdx(),
     })
-    .transform((post) => ({ ...post, permalink: `/blog/${post.slug}` })),
+    .transform(async ({ raw, ...post }, ctx) => {
+      // The cover is the first image in the frontmatter. The 2024 posts already show it as the
+      // banner at the top of the body, so the page only adds its own when the body doesn't.
+      let cover: { src: string; width: number; height: number; inBody: boolean } | undefined
+      const [src] = post.images
+      if (src) {
+        try {
+          cover = { src, ...(await readImageSize(src)), inBody: raw.includes(`](${src})`) }
+        } catch (error) {
+          ctx.addIssue({ code: 'custom', message: (error as Error).message, path: ['images', 0] })
+        }
+      }
+      return { ...post, permalink: `/writings/${post.slug}`, cover }
+    }),
 })
 
 const projects = defineCollection({
@@ -90,6 +105,10 @@ const pages = defineCollection({
     focus: s.string().optional(),
     reading: s.string().optional(),
     building: s.string().optional(),
+    // `life/building` feeds the homepage tile: a pull quote (wrap words in *asterisks* to set them
+    // in rose) and one line that leads into the story.
+    quote: s.string().optional(),
+    teaser: s.string().optional(),
     draft,
     toc: s.toc(),
     body: s.mdx(),
@@ -110,6 +129,7 @@ export default defineConfig({
     gfm: false, // remark-gfm is added explicitly below
     remarkPlugins: [remarkGfm],
     rehypePlugins: [
+      rehypeImages,
       rehypeSlug,
       [
         rehypePrettyCode,

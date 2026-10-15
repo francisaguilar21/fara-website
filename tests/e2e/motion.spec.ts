@@ -107,7 +107,7 @@ test.describe('components', () => {
     await page.getByRole('link', { name: 'Francis Aguilar, home' }).click()
     await page.goto('/styleguide')
     await page.getByRole('link', { name: 'Francis Aguilar, home' }).click()
-    await expect(page.getByRole('heading', { name: 'New site in progress' })).toBeVisible()
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('I build software')
     expect(errors).toEqual([])
   })
 })
