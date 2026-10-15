@@ -1,18 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { useMotionEnabled } from '@/lib/motion'
-
-type Idle = (callback: () => void) => () => void
-
-const whenIdle: Idle = (callback) => {
-  if ('requestIdleCallback' in window) {
-    const id = window.requestIdleCallback(callback, { timeout: 2000 })
-    return () => window.cancelIdleCallback(id)
-  }
-  const id = setTimeout(callback, 200)
-  return () => clearTimeout(id)
-}
+import { useMotionEnabled, whenIdle } from '@/lib/motion'
 
 /**
  * Lenis smooth scrolling (`lerp: 0.1`), stepped from requestAnimationFrame. Lenis is imported

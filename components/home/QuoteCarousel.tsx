@@ -1,10 +1,11 @@
 'use client'
 
 import Image from 'next/image'
-import { useId, useRef, useState, useSyncExternalStore } from 'react'
+import { useId, useRef, useState } from 'react'
 import { DraftChip } from '@/components/ui/DraftChip'
 import { Label } from '@/components/ui/Label'
 import { cn } from '@/lib/cn'
+import { useIsClient } from '@/lib/motion'
 
 export type Quote = {
   quote: string
@@ -20,14 +21,6 @@ export type Quote = {
 }
 
 const SWIPE_PX = 48
-
-const noop = () => () => {}
-const useIsClient = () =>
-  useSyncExternalStore(
-    noop,
-    () => true,
-    () => false
-  )
 
 /**
  * Recommendations, one at a time: dots below, a cross-fade between them, a swipe or drag on touch
@@ -67,7 +60,7 @@ export function QuoteCarousel({ quotes }: { quotes: Quote[] }) {
     <div>
       {/* `touch-pan-y` keeps vertical scrolling while we read the horizontal swipe. */}
       <div
-        className={cn(enhanced ? 'grid touch-pan-y' : 'grid gap-10')}
+        className={enhanced ? 'grid touch-pan-y' : 'grid gap-10'}
         onPointerDown={(event) => {
           swipeStart.current = event.clientX
         }}
