@@ -30,11 +30,12 @@ def get_worktrees_to_delete():
 
 def get_branches_to_delete():
     """Get list of branches to delete."""
-    output, _ = run_cmd("git branch")
+    # --format avoids the "* " / "+ " markers for checked-out branches
+    output, _ = run_cmd("git branch --format='%(refname:short)'")
     if not output:
         return []
 
-    branches = [b.strip().lstrip("* ") for b in output.split("\n") if b.strip()]
+    branches = [b.strip() for b in output.split("\n") if b.strip()]
     keep = {"main", "development"}
     return [b for b in branches if b not in keep]
 
