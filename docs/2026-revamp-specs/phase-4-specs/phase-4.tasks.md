@@ -13,11 +13,11 @@ Specs: [phase-4.specs.md](./phase-4.specs.md)
 
 ## PR 2: Blog pages (`feat(blog): add blog index, tags and post pages`)
 
-- [ ] **P4-T07** · Claude · MDX components: `Figure` (build-time image size), links, code, `Callout`, tables → P4-R6, P4-R7
-- [ ] **P4-T08** · Claude · `/blog/[slug]` post page ([specs P4-R8](./phase-4.specs.md#3-requirements)) → P4-R8
-- [ ] **P4-T09** · Claude · `/blog` index and `/blog/tags/[tag]` → P4-R9
-- [ ] **P4-T10** · Claude · Root `generateMetadata` defaults and per-post metadata → P4-R13
-- [ ] **P4-T11** · Claude · Compare the rendered text of all 3 posts with the 2024 site (P4-AC1) and check CLS (P4-AC2) → P4-R4, P4-R6
+- [x] **P4-T07** · Claude · MDX components: `Figure` (build-time image size), links, code, `Callout`, tables → P4-R6, P4-R7
+- [x] **P4-T08** · Claude · `/writings/[slug]` post page ([specs P4-R8](./phase-4.specs.md#3-requirements)) → P4-R8
+- [x] **P4-T09** · Claude · `/writings` index and `/writings/tags/[tag]` → P4-R9
+- [x] **P4-T10** · Claude · Root `generateMetadata` defaults and per-post metadata → P4-R13
+- [x] **P4-T11** · Claude · Compare the rendered text of all 3 posts with the 2024 site (P4-AC1) and check CLS (P4-AC2) → P4-R4, P4-R6
 
 ## PR 3: SEO plumbing (`feat(seo): add feeds, sitemap, OG images and 2024 redirects`)
 
@@ -29,7 +29,7 @@ Specs: [phase-4.specs.md](./phase-4.specs.md)
 
 ## After merge
 
-- [ ] **P4-T17** · Francis · In Vercel (Production), set `MAINTENANCE_ALLOWED_PATHS=/blog,/rss.xml` and redeploy → P4-R14
+- [ ] **P4-T17** · Francis · In Vercel (Production), set `MAINTENANCE_ALLOWED_PATHS=/writings,/rss.xml` and redeploy → P4-R14
 - [ ] **P4-T18** · Claude · Check P4-AC9 against production → P4-R14
 - [ ] **P4-T19** · Francis · In Google Search Console, submit `/sitemap.xml` and check that the post URLs are indexed → P4-R10
 
