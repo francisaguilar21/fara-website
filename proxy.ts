@@ -6,7 +6,7 @@ const BYPASS_COOKIE = 'fa_maintenance_bypass'
 const BYPASS_PARAM = 'preview'
 const RETRY_AFTER_SECONDS = 60 * 60 * 24
 
-// Comma-separated path prefixes that stay reachable during maintenance, e.g. "/blog,/rss.xml"
+// Comma-separated path prefixes that stay reachable during maintenance, e.g. "/writings,/rss.xml"
 function isAllowedPath(pathname: string): boolean {
   const allowed = (process.env.MAINTENANCE_ALLOWED_PATHS || '')
     .split(',')

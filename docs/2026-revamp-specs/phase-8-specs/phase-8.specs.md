@@ -65,7 +65,7 @@ drafts:
   steps: [checkout, pnpm, node, install, 'pnpm check:drafts']
 ```
 
-`lighthouserc.json` covers `/`, `/blog/240108-posthog-over-google-analytics`, `/work`,
+`lighthouserc.json` covers `/`, `/writings/240108-posthog-over-google-analytics`, `/work`,
 `/life/running` and `/projects`, with the assertions in P8-R2.
 
 ### 4.2 Audit checklist (copy into the QA PR)
