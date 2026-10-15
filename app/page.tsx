@@ -2,8 +2,9 @@ import type { Metadata } from 'next'
 import { RSS_ALTERNATE, SITE_DESCRIPTION, SITE_NAME } from '@/lib/seo'
 import { Hero } from '@/components/home/Hero'
 import { NowStrip } from '@/components/home/NowStrip'
+import { WorkSection } from '@/components/home/WorkSection'
 import { getBookingUrl } from '@/lib/booking'
-import { getPage, getSite } from '@/lib/content'
+import { getExperience, getPage, getSite } from '@/lib/content'
 import { buildNowItems } from '@/lib/home/now-items'
 import { NOW_PLAYING_SAMPLE, STRAVA_SAMPLE } from '@/lib/integrations/fallbacks'
 
@@ -39,6 +40,7 @@ export default function Home() {
       <NowStrip
         items={buildNowItems({ now, nowPlaying: NOW_PLAYING_SAMPLE, strava: STRAVA_SAMPLE })}
       />
+      <WorkSection entries={getExperience({ featured: true, limit: 6 })} />
     </>
   )
 }

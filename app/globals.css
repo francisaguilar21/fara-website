@@ -329,6 +329,12 @@
   }
 }
 
+@keyframes fade-in {
+  from {
+    opacity: 0.2;
+  }
+}
+
 @keyframes equalize {
   50% {
     height: 100%;
@@ -375,6 +381,15 @@
   :where(.group:hover, .group:focus-within) & {
     animation-play-state: paused;
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+/* A keyed element that fades in when it remounts: the sticky timeline year. */
+@utility animate-fade-in {
+  animation: fade-in 300ms var(--ease-out-quint) both;
 
   @media (prefers-reduced-motion: reduce) {
     animation: none;
