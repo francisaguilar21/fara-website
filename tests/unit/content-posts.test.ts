@@ -20,7 +20,7 @@ describe('posts from content/blog', () => {
     )
     for (const post of posts) {
       expect(files).toContain(`${post.slug}.mdx`)
-      expect(post.permalink).toBe(`/blog/${post.slug}`)
+      expect(post.permalink).toBe(`/writings/${post.slug}`)
     }
   })
 
@@ -103,7 +103,7 @@ describe('draft posts', () => {
       tags,
       images: [],
       summary: '',
-      permalink: `/blog/${slug}`,
+      permalink: `/writings/${slug}`,
       metadata: { readingTime: 1, wordCount: 100 },
     })
     vi.resetModules() // the imports above already loaded the real content

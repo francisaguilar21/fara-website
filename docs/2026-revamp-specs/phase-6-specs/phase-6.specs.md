@@ -16,7 +16,7 @@ own social card.
 
 **In**
 
-- Every route in DESIGN §4 except `/` and `/blog/*`
+- Every route in DESIGN §4 except `/` and `/writings/*`
 - Page metadata and OG images
 - Sitemap entries
 - The 404 page
@@ -53,7 +53,7 @@ own social card.
 | P6-R14 | `/now`                    | From `pages/now.mdx` with an "Updated on {date}" label and a staleness note if it's older than 60 days. Live (fallback) Strava week and Spotify now-playing. A footnote links to nownownow.com, which explains what a /now page is.                                                                                     |
 | P6-R15 | `/uses`                   | All `uses.ts` groups (Stack, Tools, Hardware, Running gear) with notes and links.                                                                                                                                                                                                                                       |
 | P6-R16 | `/contact`                | Full-page version of the homepage contact section: booking card first on mobile, form, socials.                                                                                                                                                                                                                         |
-| P6-R17 | 404 (`app/not-found.tsx`) | Rose-on-black F/A mark, "This path doesn't exist" with the requested path shown in mono as `/the/path`, and links to `/`, `/blog` and `/work`. Returns status 404.                                                                                                                                                      |
+| P6-R17 | 404 (`app/not-found.tsx`) | Rose-on-black F/A mark, "This path doesn't exist" with the requested path shown in mono as `/the/path`, and links to `/`, `/writings` and `/work`. Returns status 404.                                                                                                                                                  |
 
 ## 4. Technical design
 

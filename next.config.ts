@@ -1,5 +1,6 @@
 import type { NextConfig } from 'next'
 import { PHASE_DEVELOPMENT_SERVER, PHASE_PRODUCTION_SERVER } from 'next/constants'
+import { redirects } from './lib/redirects'
 
 // Phase 7 adds the PostHog hosts to `script-src` and `connect-src`.
 const ContentSecurityPolicy = `
@@ -36,6 +37,9 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     return [{ source: '/(.*)', headers: securityHeaders }]
+  },
+  async redirects() {
+    return redirects
   },
 }
 

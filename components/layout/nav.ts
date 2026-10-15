@@ -4,7 +4,7 @@
 export const NAV_LINKS = [
   { label: 'work', href: '/work', anchor: '#work' },
   { label: 'life', href: '/life', anchor: '#life' },
-  { label: 'writing', href: '/blog', anchor: '#writing' },
+  { label: 'writing', href: '/writings', anchor: '#writing' },
   { label: 'now', href: '/now', anchor: '#now' },
 ] as const
 
