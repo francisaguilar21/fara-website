@@ -81,59 +81,59 @@ Each item has a recommendation. Reply with the numbers you want changed.
 
 ### Setup
 
-- [ ] Open the Vercel preview of [#83](https://github.com/francisaguilar21/fara-website/pull/83)
+- [x] Open the Vercel preview of [#83](https://github.com/francisaguilar21/fara-website/pull/83)
       (it is in that PR's Vercel comment). If it shows the maintenance page, visit
       `/?preview=<MAINTENANCE_BYPASS_TOKEN>` once (sets a 7-day cookie).
-- [ ] Or run it locally: `git fetch && git checkout claude/integration-p4-p5 && pnpm install && pnpm dev`.
-- [ ] Test in dark (the default) and light, at about 1440px wide and on your phone (or a 390px window).
+- [x] Or run it locally: `git fetch && git checkout claude/integration-p4-p5 && pnpm install && pnpm dev`.
+- [x] Test in dark (the default) and light, at about 1440px wide and on your phone (or a 390px window).
 
 ### Homepage (`/`): hero and now strip (#78)
 
-- [ ] The headline is the only `h1`; lines rise in and the rose underline draws on load.
-- [ ] The portrait is gray, turns to color on hover, and moves slightly as you scroll.
-- [ ] The hero CTAs have the magnetic pull; "Let's talk" jumps to the contact section.
-- [ ] The three roles (`/work`, `/build`, `/run`) show, with a draft chip on the missing employer.
-- [ ] The now strip scrolls, pauses on hover and on keyboard focus, and has no gap on a wide screen.
+- [x] The headline is the only `h1`; lines rise in and the rose underline draws on load.
+- [x] The portrait is gray, turns to color on hover, and moves slightly as you scroll.
+- [x] The hero CTAs have the magnetic pull; "Let's talk" jumps to the contact section.
+- [x] The three roles (`/work`, `/build`, `/run`) show, with a draft chip on the missing employer.
+- [x] The now strip scrolls, pauses on hover and on keyboard focus, and has no gap on a wide screen.
 - [ ] Header links on the homepage scroll to sections (`#work`, `#life`, `#writing`, `#now`, `#contact`).
 - [ ] With the OS set to "reduce motion": the strip is a static row and nothing animates in.
 
 ### Timeline (#79)
 
-- [ ] Scrolling draws the line and lights the dots in order; scrolling up turns them off.
-- [ ] The sticky year on the left changes with the active entry (desktop).
-- [ ] On the phone the years sit above each role and the line is on the left.
-- [ ] Unlit entries look acceptable (D12). Jumping with an anchor link or the End key doesn't leave dots stale.
-- [ ] "Full timeline →" is present (it 404s until Phase 6; that's expected).
+- [x] Scrolling draws the line and lights the dots in order; scrolling up turns them off.
+- [x] The sticky year on the left changes with the active entry (desktop).
+- [x] On the phone the years sit above each role and the line is on the left.
+- [x] Unlit entries look acceptable (D12). Jumping with an anchor link or the End key doesn't leave dots stale.
+- [x] "Full timeline →" is present (it 404s until Phase 6; that's expected).
 
 ### Projects and life (#81)
 
-- [ ] Three project rows: the title slides right in rose, the arrow turns, and a cover preview follows the cursor (mouse only; none on touch).
-- [ ] Running tile: stats, 12-week bars drawn to scale, last run, `sample` chip.
-- [ ] Community tile: three talks and the Spotify card with a `sample` chip.
-- [ ] Gallery: five photos with captions, a slight parallax, draft chips on captions.
-- [ ] Building tile: the pull quote has a rose emphasis and a `copy` draft chip.
+- [x] Three project rows: the title slides right in rose, the arrow turns, and a cover preview follows the cursor (mouse only; none on touch).
+- [x] Running tile: stats, 12-week bars drawn to scale, last run, `sample` chip.
+- [x] Community tile: three talks and the Spotify card with a `sample` chip.
+- [x] Gallery: five photos with captions, a slight parallax, draft chips on captions.
+- [x] Building tile: the pull quote has a rose emphasis and a `copy` draft chip.
 
 ### Rest of the homepage (#82)
 
 - [ ] Stack grid: three columns, then two, then one; a rose `/` appears for the hovered group.
 - [ ] Recommendations carousel: arrow keys, swipe or drag, and the dots (labelled "Recommendation 2 of 3…") all work.
-- [ ] Certifications list renders.
-- [ ] Latest posts shows the 3 posts; "All posts →" goes to `/writings`.
-- [ ] GitHub heatmap: tooltip shows date and count; on the phone it scrolls sideways inside its own box, not the page.
+- [x] Certifications list renders.
+- [x] Latest posts shows the 3 posts; "All posts →" goes to `/writings`.
+- [x] GitHub heatmap: tooltip shows date and count; on the phone it scrolls sideways inside its own box, not the page.
 - [ ] Contact: the booking card button opens `site.bookingUrl` in a new tab. The form shows an inline error under each bad field and focuses the first one. A valid submit shows the "Nothing was sent" message (D15).
-- [ ] Keyboard only: Tab through the whole page. Every stop shows a visible focus ring.
+- [x] Keyboard only: Tab through the whole page. Every stop shows a visible focus ring.
 - [ ] No horizontal page scroll at 360px.
 - [ ] Compare with `docs/2026-revamp-specs/design/mockup.html` side by side (P5-AC1), section by section.
 - [ ] Lighthouse (mobile) on the preview. Target 95 performance (D23).
 
 ### Writings (#77)
 
-- [ ] `/writings` lists the 3 posts with date, title, summary, reading time and tags.
-- [ ] Each post opens and reads right, images load without the page jumping, and code blocks follow the light/dark theme.
-- [ ] Heading anchors, previous/next links and "back to blog" work. (D3, D4: note the cover and the `h1` count.)
-- [ ] A tag page (`/writings/tags/technology`) filters correctly; a bad slug gives a 404.
-- [ ] External links open in a new tab.
-- [ ] Compare each post's text with the 2024 site (P4-AC1). The agent only compared against the MDX source.
+- [x] `/writings` lists the 3 posts with date, title, summary, reading time and tags.
+- [x] Each post opens and reads right, images load without the page jumping, and code blocks follow the light/dark theme.
+- [x] Heading anchors, previous/next links and "back to blog" work. (D3, D4: note the cover and the `h1` count.)
+- [x] A tag page (`/writings/tags/technology`) filters correctly; a bad slug gives a 404.
+- [x] External links open in a new tab.
+- [x] Compare each post's text with the 2024 site (P4-AC1). The agent only compared against the MDX source.
 
 ### SEO plumbing (#80)
 
