@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
-import { SITE_DESCRIPTION, SITE_NAME } from '@/lib/seo'
+import { RSS_ALTERNATE, SITE_DESCRIPTION, SITE_NAME } from '@/lib/seo'
 
 // Canonical URL and share URL for the home page. A page's `openGraph` replaces the layout's, so it
 // repeats the rest of it.
 export const metadata: Metadata = {
-  alternates: { canonical: '/' },
+  alternates: { canonical: '/', types: RSS_ALTERNATE },
   openGraph: {
     type: 'website',
     siteName: SITE_NAME,

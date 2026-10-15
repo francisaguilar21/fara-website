@@ -33,9 +33,6 @@ export async function generateMetadata({ params }: Props) {
       publishedTime: post.date,
       modifiedTime: post.lastmod ?? post.date,
       tags: post.tags,
-      images: post.cover
-        ? [{ url: post.cover.src, width: post.cover.width, height: post.cover.height }]
-        : undefined,
     },
   })
 }

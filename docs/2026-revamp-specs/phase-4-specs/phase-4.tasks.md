@@ -21,11 +21,11 @@ Specs: [phase-4.specs.md](./phase-4.specs.md)
 
 ## PR 3: SEO plumbing (`feat(seo): add feeds, sitemap, OG images and 2024 redirects`)
 
-- [ ] **P4-T12** · Claude · `app/rss.xml/route.ts`, `app/sitemap.ts`, `app/robots.ts` → P4-R10
-- [ ] **P4-T13** · Claude · `opengraph-image.tsx` (site default + per post) → P4-R11
-- [ ] **P4-T14** · Claude · Redirects in `next.config.ts` → P4-R12
-- [ ] **P4-T15** · Claude · Playwright: post URLs return 200, redirects return 308 with the right targets, RSS is served as XML → P4-AC1, P4-AC4
-- [ ] **P4-T16** · Claude · Validate the feed and OG images (P4-AC5, P4-AC6). Run Lighthouse on a post (P4-AC10). → P4-R10, P4-R11
+- [x] **P4-T12** · Claude · `app/rss.xml/route.ts`, `app/sitemap.ts`, `app/robots.ts` → P4-R10
+- [x] **P4-T13** · Claude · `opengraph-image.tsx` (site default + per post) → P4-R11
+- [x] **P4-T14** · Claude · Redirects in `next.config.ts` → P4-R12
+- [x] **P4-T15** · Claude · Playwright: post URLs return 200, redirects return 308 with the right targets, RSS is served as XML → P4-AC1, P4-AC4
+- [x] **P4-T16** · Claude · Validate the feed and OG images (P4-AC5, P4-AC6). Run Lighthouse on a post (P4-AC10). → P4-R10, P4-R11
 
 ## After merge
 
