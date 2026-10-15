@@ -20,8 +20,8 @@ export function GithubSection({
           Last 52 weeks
           {calendar.isSample ? (
             <>
-              {' · '}
-              <DraftChip className="ml-1">sample</DraftChip>
+              {' '}
+              · <DraftChip className="ml-1">sample</DraftChip>
             </>
           ) : null}
         </>

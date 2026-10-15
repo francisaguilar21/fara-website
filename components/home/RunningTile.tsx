@@ -30,8 +30,8 @@ export function RunningTile({ strava }: { strava: StravaSummary }) {
           Strava
           {strava.isSample ? (
             <>
-              {' · '}
-              <DraftChip className="ml-1">sample</DraftChip>
+              {' '}
+              · <DraftChip className="ml-1">sample</DraftChip>
             </>
           ) : null}
         </Label>
