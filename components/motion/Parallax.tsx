@@ -1,8 +1,9 @@
 'use client'
 
-import { m, useScroll, useTransform } from 'motion/react'
+import { useScroll, useTransform } from 'motion/react'
 import { useRef } from 'react'
 import { useMotionEnabled } from '@/lib/motion'
+import { useWriteTransform } from '@/lib/use-write-transform'
 
 type ParallaxProps = {
   /** Largest shift in px, up or down. */
@@ -15,16 +16,22 @@ type ParallaxProps = {
 export function Parallax({ offset = 40, className, children }: ParallaxProps) {
   const enabled = useMotionEnabled()
   const ref = useRef<HTMLDivElement>(null)
+  const inner = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
-  const y = useTransform(scrollYProgress, [0, 1], [offset, -offset])
+  const transform = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [`translate3d(0, ${offset}px, 0)`, `translate3d(0, ${-offset}px, 0)`]
+  )
+  useWriteTransform(inner, transform, enabled)
 
   if (!enabled) return <div className={className}>{children}</div>
 
   return (
     <div ref={ref} className={className}>
-      <m.div style={{ y }} className="will-change-transform">
+      <div ref={inner} className="will-change-transform">
         {children}
-      </m.div>
+      </div>
     </div>
   )
 }

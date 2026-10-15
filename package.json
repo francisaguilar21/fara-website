@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "eslint . --max-warnings 0",
     "content": "velite build --strict",
+    "check:drafts": "pnpm content && tsx scripts/check-drafts.ts",
     "typecheck": "pnpm content && tsc --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
@@ -64,6 +65,7 @@
     "prettier": "^3.9.10",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "tailwindcss": "^4",
+    "tsx": "^4.23.15",
     "typescript": "~6.0.3",
     "vitest": "^5.0.3"
   },

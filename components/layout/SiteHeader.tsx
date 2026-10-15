@@ -2,6 +2,7 @@
 
 import { Menu, X } from 'lucide-react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { Magnetic } from '@/components/motion/Magnetic'
 import { useSlashWipe } from '@/components/motion/SlashWipe'
@@ -9,7 +10,7 @@ import { Button } from '@/components/ui/Button'
 import { Logo } from '@/components/ui/Logo'
 import { cn } from '@/lib/cn'
 import { Container } from './Container'
-import { NAV_LINKS } from './nav'
+import { CONTACT_LINK, NAV_LINKS } from './nav'
 import { ThemeToggle } from './ThemeToggle'
 
 const HIDE_AFTER_PX = 200
@@ -41,6 +42,20 @@ export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false)
   const hidden = useHideOnScroll(menuOpen)
   const wipe = useSlashWipe()
+  // On the homepage the links scroll to the sections instead of leaving the page. A section that
+  // did not render (a draft section hidden in production, or one with no entries) has no anchor to
+  // scroll to, so its link goes to the page itself instead of pointing at nothing.
+  const onHome = usePathname() === '/'
+  const [missing, setMissing] = useState<string[]>([])
+  useEffect(() => {
+    if (!onHome) return
+    const anchors = [...NAV_LINKS.map((link) => link.anchor), CONTACT_LINK.anchor]
+    // The page's DOM can only be read after it has rendered, so this has to be state set here.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMissing(anchors.filter((anchor) => !document.getElementById(anchor.slice(1))))
+  }, [onHome])
+  const hrefFor = (link: { href: string; anchor: string }) =>
+    onHome && !missing.includes(link.anchor) ? link.anchor : link.href
 
   // Lock page scroll and close on Escape while the full-screen menu is open.
   useEffect(() => {
@@ -72,7 +87,7 @@ export function SiteHeader() {
 
           <nav aria-label="Primary" className="ml-auto hidden gap-[22px] min-[760px]:flex">
             {NAV_LINKS.map((link) => (
-              <Link key={link.href} href={link.href} className={navLinkClass}>
+              <Link key={link.href} href={hrefFor(link)} className={navLinkClass}>
                 {link.label}
               </Link>
             ))}
@@ -83,7 +98,7 @@ export function SiteHeader() {
               <ThemeToggle />
             </Magnetic>
             <Magnetic className="hidden min-[760px]:inline-flex">
-              <Button href="/contact" size="sm">
+              <Button href={hrefFor(CONTACT_LINK)} size="sm">
                 Let&apos;s talk
               </Button>
             </Magnetic>
@@ -116,7 +131,7 @@ export function SiteHeader() {
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
-              href={link.href}
+              href={hrefFor(link)}
               className="py-2 h1 hover:text-accent"
               onClick={() => setMenuOpen(false)}
             >
@@ -124,7 +139,11 @@ export function SiteHeader() {
               {link.label}
             </Link>
           ))}
-          <Button href="/contact" className="mt-8 self-start" onClick={() => setMenuOpen(false)}>
+          <Button
+            href={hrefFor(CONTACT_LINK)}
+            className="mt-8 self-start"
+            onClick={() => setMenuOpen(false)}
+          >
             Let&apos;s talk
           </Button>
         </Container>
