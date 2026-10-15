@@ -1,6 +1,4 @@
 import { Section } from '@/components/layout/Section'
-import { Magnetic } from '@/components/motion/Magnetic'
-import { Button } from '@/components/ui/Button'
 import { DraftChip } from '@/components/ui/DraftChip'
 import { Label } from '@/components/ui/Label'
 import { UnderlineLink } from '@/components/ui/UnderlineLink'
@@ -29,13 +27,7 @@ export function StackGrid({ groups }: { groups: UsesGroup[] }) {
       <SectionTitle
         id="stack-heading"
         title="What I reach for."
-        action={
-          <Magnetic>
-            <Button href="/uses" variant="ghost" size="sm">
-              Everything I use <span aria-hidden="true">→</span>
-            </Button>
-          </Magnetic>
-        }
+        more={{ href: '/uses', label: 'Everything I use' }}
       />
       <div className="grid grid-cols-1 border-t border-l border-line min-[481px]:grid-cols-2 min-[821px]:grid-cols-3">
         {groups.map((group) => (

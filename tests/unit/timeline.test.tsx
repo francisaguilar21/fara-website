@@ -1,7 +1,6 @@
 import { render, screen, within } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import { TimelineItem, type TimelineEntry } from '@/components/home/TimelineItem'
-import { TimelineLegend } from '@/components/home/TimelineLegend'
 import { WorkSection } from '@/components/home/WorkSection'
 import { activeEntries, entrySub, entryYear, formatRange } from '@/lib/home/timeline'
 
@@ -111,15 +110,13 @@ describe('TimelineItem', () => {
   })
 })
 
-describe('TimelineLegend', () => {
-  it('explains work and life', () => {
-    render(<TimelineLegend />)
+describe('WorkSection', () => {
+  it('explains the work and life dots in a legend', () => {
+    render(<WorkSection entries={[entry]} />)
     expect(screen.getByText('Work')).toBeInTheDocument()
     expect(screen.getByText('Life')).toBeInTheDocument()
   })
-})
 
-describe('WorkSection', () => {
   it('renders nothing when there are no entries, so the header has no anchor to dangle', () => {
     const { container } = render(<WorkSection entries={[]} />)
     expect(container).toBeEmptyDOMElement()
