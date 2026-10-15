@@ -1,10 +1,9 @@
 'use client'
 
-import { useScroll, useTransform } from 'motion/react'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { cn } from '@/lib/cn'
 import { useMotionEnabled } from '@/lib/motion'
-import { useWriteTransform } from '@/lib/use-write-transform'
+import { useScrollProgress, type ScrollWindow } from '@/lib/use-scroll-progress'
 
 type ParallaxProps = {
   /** Largest shift in px, up or down. */
@@ -15,18 +14,34 @@ type ParallaxProps = {
   children: React.ReactNode
 }
 
+/** From the element's top edge entering at the bottom of the screen to its bottom edge leaving at the top. */
+const CROSSING: ScrollWindow = { startAt: 1, endAt: 0 }
+
 /** Moves its content up to `offset`px either way as it crosses the viewport. */
 export function Parallax({ offset = 40, className, innerClassName, children }: ParallaxProps) {
   const enabled = useMotionEnabled()
   const ref = useRef<HTMLDivElement>(null)
   const inner = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
-  const transform = useTransform(
-    scrollYProgress,
-    [0, 1],
-    [`translate3d(0, ${offset}px, 0)`, `translate3d(0, ${-offset}px, 0)`]
+
+  // `offset` px below its place as it enters, `offset` px above as it leaves.
+  useScrollProgress(
+    ref,
+    CROSSING,
+    (progress) => {
+      if (inner.current) {
+        inner.current.style.transform = `translate3d(0, ${offset * (1 - 2 * progress)}px, 0)`
+      }
+    },
+    enabled
   )
-  useWriteTransform(inner, transform, enabled)
+
+  // Back in place when motion is turned off.
+  useEffect(() => {
+    const element = inner.current
+    return () => {
+      if (element) element.style.transform = ''
+    }
+  }, [enabled])
 
   // The same markup with or without motion, so the layout doesn't depend on it.
   return (

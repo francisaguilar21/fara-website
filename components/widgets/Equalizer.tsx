@@ -8,9 +8,9 @@ export function Equalizer({ className }: { className?: string }) {
       className={cn('inline-flex h-3 items-end gap-0.5', className)}
       data-testid="equalizer"
     >
-      <i className="h-[40%] w-[3px] animate-equalize bg-ok" />
-      <i className="h-[40%] w-[3px] animate-equalize bg-ok [animation-delay:200ms]" />
-      <i className="h-[40%] w-[3px] animate-equalize bg-ok [animation-delay:400ms]" />
+      <i className="h-full w-[3px] animate-equalize bg-ok" />
+      <i className="h-full w-[3px] animate-equalize bg-ok [animation-delay:200ms]" />
+      <i className="h-full w-[3px] animate-equalize bg-ok [animation-delay:400ms]" />
     </span>
   )
 }

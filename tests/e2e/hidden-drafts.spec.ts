@@ -100,4 +100,21 @@ test.describe('with drafts hidden', () => {
     await expect(community.getByText('Running Up That Hill')).toBeVisible()
     await expect(page.locator('article', { hasText: '/life/running' })).toBeVisible()
   })
+
+  test('with a booking URL set, the contact section has its booking card', async ({ page }) => {
+    await page.goto('/')
+    const section = page.locator('#contact')
+    await expect(section.getByText('Google Calendar · appointment schedule')).toBeVisible()
+    const book = section.getByRole('link', { name: /Book a 30-min call/ })
+    await expect(book).toHaveAttribute('href', 'https://calendar.app.google/e2e-test')
+    await expect(book).toHaveAttribute('target', '_blank')
+    await expect(book).toHaveAttribute('rel', /noopener/)
+    await expect(section.getByRole('button', { name: /Send message/ })).toBeVisible()
+  })
+
+  test('the posts section and its index link survive: posts are not drafts', async ({ page }) => {
+    await page.goto('/')
+    await expect(page.locator('#writing ul > li a')).toHaveCount(3)
+    await expect(page.getByRole('link', { name: /All posts/ })).toBeVisible()
+  })
 })
