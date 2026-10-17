@@ -4,6 +4,7 @@ import { pages, posts, projects, type Page, type Post, type Project } from '#sit
 import { certifications } from '@/content/certifications'
 import { experience } from '@/content/experience'
 import { gallery } from '@/content/gallery'
+import { pacing } from '@/content/pacing'
 import { races } from '@/content/races'
 import { recommendations } from '@/content/recommendations'
 import { site } from '@/content/site'
@@ -15,6 +16,7 @@ import type {
   Certification,
   Experience,
   GalleryImage,
+  Pacing,
   Race,
   Recommendation,
   Site,
@@ -66,6 +68,7 @@ export type {
   Certification,
   Experience,
   GalleryImage,
+  Pacing,
   Race,
   Recommendation,
   Site,
@@ -200,6 +203,11 @@ export function getRaces({ limit }: ListOptions = {}): Race[] {
     [...shown(races)].sort((a, b) => b.date.localeCompare(a.date)),
     limit
   )
+}
+
+/** The run-club pacing block, or `undefined` while it is a hidden draft. */
+export function getPacing(): Pacing | undefined {
+  return shown([pacing])[0]
 }
 
 /** Newest first. */

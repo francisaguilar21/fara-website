@@ -27,7 +27,14 @@ for (const theme of ['dark', 'light']) {
 }
 
 // Inner pages (P6-AC7), once per theme at a phone and a desktop width.
-const INNER_PAGES = ['/work', '/projects', '/projects/fitscovery']
+const INNER_PAGES = [
+  '/work',
+  '/projects',
+  '/projects/fitscovery',
+  '/life',
+  '/life/running',
+  '/life/community',
+]
 for (const path of INNER_PAGES) {
   for (const theme of ['dark', 'light']) {
     for (const width of [1440, 390]) {

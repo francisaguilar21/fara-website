@@ -67,6 +67,17 @@ export const RaceSchema = z.object({
   draft,
 })
 
+/** Pacing for a run club (`/life/running`): where, since when, and the paces led. */
+export const PacingSchema = z.object({
+  club: z.string().min(1),
+  clubUrl: url.optional(),
+  /** The year pacing started. */
+  since: z.number().int().min(1990).max(2100),
+  /** The pace groups led, for example `5:30/km` or `Sub-2 half`. */
+  pacesLed: z.array(z.string().min(1)),
+  draft,
+})
+
 export const TalkSchema = z.object({
   title: z.string().min(1),
   event: z.string().min(1),
@@ -120,6 +131,7 @@ export type Experience = z.infer<typeof ExperienceSchema>
 export type Certification = z.infer<typeof CertificationSchema>
 export type Recommendation = z.infer<typeof RecommendationSchema>
 export type Race = z.infer<typeof RaceSchema>
+export type Pacing = z.infer<typeof PacingSchema>
 export type Talk = z.infer<typeof TalkSchema>
 export type GalleryImage = z.infer<typeof GalleryImageSchema>
 export type UsesGroup = z.infer<typeof UsesGroupSchema>
