@@ -18,10 +18,10 @@ Specs: [phase-6.specs.md](./phase-6.specs.md)
 
 ## PR 2: Life hub, running, community (`feat(life): add life hub, running and community pages`)
 
-- [ ] **P6-T09** · Claude · `/life` hub with 4 teaser cards → P6-R9
-- [ ] **P6-T10** · Claude · `/life/running`: Strava summary (fallback data), `RaceTable`, pacing section → P6-R10
-- [ ] **P6-T11** · Claude · `/life/community` → P6-R11
-- [ ] **P6-T12** · Claude · Breadcrumb back links + `BreadcrumbList` JSON-LD on `/life/*` → P6-R5
+- [x] **P6-T09** · Claude · `/life` hub with 4 teaser cards → P6-R9
+- [x] **P6-T10** · Claude · `/life/running`: Strava summary (fallback data), `RaceTable`, pacing section → P6-R10
+- [x] **P6-T11** · Claude · `/life/community` → P6-R11
+- [x] **P6-T12** · Claude · Breadcrumb back links + `BreadcrumbList` JSON-LD on `/life/*` → P6-R5
 
 ## PR 3: Gallery & building (`feat(life): add gallery and building story`)
 
