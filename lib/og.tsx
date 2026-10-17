@@ -87,3 +87,20 @@ export async function renderOgImage({
     }
   )
 }
+
+/**
+ * The card of an inner page (P6-R2): the F/A mark, the page's path (`francisaguilar.co/work`) and
+ * its title. Every `opengraph-image.tsx` of Phase 6 calls this.
+ */
+export function renderPageOg({
+  path,
+  title,
+  subtitle,
+}: {
+  /** Path of the page, for example `/work`. */
+  path: string
+  title: string
+  subtitle?: string
+}) {
+  return renderOgImage({ eyebrow: `francisaguilar.co${path}`, title, subtitle })
+}

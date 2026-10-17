@@ -25,3 +25,22 @@ for (const theme of ['dark', 'light']) {
     })
   }
 }
+
+// Inner pages (P6-AC7), once per theme at a phone and a desktop width.
+const INNER_PAGES = ['/work', '/projects', '/projects/fitscovery']
+for (const path of INNER_PAGES) {
+  for (const theme of ['dark', 'light']) {
+    for (const width of [1440, 390]) {
+      test(`${path} has no axe violations (${theme}, ${width}px)`, async ({ page }) => {
+        await page.addInitScript((value) => localStorage.setItem('theme', value), theme)
+        await page.setViewportSize({ width, height: 900 })
+        await page.goto(path)
+        await expect(page.locator('html')).toHaveAttribute('data-theme', theme)
+        const results = await new AxeBuilder({ page })
+          .withTags(['wcag2a', 'wcag2aa', 'wcag22aa'])
+          .analyze()
+        expect(results.violations).toEqual([])
+      })
+    }
+  }
+}

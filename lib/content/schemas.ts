@@ -108,7 +108,10 @@ export const SiteSchema = z.object({
   intro: z.string().min(1),
   location: z.string().min(1),
   socials: z.array(z.object({ label: z.string().min(1), url })),
-  resumeUrl: url.optional(),
+  /** A full URL, or a path under `public/` such as `/static/resume.pdf`. */
+  resumeUrl: z
+    .union([url, z.string().regex(/^\/[^/]\S*$/, 'Expected a URL or a /path')])
+    .optional(),
   email: z.email().optional(),
   draft,
 })
