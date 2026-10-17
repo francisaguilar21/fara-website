@@ -10,6 +10,8 @@ export const site: Site = {
   intro:
     'Senior software engineer with over a decade of shipping products, a startup I co-founded and ran as CTO, and a habit of pacing other runners to their goal time.',
   location: 'Manila, PH',
+  // Replace the file by hand. Until `public/static/resume.pdf` exists, `/work` leaves the link out.
+  resumeUrl: '/static/resume.pdf',
   socials: [
     { label: 'GitHub', url: 'https://github.com/francisaguilar21' },
     { label: 'LinkedIn', url: 'https://www.linkedin.com/in/francisaguilar21' },

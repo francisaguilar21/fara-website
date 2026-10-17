@@ -10,11 +10,11 @@ Specs: [phase-6.specs.md](./phase-6.specs.md)
 
 ## PR 1: Work & projects (`feat(work): add work and projects pages`)
 
-- [ ] **P6-T04** · Claude · Shared `OgTemplate` and `JsonLd` helpers → P6-R2, P6-R5
-- [ ] **P6-T05** · Claude · `/work`: full timeline, certifications, recommendations grid, résumé link, `Person` JSON-LD → P6-R6
-- [ ] **P6-T06** · Claude · `/projects` with `StackFilter` → P6-R7
-- [ ] **P6-T07** · Claude · `/projects/[slug]` with `CaseStudyLayout`; write the Fitscovery and francisaguilar.co case studies from Francis's notes → P6-R8
-- [ ] **P6-T08** · Claude · Add the routes to the sitemap; metadata + OG for each → P6-R2, P6-R3
+- [x] **P6-T04** · Claude · Shared `OgTemplate` and `JsonLd` helpers → P6-R2, P6-R5
+- [x] **P6-T05** · Claude · `/work`: full timeline, certifications, recommendations grid, résumé link, `Person` JSON-LD → P6-R6
+- [x] **P6-T06** · Claude · `/projects` with `StackFilter` → P6-R7
+- [ ] **P6-T07** · Claude · `/projects/[slug]` with `CaseStudyLayout`; write the Fitscovery and francisaguilar.co case studies from Francis's notes → P6-R8 _(layout and route done; the case studies are still placeholders in the five-part structure, waiting for notes)_
+- [x] **P6-T08** · Claude · Add the routes to the sitemap; metadata + OG for each → P6-R2, P6-R3
 
 ## PR 2: Life hub, running, community (`feat(life): add life hub, running and community pages`)
 

@@ -1,3 +1,5 @@
+import { existsSync } from 'node:fs'
+import path from 'node:path'
 import { pages, posts, projects, type Page, type Post, type Project } from '#site/content'
 import { certifications } from '@/content/certifications'
 import { experience } from '@/content/experience'
@@ -21,6 +23,45 @@ import type {
 } from './schemas'
 
 export type { Page, Post, Project }
+
+/** What a project row needs. Client components take this, so the MDX body is not sent to the browser. */
+export type ProjectSummary = Pick<
+  Project,
+  | 'slug'
+  | 'title'
+  | 'year'
+  | 'role'
+  | 'stack'
+  | 'summary'
+  | 'outcome'
+  | 'metric'
+  | 'cover'
+  | 'draft'
+>
+
+export const toProjectSummary = ({
+  slug,
+  title,
+  year,
+  role,
+  stack,
+  summary,
+  outcome,
+  metric,
+  cover,
+  draft,
+}: Project): ProjectSummary => ({
+  slug,
+  title,
+  year,
+  role,
+  stack,
+  summary,
+  outcome,
+  metric,
+  cover,
+  draft,
+})
 export type {
   Certification,
   Experience,
@@ -107,6 +148,14 @@ export function getProject(slug: string): Project | undefined {
   return shown(projects).find((project) => project.slug === slug)
 }
 
+/** The projects around `slug`, in the order of {@link getProjects}: `previous` comes before it, `next` after. */
+export function getAdjacentProjects(slug: string): { previous?: Project; next?: Project } {
+  const all = getProjects()
+  const index = all.findIndex((project) => project.slug === slug)
+  if (index === -1) return {}
+  return { previous: all[index - 1], next: all[index + 1] }
+}
+
 /** A long-form page: `now` or `life/building`. */
 export function getPage(slug: string): Page | undefined {
   return shown(pages).find((page) => page.slug === slug)
@@ -177,4 +226,17 @@ export function getUses(): UsesGroup[] {
 /** Always returned, even while `site.draft` is set: that flag only means the copy isn't final. */
 export function getSite(): Site {
   return site
+}
+
+/**
+ * Where the résumé is, or `undefined` when there is none to link to: `site.resumeUrl` is unset, or
+ * it is a path under `public/` and the file has not been added yet. Read at build time.
+ */
+export function getResumeUrl(): string | undefined {
+  const { resumeUrl } = site
+  if (!resumeUrl) return undefined
+  if (resumeUrl.startsWith('/') && !existsSync(path.join(process.cwd(), 'public', resumeUrl))) {
+    return undefined
+  }
+  return resumeUrl
 }

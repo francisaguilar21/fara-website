@@ -110,6 +110,24 @@ describe('buildSitemap', () => {
   })
 })
 
+describe('buildSitemap with inner pages (P6-R3)', () => {
+  const entries = buildSitemap({
+    posts,
+    siteUrl: 'https://example.com',
+    pages: ['/work', '/projects'],
+    projects: [{ slug: 'fitscovery' }],
+  })
+
+  it('lists the pages and case studies after the home page', () => {
+    expect(entries.map((entry) => entry.url).slice(0, 4)).toEqual([
+      'https://example.com',
+      'https://example.com/work',
+      'https://example.com/projects',
+      'https://example.com/projects/fitscovery',
+    ])
+  })
+})
+
 describe('redirects (P4-R12)', () => {
   it('are all permanent', () => {
     expect(redirects.every((redirect) => redirect.permanent)).toBe(true)

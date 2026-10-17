@@ -1,14 +1,14 @@
 import Link from 'next/link'
 import { DraftChip } from '@/components/ui/DraftChip'
 import { Label } from '@/components/ui/Label'
-import type { Project } from '@/lib/content'
+import type { ProjectSummary } from '@/lib/content'
 
 /**
  * One project as a full-width row, not a card. On hover or keyboard focus the title slides right in
  * rose and the arrow turns 45° up. `data-peek` hands the row to the cursor preview, and
  * `data-cursor` gives the custom cursor its "View" label.
  */
-export function ProjectRow({ project }: { project: Project }) {
+export function ProjectRow({ project }: { project: ProjectSummary }) {
   const details = [project.role, ...project.stack].join(' · ')
 
   return (

@@ -67,15 +67,20 @@ export function buildRss({
 }
 
 /**
- * Every published route, each with `lastModified`: the home page, the blog, each post and each tag
- * page. Pages and posts from later phases are added here as their routes ship.
+ * Every published route: the home page, the blog, each post and each tag page, plus the inner pages
+ * (`pages`, paths such as `/work`) and each case study. The blog's entries carry `lastModified`;
+ * the inner pages have no date of their own, so they carry none.
  */
 export function buildSitemap({
   posts,
   siteUrl,
+  pages = [],
+  projects = [],
 }: {
   posts: Post[]
   siteUrl: string
+  pages?: string[]
+  projects?: { slug: string }[]
 }): MetadataRoute.Sitemap {
   const latest = (list: Post[]) =>
     new Date(
@@ -92,6 +97,8 @@ export function buildSitemap({
 
   return [
     { url: siteUrl, lastModified: latest(posts) },
+    ...pages.map((path) => ({ url: `${siteUrl}${path}` })),
+    ...projects.map((project) => ({ url: `${siteUrl}/projects/${project.slug}` })),
     { url: `${siteUrl}/writings`, lastModified: latest(posts) },
     ...posts.map((post) => ({
       url: `${siteUrl}${post.permalink}`,
