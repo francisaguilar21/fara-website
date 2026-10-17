@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next'
-import { getPosts, getProjects } from '@/lib/content'
+import { getPage, getPosts, getProjects } from '@/lib/content'
 import { buildSitemap } from '@/lib/content/feeds'
 import { siteUrl } from '@/lib/site-url'
 
@@ -8,5 +8,15 @@ import { siteUrl } from '@/lib/site-url'
 const PAGES = ['/work', '/projects', '/life', '/life/running', '/life/community']
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return buildSitemap({ posts: getPosts(), siteUrl, pages: PAGES, projects: getProjects() })
+  return buildSitemap({
+    posts: getPosts(),
+    siteUrl,
+    pages: [
+      ...PAGES,
+      '/life/gallery',
+      // Pages made from a content file are 404 while that file is a hidden draft.
+      ...(getPage('life/building') ? ['/life/building'] : []),
+    ],
+    projects: getProjects(),
+  })
 }

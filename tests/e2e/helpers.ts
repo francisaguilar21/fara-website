@@ -20,3 +20,25 @@ export async function hydrated(page: Page) {
     )
   }
 }
+
+/**
+ * Waits until React has attached its handlers to the first element matching `selector`. Pages
+ * without a carousel (see {@link hydrated}) use this: a click before it is dropped.
+ */
+export async function hydratedAt(page: Page, selector: string) {
+  await page.waitForFunction(
+    (css) =>
+      Object.keys(document.querySelector(css) ?? {}).some((key) => key.startsWith('__reactProps')),
+    selector
+  )
+  await viewTransitionDone(page)
+}
+
+/**
+ * Waits for the view transition to end. The page reveals itself with one on load (about 0.7s), and
+ * while one runs the browser sends every pointer event to the root element, so a click or drag
+ * that starts in that window is lost.
+ */
+export async function viewTransitionDone(page: Page) {
+  await page.waitForFunction(() => !document.documentElement.matches(':active-view-transition'))
+}
