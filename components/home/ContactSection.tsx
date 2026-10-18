@@ -1,5 +1,6 @@
 import { Container } from '@/components/layout/Container'
 import { Eyebrow } from '@/components/ui/Eyebrow'
+import { contactBlurb } from '@/lib/home/contact'
 import { BookingCard } from './BookingCard'
 import { ContactForm } from './ContactForm'
 
@@ -32,11 +33,7 @@ export function ContactSection({ bookingUrl }: ContactSectionProps) {
             <br />
             in <span className="text-accent">mind?</span>
           </h2>
-          <p className="mt-6 max-w-[42ch] text-muted">
-            {bookingUrl
-              ? 'Hiring, a project, a talk, or a long run. Send a note, or skip the back-and-forth and grab 30 minutes on my calendar.'
-              : 'Hiring, a project, a talk, or a long run. Send a note and I will get back to you.'}
-          </p>
+          <p className="mt-6 max-w-[42ch] text-muted">{contactBlurb(Boolean(bookingUrl))}</p>
           {bookingUrl ? <BookingCard bookingUrl={bookingUrl} /> : null}
         </div>
         <ContactForm />

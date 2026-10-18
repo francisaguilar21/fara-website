@@ -36,6 +36,10 @@ const INNER_PAGES = [
   '/life/community',
   '/life/gallery',
   '/life/building',
+  '/now',
+  '/uses',
+  '/contact',
+  '/nope',
 ]
 for (const path of INNER_PAGES) {
   for (const theme of ['dark', 'light']) {

@@ -32,3 +32,10 @@ export function validateContact({ name, email, topic, message }: ContactValues):
   }
   return errors
 }
+
+/** The line under the contact heading, on the homepage section and on `/contact`. */
+export function contactBlurb(hasBooking: boolean): string {
+  return hasBooking
+    ? 'Hiring, a project, a talk, or a long run. Send a note, or skip the back-and-forth and grab 30 minutes on my calendar.'
+    : 'Hiring, a project, a talk, or a long run. Send a note and I will get back to you.'
+}

@@ -31,16 +31,16 @@ Specs: [phase-6.specs.md](./phase-6.specs.md)
 
 ## PR 4: Now, uses, contact, 404 (`feat(now): add now, uses, contact and 404 pages`)
 
-- [ ] **P6-T16** · Claude · `/now` with the updated-on label, staleness note and fallback widgets → P6-R14
-- [ ] **P6-T17** · Claude · `/uses` → P6-R15
-- [ ] **P6-T18** · Claude · `/contact` → P6-R16
-- [ ] **P6-T19** · Claude · `app/not-found.tsx` → P6-R17
+- [x] **P6-T16** · Claude · `/now` with the updated-on label, staleness note and fallback widgets → P6-R14
+- [x] **P6-T17** · Claude · `/uses` → P6-R15
+- [x] **P6-T18** · Claude · `/contact` → P6-R16
+- [x] **P6-T19** · Claude · `app/not-found.tsx` → P6-R17
 
 ## Verification
 
-- [ ] **P6-T20** · Claude · Playwright: every route returns 200, unknown routes return 404, lightbox keyboard flow, race table sort → P6-AC1, P6-AC3–AC5
-- [ ] **P6-T21** · Claude · Unit test for the `/now` staleness rule → P6-AC8
-- [ ] **P6-T22** · Claude · OG preview check, Rich Results Test, axe + Lighthouse on every page → P6-AC2, P6-AC6, P6-AC7
+- [x] **P6-T20** · Claude · Playwright: every route returns 200, unknown routes return 404, lightbox keyboard flow, race table sort → P6-AC1, P6-AC3–AC5
+- [x] **P6-T21** · Claude · Unit test for the `/now` staleness rule → P6-AC8
+- [ ] **P6-T22** · Claude · OG preview check, Rich Results Test, axe + Lighthouse on every page → P6-AC2, P6-AC6, P6-AC7 _(axe runs in the e2e suite on every page; the OG preview tool, Rich Results Test and Lighthouse need the deployed preview)_
 - [ ] **P6-T23** · Francis · Review every page on the preview and sign off → P6-R1
 
 ## Done when

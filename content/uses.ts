@@ -4,17 +4,29 @@ import type { UsesGroup } from '@/lib/content/schemas'
 export const uses: UsesGroup[] = [
   {
     category: 'Languages',
-    items: [{ name: 'TypeScript' }, { name: 'JavaScript' }, { name: 'SQL' }],
+    items: [
+      { name: 'TypeScript', note: 'Strict mode on, everywhere.' },
+      { name: 'JavaScript' },
+      { name: 'SQL' },
+    ],
     draft: true,
   },
   {
     category: 'Frontend',
-    items: [{ name: 'React' }, { name: 'Next.js' }, { name: 'Tailwind CSS' }],
+    items: [
+      { name: 'React' },
+      { name: 'Next.js', note: 'App Router, mostly static.', url: 'https://nextjs.org' },
+      { name: 'Tailwind CSS' },
+    ],
     draft: true,
   },
   {
     category: 'Backend',
-    items: [{ name: 'Node.js' }, { name: 'PostgreSQL' }, { name: 'REST & GraphQL' }],
+    items: [
+      { name: 'Node.js' },
+      { name: 'PostgreSQL', note: 'My default for anything relational.' },
+      { name: 'REST & GraphQL' },
+    ],
     draft: true,
   },
   {
@@ -33,7 +45,11 @@ export const uses: UsesGroup[] = [
   },
   {
     category: 'On the road',
-    items: [{ name: 'Garmin' }, { name: 'Strava' }, { name: 'Asics' }],
+    items: [
+      { name: 'Garmin', note: 'Placeholder: the watch I race in.' },
+      { name: 'Strava' },
+      { name: 'Asics', note: 'Placeholder: daily trainers.' },
+    ],
     draft: true,
   },
 ]
