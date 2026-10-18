@@ -22,3 +22,25 @@ export function getBlurDataURL(src: string): Promise<string> {
   }
   return blur
 }
+
+const sizes = new Map<string, Promise<{ width: number; height: number }>>()
+
+/**
+ * Intrinsic size of an image in `public/`, read once at build time. Masonry needs it to reserve
+ * each photo's box before the image loads. Server only.
+ *
+ * @param src a path under `public/`, for example `/static/images/gallery/road.webp`
+ */
+export function getImageSize(src: string): Promise<{ width: number; height: number }> {
+  let size = sizes.get(src)
+  if (!size) {
+    size = readFile(path.join(process.cwd(), 'public', src))
+      .then((file) => sharp(file).metadata())
+      .then(({ width, height }) => {
+        if (!width || !height) throw new Error(`Could not read the size of public${src}`)
+        return { width, height }
+      })
+    sizes.set(src, size)
+  }
+  return size
+}

@@ -25,9 +25,9 @@ Specs: [phase-6.specs.md](./phase-6.specs.md)
 
 ## PR 3: Gallery & building (`feat(life): add gallery and building story`)
 
-- [ ] **P6-T13** · Claude · Optimize the gallery images (WebP, ≤ 2000px) into `public/static/images/gallery/`; fill in `gallery.ts` with alt text → P6-R12
-- [ ] **P6-T14** · Claude · `MasonryGallery` + `Lightbox` (keyboard, focus trap, swipe) → P6-R12
-- [ ] **P6-T15** · Claude · `/life/building` from MDX with a table of contents → P6-R13
+- [ ] **P6-T13** · Claude · Optimize the gallery images (WebP, ≤ 2000px) into `public/static/images/gallery/`; fill in `gallery.ts` with alt text → P6-R12 _(the five starter photos already meet the rules and a test enforces them; the real photos are still to come)_
+- [x] **P6-T14** · Claude · `MasonryGallery` + `Lightbox` (keyboard, focus trap, swipe) → P6-R12
+- [x] **P6-T15** · Claude · `/life/building` from MDX with a table of contents → P6-R13
 
 ## PR 4: Now, uses, contact, 404 (`feat(now): add now, uses, contact and 404 pages`)
 
