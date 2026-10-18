@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test'
+import { viewTransitionDone } from './helpers'
 
 test.describe('hero and now strip', () => {
   test('the hero shows the label row, three roles and both calls to action', async ({ page }) => {
@@ -42,6 +43,8 @@ test.describe('hero and now strip', () => {
     await page.goto('/')
     const photo = page.getByRole('img', { name: /Francis Aguilar smiling/ })
     await expect(photo).toHaveCSS('filter', /grayscale\(1\)/)
+    // A hover that starts during the page's reveal on load never reaches the photo.
+    await viewTransitionDone(page)
     await photo.hover()
     await expect(photo).toHaveCSS('filter', /grayscale\(0\)/, { timeout: 2000 })
   })
