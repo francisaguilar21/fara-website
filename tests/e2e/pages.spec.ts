@@ -9,7 +9,6 @@ const ROUTES = [
   '/life/running',
   '/life/community',
   '/life/gallery',
-  '/life/building',
   '/now',
   '/uses',
   '/contact',
@@ -196,13 +195,8 @@ test.describe('with drafts hidden', () => {
     })
   }
 
-  test('/life/building is a 404 while its page is a draft, and is not in the sitemap', async ({
-    page,
-    request,
-  }) => {
-    expect((await page.goto(`${HIDDEN}/life/building`))?.status()).toBe(404)
+  test('the sitemap still lists /now while its page is a draft', async ({ request }) => {
     const xml = await (await request.get(`${HIDDEN}/sitemap.xml`)).text()
-    expect(xml).not.toContain('/life/building')
     expect(xml).toContain('<loc>https://francisaguilar.co/now</loc>')
   })
 })

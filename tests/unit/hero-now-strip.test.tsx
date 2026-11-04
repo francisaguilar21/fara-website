@@ -42,13 +42,12 @@ describe('Hero', () => {
     expect(screen.getByText('Manila, PH · 14.60°N 120.98°E')).toBeInTheDocument()
   })
 
-  it('lists the three roles and marks the unconfirmed employer as a draft', () => {
+  it('lists the three roles', () => {
     vi.stubEnv('VERCEL_ENV', 'preview')
     vi.stubEnv('HIDE_DRAFTS', '')
     render(<Hero {...hero} />)
     for (const path of ['/work', '/build', '/run'])
       expect(screen.getByText(path)).toBeInTheDocument()
-    expect(screen.getByText('company?')).toBeInTheDocument()
   })
 
   it('keeps the roles but drops the draft chip where drafts are hidden', () => {
@@ -61,7 +60,7 @@ describe('Hero', () => {
       const { unmount } = render(<Hero {...hero} />)
       for (const path of ['/work', '/build', '/run'])
         expect(screen.getByText(path)).toBeInTheDocument()
-      expect(screen.getByText('Senior Software Engineer')).toBeInTheDocument()
+      expect(screen.getByText('AI Software Engineer')).toBeInTheDocument()
       expect(screen.queryByText('company?')).not.toBeInTheDocument()
       unmount()
     }

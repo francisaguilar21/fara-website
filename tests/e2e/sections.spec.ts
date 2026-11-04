@@ -158,9 +158,9 @@ test.describe('proof', () => {
     await context.close()
   })
 
-  test('lists the certifications', async ({ page }) => {
+  test('lists the six newest certifications', async ({ page }) => {
     await page.goto('/')
-    await expect(page.locator('#proof').getByText(/Issuer · 20\d\d/)).toHaveCount(3)
+    await expect(page.locator('#proof').getByText(/ · 20\d\d$/)).toHaveCount(6)
   })
 })
 

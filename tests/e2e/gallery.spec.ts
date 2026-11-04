@@ -121,50 +121,16 @@ test.describe('/life/gallery', () => {
   })
 })
 
-test.describe('/life/building', () => {
-  test('renders the story with a table of contents on desktop', async ({ page }) => {
-    await page.setViewportSize({ width: 1440, height: 900 })
-    const response = await page.goto('/life/building')
-    expect(response?.status()).toBe(200)
-    await expect(page.getByRole('heading', { level: 1 })).toContainText('Building')
-    const toc = page.getByRole('navigation', { name: 'On this page' })
-    await expect(toc).toBeVisible()
-    const links = await toc
-      .getByRole('link')
-      .evaluateAll((anchors) => anchors.map((anchor) => anchor.getAttribute('href')))
-    expect(links).toEqual(['#the-idea', '#what-we-built', '#what-broke', '#what-i-took-back'])
-    for (const href of links) await expect(page.locator(href!)).toHaveCount(1)
-  })
-
-  test('hides the table of contents on a phone', async ({ page }) => {
-    await page.setViewportSize({ width: 390, height: 800 })
-    await page.goto('/life/building')
-    await expect(page.getByRole('navigation', { name: 'On this page' })).toBeHidden()
-  })
-
-  test('links back to /life', async ({ page }) => {
-    await page.goto('/life/building')
-    await expect(page.getByRole('link', { name: 'Life', exact: true }).first()).toHaveAttribute(
-      'href',
-      '/life'
-    )
-  })
+test('the gallery hub link resolves', async ({ request }) => {
+  expect((await request.get('/life/gallery')).status()).toBe(200)
 })
 
-test('the hub links resolve now that the pages exist', async ({ request }) => {
-  for (const path of ['/life/gallery', '/life/building']) {
-    expect((await request.get(path)).status()).toBe(200)
-  }
-})
-
-test('the sitemap lists the gallery and the building story', async ({ request }) => {
+test('the sitemap lists the gallery', async ({ request }) => {
   const xml = await (await request.get('/sitemap.xml')).text()
-  for (const path of ['/life/gallery', '/life/building']) {
-    expect(xml).toContain(`<loc>https://francisaguilar.co${path}</loc>`)
-  }
+  expect(xml).toContain('<loc>https://francisaguilar.co/life/gallery</loc>')
 })
 
-for (const path of ['/life/gallery', '/life/building']) {
+for (const path of ['/life/gallery']) {
   test(`${path} has its own title, canonical URL and social image`, async ({ page, request }) => {
     await page.goto(path)
     await expect(page).toHaveTitle(/ · Francis Aguilar$/)

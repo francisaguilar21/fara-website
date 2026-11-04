@@ -159,7 +159,7 @@ export function getAdjacentProjects(slug: string): { previous?: Project; next?: 
   return { previous: all[index - 1], next: all[index + 1] }
 }
 
-/** A long-form page: `now` or `life/building`. */
+/** A long-form page: `now`. */
 export function getPage(slug: string): Page | undefined {
   return shown(pages).find((page) => page.slug === slug)
 }

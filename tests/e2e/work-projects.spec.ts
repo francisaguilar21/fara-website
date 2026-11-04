@@ -86,14 +86,14 @@ test.describe('/projects/[slug]', () => {
   })
 
   test('links back to /projects, and to the next and previous project', async ({ page }) => {
-    await page.goto('/projects/francisaguilar-co')
+    await page.goto('/projects/fitscovery')
     await expect(page.getByRole('link', { name: 'Projects', exact: true }).first()).toHaveAttribute(
       'href',
       '/projects'
     )
     await expect(page.getByRole('link', { name: /Previous project/ })).toHaveAttribute(
       'href',
-      '/projects/fitscovery'
+      '/projects/francisaguilar-co'
     )
     await expect(page.getByRole('link', { name: /Next project/ })).toHaveAttribute(
       'href',

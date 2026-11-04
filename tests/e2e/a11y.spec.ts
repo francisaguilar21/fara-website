@@ -35,7 +35,6 @@ const INNER_PAGES = [
   '/life/running',
   '/life/community',
   '/life/gallery',
-  '/life/building',
   '/now',
   '/uses',
   '/contact',

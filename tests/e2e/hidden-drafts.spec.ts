@@ -46,7 +46,7 @@ test.describe('with drafts hidden', () => {
     for (const path of ['/work', '/build', '/run']) {
       await expect(page.locator('main ul li', { hasText: path }).first()).toBeVisible()
     }
-    await expect(page.getByText('Senior Software Engineer').first()).toBeVisible()
+    await expect(page.getByText('AI Software Engineer').first()).toBeVisible()
   })
 
   test('the strip skips what came from the draft now page, and keeps the live widgets', async ({
@@ -85,8 +85,6 @@ test.describe('with drafts hidden', () => {
     await page.goto('/')
     await expect(page.locator('#projects')).toHaveCount(0)
     await expect(page.locator('#life figure')).toHaveCount(0)
-    await expect(page.locator('article', { hasText: '/life/building' })).toHaveCount(0)
-    await expect(page.getByRole('link', { name: /Read the story/ })).toHaveCount(0)
   })
 
   test('the work timeline keeps its real entries, and the life tiles keep the live widgets', async ({

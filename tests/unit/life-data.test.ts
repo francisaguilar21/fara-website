@@ -1,6 +1,5 @@
 // @vitest-environment node
 import { describe, expect, it } from 'vitest'
-import { splitEmphasis } from '@/lib/home/emphasis'
 import { formatKm, formatRunStart } from '@/lib/home/format'
 import { describeWeeklyBars, weeklyBarsGeometry } from '@/lib/home/weekly-bars'
 import { STRAVA_SAMPLE } from '@/lib/integrations/fallbacks'
@@ -71,23 +70,6 @@ describe('format', () => {
     // The same instant from another offset reads the same in Manila.
     expect(formatRunStart('2026-10-10T22:10:00Z')).toBe('Sun 06:10')
     expect(formatRunStart('2026-10-12T00:05:00+08:00')).toBe('Mon 00:05')
-  })
-})
-
-describe('splitEmphasis', () => {
-  it('sets *asterisked* words apart', () => {
-    expect(splitEmphasis('Shipping is *a team sport*, always.')).toEqual([
-      { text: 'Shipping is ', emphasis: false },
-      { text: 'a team sport', emphasis: true },
-      { text: ', always.', emphasis: false },
-    ])
-  })
-
-  it('keeps plain text, several pairs and a stray asterisk', () => {
-    expect(splitEmphasis('Plain')).toEqual([{ text: 'Plain', emphasis: false }])
-    expect(splitEmphasis('*a* and *b*').map((part) => part.text)).toEqual(['a', ' and ', 'b'])
-    expect(splitEmphasis('5 * 3')).toEqual([{ text: '5 * 3', emphasis: false }])
-    expect(splitEmphasis('')).toEqual([])
   })
 })
 

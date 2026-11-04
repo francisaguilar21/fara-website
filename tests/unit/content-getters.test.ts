@@ -15,17 +15,19 @@ import {
 } from '@/lib/content'
 
 describe('data getters', () => {
-  it('returns experience newest first, with the current role ahead of one that started the same month', () => {
+  it('returns experience newest first', () => {
     const entries = getExperience()
     const starts = entries.map((entry) => entry.start)
     expect(starts).toEqual([...starts].sort().reverse())
-    expect(entries[0]).toMatchObject({ start: '2024-01', end: '' })
+    expect(entries[0]).toMatchObject({ start: '2025-09', end: '' })
   })
 
   it('filters experience by featured, kind and limit', () => {
     expect(getExperience({ kind: 'life' }).every((entry) => entry.kind === 'life')).toBe(true)
     expect(getExperience({ featured: true, limit: 2 })).toHaveLength(2)
-    expect(getExperience({ featured: false })).toEqual([])
+    const unfeatured = getExperience({ featured: false })
+    expect(unfeatured.length).toBeGreaterThan(0)
+    expect(unfeatured.every((entry) => !entry.featured)).toBe(true)
   })
 
   it('returns projects by order, and only the featured ones when asked', () => {
@@ -45,7 +47,6 @@ describe('data getters', () => {
 
   it('finds long-form pages by slug', () => {
     expect(getPage('now')?.title).toBe('Now')
-    expect(getPage('life/building')?.title).toBe('Building')
     expect(getPage('missing')).toBeUndefined()
   })
 

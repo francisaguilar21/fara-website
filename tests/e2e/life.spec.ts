@@ -13,14 +13,13 @@ test.describe('/life', () => {
     const hrefs = await page
       .locator('main article h2 a')
       .evaluateAll((links) => links.map((link) => link.getAttribute('href')))
-    expect(hrefs).toEqual(['/life/running', '/life/community', '/life/gallery', '/life/building'])
+    expect(hrefs).toEqual(['/life/running', '/life/community', '/life/gallery'])
   })
 
-  test('teases the week in km, the latest talk, three photos and a quote', async ({ page }) => {
+  test('teases the week in km, the latest talk and three photos', async ({ page }) => {
     await page.goto('/life')
     await expect(page.getByText('km this week')).toBeVisible()
     await expect(page.locator('main article img')).toHaveCount(3)
-    await expect(page.locator('main blockquote')).toHaveCount(1)
   })
 })
 

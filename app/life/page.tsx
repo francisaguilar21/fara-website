@@ -4,14 +4,13 @@ import { Container } from '@/components/layout/Container'
 import { PageHeader } from '@/components/layout/PageHeader'
 import { DraftChip } from '@/components/ui/DraftChip'
 import { Label } from '@/components/ui/Label'
-import { getGallery, getPage, getTalks } from '@/lib/content'
+import { getGallery, getTalks } from '@/lib/content'
 import { formatKm } from '@/lib/home/format'
-import { splitEmphasis } from '@/lib/home/emphasis'
 import { getBlurDataURL } from '@/lib/images'
 import { STRAVA_SAMPLE } from '@/lib/integrations/fallbacks'
 import { pageMetadata } from '@/lib/seo'
 
-const DESCRIPTION = 'Running, community and the startup story: the parts of me a résumé leaves out.'
+const DESCRIPTION = 'Running, community and photos: the parts of me a résumé leaves out.'
 
 export const metadata = pageMetadata({ title: 'Life', description: DESCRIPTION, path: '/life' })
 
@@ -20,7 +19,6 @@ export default async function LifePage() {
   const strava = STRAVA_SAMPLE
   const [latestTalk] = getTalks({ limit: 1 })
   const photos = getGallery({ limit: 3 })
-  const building = getPage('life/building')
   const blurs = await Promise.all(photos.map((photo) => getBlurDataURL(photo.src)))
 
   return (
@@ -70,27 +68,6 @@ export default async function LifePage() {
                 </li>
               ))}
             </ul>
-          </LifeCard>
-        ) : null}
-
-        {building ? (
-          <LifeCard href="/life/building" title="Building">
-            {building.quote ? (
-              <blockquote className="m-0 font-display text-[1.25rem] leading-[1.3] font-medium tracking-[-0.01em]">
-                {splitEmphasis(building.quote).map((part, index) =>
-                  part.emphasis ? (
-                    <em key={index} className="text-accent not-italic">
-                      {part.text}
-                    </em>
-                  ) : (
-                    part.text
-                  )
-                )}
-              </blockquote>
-            ) : (
-              <p className="text-muted">{building.teaser}</p>
-            )}
-            {building.draft ? <DraftChip className="mt-3">copy</DraftChip> : null}
           </LifeCard>
         ) : null}
       </div>

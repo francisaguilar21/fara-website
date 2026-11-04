@@ -1,20 +1,63 @@
 import type { Experience } from '@/lib/content/schemas'
 
-// Placeholders from the design mockup. Entries marked `draft: true` are waiting for the real
-// company, dates and copy (DESIGN §14). Order doesn't matter: the getter sorts by `start`.
+// Work entries come from Francis's 2026 résumé and LinkedIn notes. The Pacer entry is still a
+// placeholder (`draft: true`). Order doesn't matter: the getter sorts by `start`. The homepage shows
+// the six newest `featured` entries.
 export const experience: Experience[] = [
   {
-    role: 'Senior Software Engineer',
-    org: 'Company',
-    start: '2024-01',
+    role: 'Software Engineer',
+    org: 'Iress',
+    orgUrl: 'https://www.iress.com',
+    start: '2025-06',
+    end: '',
+    location: 'Remote',
+    kind: 'work',
+    summary:
+      'Designing and building features for a post-trade system that handles billions in transactions a year.',
+    highlights: [
+      'Migrating the existing widgets and C++ services of the post-trade system to React and C#.',
+      'Working closely with product, the engineering manager and the tech lead to ship on time.',
+    ],
+    tags: ['C#', 'React', 'AWS', 'AI agents'],
+    featured: true,
+  },
+  {
+    role: 'Open-source contributor',
+    org: 'BetterGov.ph',
+    orgUrl: 'https://bettergov.ph',
+    start: '2025-09',
     end: '',
     kind: 'work',
     summary:
-      'One sentence about the impact you have here: what you own, what you shipped, and who it helped.',
+      'Bug fixes, UI improvements, features and data validation for a community-built site that makes Philippine government services easier to use.',
     highlights: [],
-    tags: ['TypeScript', 'React', 'Cloud'],
+    tags: ['Open source', 'Civic tech'],
+    featured: false,
+  },
+  {
+    role: 'IT Consultant',
+    org: 'WeKenRun',
+    start: '2025-03',
+    end: '',
+    kind: 'work',
+    summary:
+      'Workflow automation and advice on digital processes for a running events company, alongside my full-time role.',
+    highlights: [],
+    tags: ['Automation', 'Consulting'],
+    featured: false,
+  },
+  {
+    role: 'Senior Software Engineer',
+    org: 'Nowcom Global Services',
+    start: '2024-05',
+    end: '2025-06',
+    location: 'Remote',
+    kind: 'work',
+    summary:
+      'Designed and built a custom accounting product for 20,000 car dealerships across the US, working with the AVP of Software Development.',
+    highlights: [],
+    tags: ['C#', '.NET', 'Angular', 'SQL Server'],
     featured: true,
-    draft: true,
   },
   {
     role: 'Committed to a year of change',
@@ -54,30 +97,104 @@ export const experience: Experience[] = [
     draft: true,
   },
   {
+    role: 'Head of IT & Production',
+    org: 'Golden Wheat Bakery',
+    start: '2021-01',
+    end: '2023-12',
+    kind: 'work',
+    summary:
+      'Raised production capacity by 250%, from 8,000 to 20,000 buns a day, through process studies and digitalization.',
+    highlights: [
+      'Cut reporting turnaround time by 87.5% and raised productive employee hours by 57%.',
+    ],
+    tags: ['Process improvement', 'Operations'],
+    featured: false,
+  },
+  {
     role: 'Co-founder & CTO',
     org: 'Fitscovery',
     orgUrl: 'https://fitscovery.com',
-    start: '2019-01',
-    end: '2024-01',
+    start: '2019-07',
+    end: '2024-02',
     kind: 'work',
     summary:
-      'Built the product and the engineering team behind a fitness discovery startup, from the first commit to production.',
+      'Built a platform that helped 500+ gyms, trainers and fitness communities grow their business, and led a team across five countries.',
     highlights: [],
     tags: ['Founder', 'Architecture', 'Hiring'],
     featured: true,
-    draft: true,
   },
   {
-    role: 'Software Engineer & IT Project Manager',
-    org: 'Company',
-    start: '2014-01',
-    end: '2019-01',
+    role: 'Software Engineer',
+    org: 'You_Source',
+    start: '2017-11',
+    end: '2018-10',
+    location: 'Makati, PH',
     kind: 'work',
     summary:
-      'The early years: shipping client software, then running the projects that shipped it.',
+      'Built a data visualization app used daily by hundreds of hospitality companies, mentored junior developers and ran the Azure infrastructure.',
     highlights: [],
-    tags: ['Delivery', 'Full-stack'],
-    featured: true,
-    draft: true,
+    tags: ['C#', 'Angular', 'Azure'],
+    featured: false,
+  },
+  {
+    role: 'Software Engineer',
+    org: 'Early Childhood Care & Development Council',
+    start: '2016-06',
+    end: '2017-11',
+    location: 'Pasig, PH',
+    kind: 'work',
+    summary:
+      'Built and ran NETIS, the national enrollment system for 50,000+ daycare centers, cutting data consolidation from a month to a few hours.',
+    highlights: [],
+    tags: ['C#', 'ASP.NET MVC', 'MySQL'],
+    featured: false,
+  },
+  {
+    role: 'Project Manager & Software Developer',
+    org: 'Zekaf Cafe',
+    start: '2015-09',
+    end: '2017-05',
+    kind: 'work',
+    summary:
+      'Scoped, planned and built a transaction processing and reporting system that showed the cafe where it was losing money.',
+    highlights: [],
+    tags: ['.NET', 'Project management'],
+    featured: false,
+  },
+  {
+    role: 'Software Developer Intern',
+    org: 'PLDT',
+    start: '2015-04',
+    end: '2015-07',
+    kind: 'work',
+    summary:
+      'Built the first version of a payments analysis tool that processed a million rows a day and cut hours of manual work to minutes.',
+    highlights: [],
+    tags: ['Internship', 'Data'],
+    featured: false,
+  },
+  {
+    role: 'Project Manager & Software Developer',
+    org: 'Ateneo Management Information Systems Association',
+    start: '2014-06',
+    end: '2016-05',
+    kind: 'work',
+    summary:
+      "Led student teams that built registration systems, booking systems and websites for the org's clients.",
+    highlights: [],
+    tags: ['Ruby on Rails', 'Project management'],
+    featured: false,
+  },
+  {
+    role: 'Project Manager & Software Developer',
+    org: 'Barangay Loyola Heights',
+    start: '2014-01',
+    end: '2015-03',
+    kind: 'work',
+    summary:
+      "Built a records archive for the barangay's ordinances and a tracking system for its 21,140 residents.",
+    highlights: [],
+    tags: ['Government', 'Project management'],
+    featured: false,
   },
 ]

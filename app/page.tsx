@@ -51,7 +51,6 @@ export const metadata: Metadata = {
 export default function Home() {
   const site = getSite()
   const now = getPage('now')
-  const building = getPage('life/building')
 
   return (
     <>
@@ -73,11 +72,13 @@ export default function Home() {
         talks={getTalks({ limit: 3 })}
         nowPlaying={NOW_PLAYING_SAMPLE}
         gallery={getGallery({ limit: 5 })}
-        building={building}
       />
       <SlashDivider />
       <StackGrid groups={getUses()} />
-      <Proof recommendations={getRecommendations()} certifications={getCertifications()} />
+      <Proof
+        recommendations={getRecommendations()}
+        certifications={getCertifications({ limit: 6 })}
+      />
       <SlashDivider />
       <LatestPosts posts={getPosts({ limit: 3 })} />
       <GithubSection calendar={CONTRIBUTIONS_SAMPLE} username={githubUsername(site.socials)} />
