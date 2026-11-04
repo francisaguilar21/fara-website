@@ -1,8 +1,6 @@
 import { render, screen, within } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
-import { BuildingTile } from '@/components/home/BuildingTile'
 import { CommunityTile } from '@/components/home/CommunityTile'
-import { LifeSection } from '@/components/home/LifeSection'
 import { ProjectRow } from '@/components/home/ProjectRow'
 import { ProjectsSection } from '@/components/home/ProjectsSection'
 import { RunningTile } from '@/components/home/RunningTile'
@@ -150,47 +148,11 @@ describe('NowPlaying', () => {
   })
 })
 
-describe('BuildingTile', () => {
-  const page = { quote: 'Shipping is *a team sport*.', teaser: 'The founder story.', draft: true }
-
-  it('shows the quote with the starred words emphasized, the teaser and the link', () => {
-    const { container } = render(<BuildingTile page={page} />)
-    expect(container.querySelector('blockquote')).toHaveTextContent('Shipping is a team sport.')
-    expect(container.querySelector('blockquote em')).toHaveTextContent('a team sport')
-    expect(screen.getByText('The founder story.')).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /Read the story/ })).toHaveAttribute(
-      'href',
-      '/life/building'
-    )
-  })
-
-  it('is marked draft until the story exists', () => {
-    const { rerender } = render(<BuildingTile page={page} />)
-    expect(screen.getByText('copy')).toBeInTheDocument()
-    rerender(<BuildingTile page={{ ...page, draft: false }} />)
-    expect(screen.queryByText('copy')).not.toBeInTheDocument()
-  })
-})
-
 describe('with drafts hidden, the sections that lose their content', () => {
   it('keeps the community tile and the Spotify card when there are no talks', () => {
     render(<CommunityTile talks={[]} track={NOW_PLAYING_SAMPLE} />)
     expect(screen.queryByRole('list')).not.toBeInTheDocument()
     expect(screen.getByText('Running Up That Hill')).toBeInTheDocument()
-  })
-
-  it('leaves the building tile, and its link to a page that is not there, out of the grid', () => {
-    const grid = {
-      strava: STRAVA_SAMPLE,
-      talks,
-      nowPlaying: NOW_PLAYING_SAMPLE,
-      gallery: [],
-    }
-    const { unmount } = render(<LifeSection {...grid} />)
-    expect(screen.queryByRole('link', { name: /Read the story/ })).not.toBeInTheDocument()
-    unmount()
-    render(<LifeSection {...grid} building={{ quote: 'A quote.' }} />)
-    expect(screen.getByRole('link', { name: /Read the story/ })).toBeInTheDocument()
   })
 
   it('renders no projects section without projects', () => {

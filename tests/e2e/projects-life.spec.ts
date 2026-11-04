@@ -11,8 +11,8 @@ test.describe('projects', () => {
       .locator('a')
       .evaluateAll((links) => links.map((link) => link.getAttribute('href')))
     expect(hrefs).toEqual([
-      '/projects/fitscovery',
       '/projects/francisaguilar-co',
+      '/projects/fitscovery',
       '/projects/sample-project',
     ])
     await expect(page.getByRole('heading', { level: 2, name: /Things I.ve built/ })).toBeVisible()
@@ -156,17 +156,6 @@ test.describe('life', () => {
     await expect
       .poll(() => inner.evaluate((el) => (el as HTMLElement).style.transform))
       .not.toBe(before)
-  })
-
-  test('building tile: a draft pull quote and a link to the story', async ({ page }) => {
-    await page.goto('/')
-    const tile = page.locator('article', { hasText: '/life/building' })
-    await expect(tile.locator('blockquote em')).toHaveCSS('color', 'rgb(244, 63, 94)')
-    await expect(tile.getByText('copy', { exact: true })).toBeVisible()
-    await expect(tile.getByRole('link', { name: /Read the story/ })).toHaveAttribute(
-      'href',
-      '/life/building'
-    )
   })
 
   test('at 360px nothing scrolls the page sideways', async ({ page }) => {

@@ -8,15 +8,14 @@ export type HeroRole = {
   draft?: string
 }
 
-// Three one-line roles under the intro (DESIGN §5). They are copied from the mockup. The current
-// employer is not named until Francis confirms (phase 5 open question), hence the draft chip.
-// `pnpm check:drafts` lists every role that still has a `draft`.
+// Three one-line roles under the intro (DESIGN §5). Fitscovery is left out on purpose: it is shown
+// as a project, not headlined. `pnpm check:drafts` lists every role that still has a `draft`.
 export const HERO_ROLES: HeroRole[] = [
-  { path: '/work', text: 'Senior Software Engineer', draft: 'company?' },
+  { path: '/work', text: 'AI Software Engineer' },
   {
     path: '/build',
-    text: 'Ex-Founder & CTO, ',
-    link: { label: 'Fitscovery', href: 'https://fitscovery.com' },
+    text: 'Open-source contributor, ',
+    link: { label: 'BetterGov.ph', href: 'https://bettergov.ph' },
   },
   { path: '/run', text: 'Pacer, Asics Run Club PH' },
 ]

@@ -61,7 +61,7 @@ describe('findDrafts', () => {
   const sources = new Set(drafts.map((draft) => draft.source))
 
   it('lists the placeholder content entries', () => {
-    for (const source of ['experience', 'projects', 'certifications', 'recommendations', 'uses']) {
+    for (const source of ['experience', 'projects', 'recommendations', 'uses']) {
       expect(sources).toContain(source)
     }
   })
@@ -70,8 +70,8 @@ describe('findDrafts', () => {
     expect(drafts.filter((draft) => draft.source === 'sample')).toHaveLength(3)
   })
 
-  it('lists the hero role that is waiting for the employer', () => {
-    expect(drafts).toContainEqual({ source: 'hero roles', label: '/work Senior Software Engineer' })
+  it('has no hero role left waiting for a detail', () => {
+    expect(sources).not.toContain('hero roles')
   })
 
   it('does not list blog posts, which are hidden in production by design', () => {

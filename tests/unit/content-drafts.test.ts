@@ -104,7 +104,6 @@ describe.each([
   it('leave out the draft pages and projects, by slug as well as in lists', () => {
     hide()
     expect(getPage('now')).toBeUndefined()
-    expect(getPage('life/building')).toBeUndefined()
     expect(getProject('fitscovery')).toBeUndefined()
     expect(getProjects()).toEqual([])
   })
@@ -113,7 +112,7 @@ describe.each([
     hide()
     const experience = getExperience()
     expect(experience.length).toBeGreaterThan(0)
-    expect(experience.length).toBeLessThan(6)
+    expect(experience.every((entry) => !entry.draft)).toBe(true)
     expect(getPosts().length).toBeGreaterThan(0)
   })
 
